@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "bank_name": "Westpac",
+    "account_holder": "JESSICA REDPATH",
+    "account_number": null,
+    "statement_period_from": "15-May-2017",
+    "statement_period_to": "27-Jul-2017",
+    "currency": "USD"
+  },
+  "transactions": [
+    {
+      "date": "27 Jul 2017",
+      "description": "WITHDRAWAL At HANDYBANK BALDIVIS 0 5 11819044 $ 25/07417",
+      "amount": 300.0,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "23 Jul 2017",
+      "description": "DebIT CARD PURCHASE CCLES 0287 BALDIIS AUS $",
+      "amount": 23.58,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "14 Jul 2017",
+      "description": "DEBIT CARD PURCHASE ALH VENUES BRASS MONKWA AUS 8743",
+      "amount": 310.0,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "13 Jul 2017",
+      "description": "DEBIT CARD PURCHASE 0172542 COLES 0384 GOSNELLS 13/07",
+      "amount": 8175.55,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "13 Jul 2017",
+      "description": "WITHORAWAL MOBILE 1231093 TFR Wesicac eSa Taxc Business Savin ~",
+      "amount": 8300.0,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "confidence": 0.75,
+    "issues": [
+      {
+        "issue_type": "layout_inferred",
+        "severity": "WARNING",
+        "description": "Layout was inferred from data rows instead of a table header."
+      },
+      {
+        "issue_type": "missing_account_number",
+        "severity": "WARNING",
+        "description": "Could not extract account number from the statement header."
+      }
+    ]
+  }
+}

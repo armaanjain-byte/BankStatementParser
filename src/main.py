@@ -1,36 +1,38 @@
 """
-main.py — Batch OCR runner for the Bank Statement Parser.
+main.py — End-to-end OCR and extraction runner for the Bank Statement Parser.
 
-Scans every image in ``test_set/``, runs EasyOCR via :mod:`src.ocr`,
-and writes structured JSON output to ``outputs/``.
+Runs the complete pipeline:
+  Image -> OCR -> Row Reconstruction -> Layout Detection -> 
+  Transaction Parsing -> Semantic Assignment -> Header Extraction -> 
+  Validation -> BankStatement
 
-Usage:
-    python -m src.main              # process all images
-    python -m src.main --no-gpu     # CPU-only mode
-
-This module does NOT perform:
-  • Field extraction
-  • Transaction reconstruction
-  • Metadata extraction
+Outputs a serialized BankStatement to JSON.
 """
 
 from __future__ import annotations
 
+import json
 import logging
 import sys
 import time
 from pathlib import Path
 
-from src.ocr import extract_tokens, save_ocr_json
+from src.header_extractor import extract_metadata
+from src.layout_detector import detect_layout
+from src.ocr import extract_tokens
+from src.schema import BankStatement
+from src.semantic_assigner import build_semantic_assignment_report
+from src.transaction_parser import parse_rows
+from src.transaction_reconstructor import reconstruct_rows
+from src.validator import validate_statement
 
 # ──────────────────────────────────────────────
 #  Config
 # ──────────────────────────────────────────────
 
 INPUT_DIR = Path("test_set")
-OUTPUT_DIR = Path("outputs")
+OUTPUT_DIR = Path("statement_outputs")
 
-# Image extensions to scan (case-insensitive via .suffix.lower())
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".tiff", ".tif", ".bmp", ".webp"}
 
 # ──────────────────────────────────────────────
@@ -44,33 +46,62 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
 # ──────────────────────────────────────────────
-#  Helpers
+#  Pipeline processing
 # ──────────────────────────────────────────────
 
-def _average_confidence(tokens) -> float:
-    """Return the mean confidence of a token list, or 0.0 if empty."""
-    if not tokens:
-        return 0.0
-    return sum(t.confidence for t in tokens) / len(tokens)
+def process_statement(image_path: Path, gpu: bool = True) -> BankStatement:
+    """Run the entire end-to-end extraction pipeline on a single image."""
+    
+    # 1. OCR
+    tokens = extract_tokens(image_path, gpu=gpu)
+    
+    # 2. Row Reconstruction
+    rows = reconstruct_rows(tokens)
+    
+    # 3. Layout Detection
+    layout = detect_layout(tokens, rows)
+    
+    # 4. Transaction Parsing
+    parsed_rows = parse_rows(rows)
+    
+    # 5. Semantic Assignment
+    assignment_report = build_semantic_assignment_report(
+        parsed_rows, layout, statement_id=image_path.stem
+    )
+    
+    # Extract successfully assigned transactions
+    transactions = []
+    for r in assignment_report.rows:
+        if any(v is not None for v in r.assigned_values.values()):
+            transactions.append(r.transaction)
+            
+    # 6. Header Extraction
+    extraction_result = extract_metadata(tokens)
+    metadata = extraction_result.metadata
+    
+    # 7. Build preliminary BankStatement
+    statement = BankStatement(metadata=metadata, transactions=transactions)
+    
+    # 8. Validation
+    validation_report = validate_statement(statement, layout, assignment_report)
+    statement.validation = validation_report
+    
+    return statement
 
 
 def _output_path_for(image_path: Path) -> Path:
-    """Map an image filename to its OCR JSON output path.
-
-    Examples:
-        23.jpg  -> outputs/23_ocr.json
-        24.png  -> outputs/24_ocr.json
-    """
-    return OUTPUT_DIR / f"{image_path.stem}_ocr.json"
+    """Map an image filename to its JSON output path."""
+    return OUTPUT_DIR / f"{image_path.stem}_statement.json"
 
 
 # ──────────────────────────────────────────────
-#  Main
+#  Main Batch Runner
 # ──────────────────────────────────────────────
 
 def run(*, gpu: bool = True) -> None:
-    """Process every image in INPUT_DIR and write OCR JSON to OUTPUT_DIR."""
+    """Process every image in INPUT_DIR and write BankStatement JSON to OUTPUT_DIR."""
 
     if not INPUT_DIR.exists():
         logger.error("Input directory not found: %s", INPUT_DIR)
@@ -78,7 +109,6 @@ def run(*, gpu: bool = True) -> None:
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Collect and sort image files
     images = sorted(
         p for p in INPUT_DIR.iterdir()
         if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
@@ -91,54 +121,43 @@ def run(*, gpu: bool = True) -> None:
     logger.info("Found %d image(s) in %s", len(images), INPUT_DIR)
     logger.info("-" * 60)
 
-    total_tokens = 0
     batch_start = time.perf_counter()
 
     for idx, image_path in enumerate(images, start=1):
         img_start = time.perf_counter()
-
-        # ── OCR ──────────────────────────────
-        tokens = extract_tokens(image_path, gpu=gpu)
-        avg_conf = _average_confidence(tokens)
-        total_tokens += len(tokens)
-
-        # ── Save ─────────────────────────────
-        out_path = _output_path_for(image_path)
-        save_ocr_json(tokens, out_path)
-
-        elapsed = time.perf_counter() - img_start
-
-        # ── Log ──────────────────────────────
-        logger.info(
-            "[%d/%d] %-20s | tokens: %4d | avg conf: %.4f | %.2fs",
-            idx,
-            len(images),
-            image_path.name,
-            len(tokens),
-            avg_conf,
-            elapsed,
-        )
+        
+        try:
+            statement = process_statement(image_path, gpu=gpu)
+            
+            out_path = _output_path_for(image_path)
+            with open(out_path, "w", encoding="utf-8") as f:
+                json.dump(statement.to_dict(), f, indent=2, ensure_ascii=False)
+                
+            elapsed = time.perf_counter() - img_start
+            
+            logger.info(
+                "[%d/%d] %-20s | txns: %4d | passed: %5s | %.2fs",
+                idx,
+                len(images),
+                image_path.name,
+                statement.transaction_count,
+                statement.validation.passed,
+                elapsed,
+            )
+        except Exception as e:
+            logger.exception("Failed to process %s: %s", image_path.name, e)
 
     batch_elapsed = time.perf_counter() - batch_start
 
     logger.info("-" * 60)
-    logger.info(
-        "Done. %d image(s), %d total tokens, %.2fs elapsed.",
-        len(images),
-        total_tokens,
-        batch_elapsed,
-    )
+    logger.info("Done. %d image(s) processed in %.2fs.", len(images), batch_elapsed)
 
-
-# ──────────────────────────────────────────────
-#  CLI
-# ──────────────────────────────────────────────
 
 if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Batch OCR: test_set/ images -> outputs/ JSON.",
+        description="Batch E2E: test_set/ images -> statement_outputs/ JSON.",
     )
     parser.add_argument(
         "--no-gpu",

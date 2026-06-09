@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "bank_name": null,
+    "account_holder": "Adama Amad",
+    "account_number": "201301401",
+    "statement_period_from": null,
+    "statement_period_to": null,
+    "currency": "USD"
+  },
+  "transactions": [],
+  "validation": {
+    "passed": true,
+    "confidence": 0.0,
+    "issues": [
+      {
+        "issue_type": "no_transactions",
+        "severity": "WARNING",
+        "description": "No transactions were extracted from the statement."
+      }
+    ]
+  }
+}
