@@ -13,7 +13,7 @@ Design decisions
 • Fields that may not be extractable from every statement are Optional
   with a default of None.  This keeps the pipeline resilient — partial
   results are still valid objects.
-• Monetary values (debit, credit, balance) are Optional[float].
+• Monetary values (amount, debit, credit, balance) are Optional[float].
   We intentionally avoid Decimal here because upstream OCR output is
   inherently imprecise; Decimal precision would give false confidence.
   Downstream consumers should round/quantize as needed.
@@ -73,6 +73,7 @@ class Transaction:
                      (e.g. "01/04/2025", "01 Apr 2025").  Kept as a raw
                      string; date normalization is a downstream concern.
         description: Narration / particulars / remarks text.
+        amount:      Generic transaction amount when direction is unknown.
         debit:       Amount debited (withdrawn), or None if not applicable.
         credit:      Amount credited (deposited), or None if not applicable.
         balance:     Running balance after this transaction, if available.
@@ -80,6 +81,7 @@ class Transaction:
 
     date: Optional[str] = None
     description: Optional[str] = None
+    amount: Optional[float] = None
     debit: Optional[float] = None
     credit: Optional[float] = None
     balance: Optional[float] = None
