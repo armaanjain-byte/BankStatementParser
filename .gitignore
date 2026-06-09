@@ -1,0 +1,22 @@
+# Virtual environments
+.venv/
+paddle_env/
+
+# Python
+__pycache__/
+*.pyc
+
+# Generated outputs
+outputs/
+logs/
+
+# VS Code
+.vscode/
+
+# OCR model caches
+.paddleocr/
+.paddlex/
+
+# OS files
+Thumbs.db
+.DS_Store
