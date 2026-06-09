@@ -122,12 +122,12 @@ def evaluate_dataset(input_folder: Path, output_folder: Path, no_gpu: bool = Fal
     elapsed = time.perf_counter() - start_time
     
     # Aggregate Metrics
-    aggregate_report(metrics_list, output_folder / "evaluation_report.json", elapsed)
+    aggregate_report(metrics_list, output_folder, elapsed)
     
     logger.info("Evaluation complete! Results saved to %s", output_folder)
 
 
-def aggregate_report(metrics_list: List[PipelineMetrics], output_path: Path, elapsed_time: float) -> None:
+def aggregate_report(metrics_list: List[PipelineMetrics], output_folder: Path, elapsed_time: float) -> None:
     """Compute aggregate statistics and write the evaluation report."""
     
     if not metrics_list:
@@ -154,16 +154,44 @@ def aggregate_report(metrics_list: List[PipelineMetrics], output_path: Path, ela
             "total_normalized_date_count": sum(m.normalized_date_count for m in metrics_list),
             "total_recovered_date_parse_count": sum(m.recovered_date_parse_count for m in metrics_list),
         },
-        "failures": {
-            "total_date_parse_failures": sum(m.date_parse_failure_count for m in metrics_list),
-            "total_amount_parse_failures": sum(m.amount_parse_failure_count for m in metrics_list),
-            "total_semantic_assignment_failures": sum(m.semantic_assignment_failure_count for m in metrics_list),
-        },
         "statement_metrics": [m.to_dict() for m in metrics_list]
     }
     
-    with open(output_path, "w", encoding="utf-8") as f:
+    evaluation_report_path = output_folder / "evaluation_report.json"
+    with open(evaluation_report_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
+        
+    # Generate pipeline_loss_report.json
+    failure_counts = {
+        "no_date_detected": sum(m.no_date_detected_count for m in metrics_list),
+        "date_parse_failed": sum(m.date_parse_failed_count for m in metrics_list),
+        "insufficient_numeric_values": sum(m.insufficient_numeric_values_count for m in metrics_list),
+        "amount_extraction_failed": sum(m.amount_extraction_failed_count for m in metrics_list),
+        "semantic_mismatch": sum(m.semantic_mismatch_count for m in metrics_list),
+        "unknown": sum(m.unknown_failure_count for m in metrics_list)
+    }
+    
+    # Sort descending
+    ranked_failures = dict(sorted(failure_counts.items(), key=lambda item: item[1], reverse=True))
+    
+    loss_report = {
+        "ranked_failure_categories": ranked_failures,
+        "statement_conversions": []
+    }
+    
+    for m in metrics_list:
+        loss_report["statement_conversions"].append({
+            "statement_id": m.statement_id,
+            "reconstructed_rows": m.reconstructed_row_count,
+            "parsed_rows": m.parsed_row_count,
+            "assigned_transactions": m.assigned_transaction_count,
+            "parse_conversion_rate": m.parse_conversion_rate,
+            "assignment_conversion_rate": m.assignment_conversion_rate
+        })
+        
+    loss_report_path = output_folder / "pipeline_loss_report.json"
+    with open(loss_report_path, "w", encoding="utf-8") as f:
+        json.dump(loss_report, f, indent=2, ensure_ascii=False)
 
 
 if __name__ == "__main__":

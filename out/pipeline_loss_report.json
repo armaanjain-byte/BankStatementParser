@@ -1,0 +1,60 @@
+{
+  "ranked_failure_categories": {
+    "no_date_detected": 83,
+    "date_parse_failed": 22,
+    "insufficient_numeric_values": 12,
+    "semantic_mismatch": 1,
+    "amount_extraction_failed": 0,
+    "unknown": 0
+  },
+  "statement_conversions": [
+    {
+      "statement_id": "23",
+      "reconstructed_rows": 31,
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
+    },
+    {
+      "statement_id": "24",
+      "reconstructed_rows": 27,
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
+    },
+    {
+      "statement_id": "25",
+      "reconstructed_rows": 33,
+      "parsed_rows": 6,
+      "assigned_transactions": 6,
+      "parse_conversion_rate": 0.18,
+      "assignment_conversion_rate": 1.0
+    },
+    {
+      "statement_id": "26",
+      "reconstructed_rows": 36,
+      "parsed_rows": 1,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.03,
+      "assignment_conversion_rate": 0.0
+    },
+    {
+      "statement_id": "27",
+      "reconstructed_rows": 40,
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
+    },
+    {
+      "statement_id": "28",
+      "reconstructed_rows": 28,
+      "parsed_rows": 12,
+      "assigned_transactions": 12,
+      "parse_conversion_rate": 0.43,
+      "assignment_conversion_rate": 1.0
+    }
+  ]
+}
