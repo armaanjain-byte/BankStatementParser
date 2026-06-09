@@ -1,0 +1,144 @@
+"""
+schema.py — Core data structures for the Bank Statement Parser.
+
+Defines the canonical shapes of data flowing through the pipeline:
+
+    Image → OCR → [OCRToken, ...] → Reconstruction → Transaction → BankStatement
+
+All structures use dataclasses for clarity, immutability hints, and
+zero-dependency serialization (via dataclasses.asdict).
+
+Design decisions
+────────────────
+• Fields that may not be extractable from every statement are Optional
+  with a default of None.  This keeps the pipeline resilient — partial
+  results are still valid objects.
+• Monetary values (debit, credit, balance) are Optional[float].
+  We intentionally avoid Decimal here because upstream OCR output is
+  inherently imprecise; Decimal precision would give false confidence.
+  Downstream consumers should round/quantize as needed.
+• bbox is a tuple of four ints (x_min, y_min, x_max, y_max) following
+  the standard top-left / bottom-right convention used by EasyOCR.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field, asdict
+from typing import List, Optional, Tuple
+
+
+# ──────────────────────────────────────────────
+#  OCR Layer
+# ──────────────────────────────────────────────
+
+@dataclass
+class OCRToken:
+    """A single token produced by the OCR engine.
+
+    Attributes:
+        text:       The recognized text content of this token.
+        confidence: OCR confidence score in the range [0.0, 1.0].
+        bbox:       Bounding box as (x_min, y_min, x_max, y_max) in pixels.
+                    Coordinates follow the top-left origin convention.
+    """
+
+    text: str
+    confidence: float
+    bbox: Tuple[int, int, int, int]
+
+    def __post_init__(self) -> None:
+        if not (0.0 <= self.confidence <= 1.0):
+            raise ValueError(
+                f"confidence must be in [0.0, 1.0], got {self.confidence}"
+            )
+        if len(self.bbox) != 4:
+            raise ValueError(
+                f"bbox must have exactly 4 elements, got {len(self.bbox)}"
+            )
+
+
+# ──────────────────────────────────────────────
+#  Transaction Layer
+# ──────────────────────────────────────────────
+
+@dataclass
+class Transaction:
+    """A single financial transaction extracted from a bank statement.
+
+    At minimum a transaction should have a date, but during reconstruction
+    some fields may be unavailable, so everything is Optional.
+
+    Attributes:
+        date:        Transaction date as it appears on the statement
+                     (e.g. "01/04/2025", "01 Apr 2025").  Kept as a raw
+                     string; date normalization is a downstream concern.
+        description: Narration / particulars / remarks text.
+        debit:       Amount debited (withdrawn), or None if not applicable.
+        credit:      Amount credited (deposited), or None if not applicable.
+        balance:     Running balance after this transaction, if available.
+    """
+
+    date: Optional[str] = None
+    description: Optional[str] = None
+    debit: Optional[float] = None
+    credit: Optional[float] = None
+    balance: Optional[float] = None
+
+
+# ──────────────────────────────────────────────
+#  Metadata Layer
+# ──────────────────────────────────────────────
+
+@dataclass
+class StatementMetadata:
+    """Header-level metadata extracted from the bank statement.
+
+    These fields are typically found in the letterhead or summary block
+    at the top of a statement page.
+
+    Attributes:
+        bank_name:             Name of the issuing bank.
+        account_holder:        Name of the account holder.
+        account_number:        Full or masked account number.
+        statement_period_from: Start date of the statement period (raw string).
+        statement_period_to:   End date of the statement period (raw string).
+        currency:              ISO-4217 currency code (e.g. "INR", "USD").
+    """
+
+    bank_name: Optional[str] = None
+    account_holder: Optional[str] = None
+    account_number: Optional[str] = None
+    statement_period_from: Optional[str] = None
+    statement_period_to: Optional[str] = None
+    currency: Optional[str] = None
+
+
+# ──────────────────────────────────────────────
+#  Top-Level Container
+# ──────────────────────────────────────────────
+
+@dataclass
+class BankStatement:
+    """Complete parsed representation of a bank statement.
+
+    This is the final output of the parsing pipeline and the shape of the
+    standardized JSON that gets written to disk.
+
+    Attributes:
+        metadata:     Statement-level metadata (bank name, account info, etc.).
+        transactions: Ordered list of transactions extracted from the statement.
+    """
+
+    metadata: StatementMetadata = field(default_factory=StatementMetadata)
+    transactions: List[Transaction] = field(default_factory=list)
+
+    # ── Convenience helpers ──────────────────
+
+    def to_dict(self) -> dict:
+        """Serialize the entire statement to a plain dict (JSON-ready)."""
+        return asdict(self)
+
+    @property
+    def transaction_count(self) -> int:
+        """Number of transactions currently held."""
+        return len(self.transactions)

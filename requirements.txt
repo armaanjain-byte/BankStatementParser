@@ -1,0 +1,2 @@
+# Bank Statement Parser — Python dependencies
+easyocr>=1.7
