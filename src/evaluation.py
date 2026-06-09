@@ -37,6 +37,8 @@ class PipelineMetrics:
     date_parse_failure_count: int
     amount_parse_failure_count: int
     semantic_assignment_failure_count: int
+    normalized_date_count: int
+    recovered_date_parse_count: int
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -91,8 +93,23 @@ def evaluate_pipeline(
     statement: BankStatement,
     validation_report: ValidationReport,
     failure_reporter: FailureReporter,
+    normalized_date_count: int = 0,
 ) -> PipelineMetrics:
     """Compute metrics for a single statement and log failures."""
+    
+    # Calculate recovered date parse counts
+    recovered_date_parse_count = 0
+    for parsed_row in parsed_rows:
+        # parsed_row has .source_row_index which corresponds to the original Row
+        # Wait, ParsedRow doesn't store a reference to the Row object, just the index.
+        # So we can look up the original row.
+        row_idx = parsed_row.source_row_index
+        if 0 <= row_idx < len(rows):
+            orig_row = rows[row_idx]
+            has_date_now = bool(DATE_RE.search(orig_row.text))
+            had_date_before = bool(DATE_RE.search(orig_row.original_text))
+            if has_date_now and not had_date_before:
+                recovered_date_parse_count += 1
     
     # Calculate date parse failures
     # We consider a date parse failure if a row has a monetary amount (looks like a transaction)
@@ -151,6 +168,8 @@ def evaluate_pipeline(
         date_parse_failure_count=date_parse_failures,
         amount_parse_failure_count=amount_parse_failures,
         semantic_assignment_failure_count=semantic_assignment_failures,
+        normalized_date_count=normalized_date_count,
+        recovered_date_parse_count=recovered_date_parse_count,
     )
     
     logger.info("Evaluated pipeline for %s: %d assigned txns, %.2f confidence", 

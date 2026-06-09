@@ -26,6 +26,7 @@ from src.semantic_assigner import build_semantic_assignment_report
 from src.transaction_parser import parse_rows
 from src.transaction_reconstructor import reconstruct_rows
 from src.validator import validate_statement
+from src.normalizer import normalize_date_strings
 
 logging.basicConfig(
     level=logging.INFO,
@@ -73,6 +74,10 @@ def evaluate_dataset(input_folder: Path, output_folder: Path, no_gpu: bool = Fal
             # Execute Pipeline
             tokens = extract_tokens(image_path, gpu=not no_gpu)
             rows = reconstruct_rows(tokens)
+            
+            # Normalization
+            rows, normalized_date_count = normalize_date_strings(rows)
+            
             layout = detect_layout(tokens, rows)
             parsed_rows = parse_rows(rows)
             assignment_report = build_semantic_assignment_report(parsed_rows, layout, statement_id=statement_id)
@@ -102,7 +107,8 @@ def evaluate_dataset(input_folder: Path, output_folder: Path, no_gpu: bool = Fal
                 assignment_report=assignment_report,
                 statement=statement,
                 validation_report=validation_report,
-                failure_reporter=failure_reporter
+                failure_reporter=failure_reporter,
+                normalized_date_count=normalized_date_count,
             )
             metrics_list.append(metrics)
             
@@ -143,6 +149,10 @@ def aggregate_report(metrics_list: List[PipelineMetrics], output_path: Path, ela
             "header_extraction_success_rate": round(header_successes / total_statements, 4),
             "average_validation_confidence": round(statistics.mean(validation_confidences), 4),
             "average_layout_confidence": round(statistics.mean(layout_confidences), 4),
+        },
+        "normalization": {
+            "total_normalized_date_count": sum(m.normalized_date_count for m in metrics_list),
+            "total_recovered_date_parse_count": sum(m.recovered_date_parse_count for m in metrics_list),
         },
         "failures": {
             "total_date_parse_failures": sum(m.date_parse_failure_count for m in metrics_list),

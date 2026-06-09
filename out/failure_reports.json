@@ -83,5 +83,80 @@
     "failure_type": "date_parse",
     "raw_text": "13.10-2021 UPVPEWL28638844593/RELIANCE {CukunkM...",
     "statement_id": "27"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "Ist June Cafeteria 9.75",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "3rd June City Bus Company 75.00",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "ghJune Mr: K's Groceries $",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "11\" June ATM Withdrawal (GGG Bank) $",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "11\" June ATM Withdrawal Fee 5",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "15th June Direct Deposit Payroll S1,432.05",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "15\"h June Monthly Account Fee $ 12.99",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "16uh June ATM Deposit 90.00",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "25ih June Mr: Ks Groceries 124.86",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "30th June Direct Deposit Payroll S1,432.05",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "30uh  June Personal Cheque Memo: Rent $ 875.00",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "25 Jul2017 Debit CaRD PURCHASE SQ DIVINE PTY LT...",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "14 Jul2017 WITHDRAWAL AT ANZ ATMNORTHB 00013051...",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "date_parse",
+    "raw_text": "Jul2017 Debn CARD PURCHASE TRANsPERTH ticket GO...",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "semantic_assignment",
+    "raw_text": "amounts: 1",
+    "statement_id": "26"
   }
 ]

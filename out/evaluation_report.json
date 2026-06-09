@@ -1,14 +1,18 @@
 {
   "summary": {
     "total_statements_processed": 6,
-    "total_transactions_assigned": 17,
-    "total_processing_time_seconds": 63.19,
+    "total_transactions_assigned": 18,
+    "total_processing_time_seconds": 66.71,
     "header_extraction_success_rate": 0.6667,
     "average_validation_confidence": 0.2917,
     "average_layout_confidence": 0.8008
   },
+  "normalization": {
+    "total_normalized_date_count": 14,
+    "total_recovered_date_parse_count": 1
+  },
   "failures": {
-    "total_date_parse_failures": 16,
+    "total_date_parse_failures": 14,
     "total_amount_parse_failures": 0,
     "total_semantic_assignment_failures": 1
   },
@@ -24,7 +28,9 @@
       "validation_confidence": 0.0,
       "date_parse_failure_count": 0,
       "amount_parse_failure_count": 0,
-      "semantic_assignment_failure_count": 0
+      "semantic_assignment_failure_count": 0,
+      "normalized_date_count": 0,
+      "recovered_date_parse_count": 0
     },
     {
       "statement_id": "24",
@@ -37,20 +43,24 @@
       "validation_confidence": 0.0,
       "date_parse_failure_count": 11,
       "amount_parse_failure_count": 0,
-      "semantic_assignment_failure_count": 0
+      "semantic_assignment_failure_count": 0,
+      "normalized_date_count": 11,
+      "recovered_date_parse_count": 0
     },
     {
       "statement_id": "25",
       "ocr_token_count": 107,
       "reconstructed_row_count": 33,
-      "parsed_row_count": 5,
-      "assigned_transaction_count": 5,
+      "parsed_row_count": 6,
+      "assigned_transaction_count": 6,
       "header_extraction_success": false,
       "layout_detection_confidence": 0.0,
       "validation_confidence": 0.75,
-      "date_parse_failure_count": 4,
+      "date_parse_failure_count": 3,
       "amount_parse_failure_count": 0,
-      "semantic_assignment_failure_count": 0
+      "semantic_assignment_failure_count": 0,
+      "normalized_date_count": 1,
+      "recovered_date_parse_count": 1
     },
     {
       "statement_id": "26",
@@ -63,7 +73,9 @@
       "validation_confidence": 0.0,
       "date_parse_failure_count": 0,
       "amount_parse_failure_count": 0,
-      "semantic_assignment_failure_count": 1
+      "semantic_assignment_failure_count": 1,
+      "normalized_date_count": 0,
+      "recovered_date_parse_count": 0
     },
     {
       "statement_id": "27",
@@ -74,9 +86,11 @@
       "header_extraction_success": true,
       "layout_detection_confidence": 1.0,
       "validation_confidence": 0.0,
-      "date_parse_failure_count": 1,
+      "date_parse_failure_count": 0,
       "amount_parse_failure_count": 0,
-      "semantic_assignment_failure_count": 0
+      "semantic_assignment_failure_count": 0,
+      "normalized_date_count": 2,
+      "recovered_date_parse_count": 0
     },
     {
       "statement_id": "28",
@@ -89,7 +103,9 @@
       "validation_confidence": 1.0,
       "date_parse_failure_count": 0,
       "amount_parse_failure_count": 0,
-      "semantic_assignment_failure_count": 0
+      "semantic_assignment_failure_count": 0,
+      "normalized_date_count": 0,
+      "recovered_date_parse_count": 0
     }
   ]
 }

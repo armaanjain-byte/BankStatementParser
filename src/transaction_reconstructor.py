@@ -48,11 +48,13 @@ class Row:
         tokens:   The constituent :class:`OCRToken` objects, sorted
                   left-to-right by x-coordinate.
         text:     Concatenated token texts, space-separated.
+        original_text: The original concatenated token texts before any normalization.
     """
 
     y_center: float
     tokens: List[OCRToken] = field(default_factory=list)
     text: str = ""
+    original_text: str = ""
 
     @property
     def token_count(self) -> int:
@@ -104,6 +106,7 @@ def _build_row(tokens: List[OCRToken]) -> Row:
         y_center=round(y_center, 1),
         tokens=sorted_tokens,
         text=text,
+        original_text=text,
     )
 
 

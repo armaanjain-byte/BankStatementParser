@@ -25,6 +25,7 @@ from src.semantic_assigner import build_semantic_assignment_report
 from src.transaction_parser import parse_rows
 from src.transaction_reconstructor import reconstruct_rows
 from src.validator import validate_statement
+from src.normalizer import normalize_date_strings
 
 # ──────────────────────────────────────────────
 #  Config
@@ -59,6 +60,9 @@ def process_statement(image_path: Path, gpu: bool = True) -> BankStatement:
     
     # 2. Row Reconstruction
     rows = reconstruct_rows(tokens)
+    
+    # 2.5 Normalization
+    rows, _ = normalize_date_strings(rows)
     
     # 3. Layout Detection
     layout = detect_layout(tokens, rows)
