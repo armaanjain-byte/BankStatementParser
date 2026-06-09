@@ -80,17 +80,19 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
     for idx, row in enumerate(rows):
         text = row.text
         
-        dates = DATE_RE.findall(text)
+        primary_date_match = DATE_RE.search(text)
         amounts = MONEY_RE.findall(text)
         
-        if dates and amounts:
+        if primary_date_match and amounts:
             # We found a transaction row
-            date_str = dates[0]  # Take the first date found
+            date_str = primary_date_match.group(0)
             
-            # Clean up description by removing dates and amounts
-            description = text
-            for d in dates:
-                description = description.replace(d, "", 1)
+            # Remove only the transaction date. Later date-like text can be
+            # meaningful narration, such as interest-period ranges.
+            description = (
+                text[:primary_date_match.start()]
+                + text[primary_date_match.end():]
+            )
             for a in amounts:
                 description = description.replace(a, "", 1)
                 
