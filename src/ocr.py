@@ -30,7 +30,7 @@ from typing import List, Union
 import easyocr
 import numpy as np
 
-from archive.preprocessor import preprocess_for_ocr
+from preprocessor import preprocess_for_ocr
 from src.schema import OCRToken
 
 logger = logging.getLogger(__name__)

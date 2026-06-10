@@ -1,0 +1,12 @@
+"""
+models/validation_models.py — Validation-layer data contracts.
+
+Canonical location for ValidationIssue and ValidationReport.
+Re-exported from src.schema for backward compatibility.
+"""
+
+from __future__ import annotations
+
+from src.schema import ValidationIssue, ValidationReport
+
+__all__ = ["ValidationIssue", "ValidationReport"]

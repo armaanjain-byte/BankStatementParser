@@ -103,7 +103,7 @@ def extract_tokens(
                 
         img_input = str(path)
         if preprocess:
-            from archive.preprocessor import preprocess_for_ocr
+            from preprocessor import preprocess_for_ocr
             import tempfile, cv2
             arr = preprocess_for_ocr(path)
             with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
