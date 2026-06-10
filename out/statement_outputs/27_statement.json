@@ -16,6 +16,16 @@
         "issue_type": "no_transactions",
         "severity": "WARNING",
         "description": "No transactions were extracted from the statement."
+      },
+      {
+        "issue_type": "unassigned_amounts",
+        "severity": "WARNING",
+        "description": "1 transactions had amounts that could not be semantically assigned."
+      },
+      {
+        "issue_type": "missing_balances",
+        "severity": "WARNING",
+        "description": "1 transactions are missing balance values despite layout having a balance column."
       }
     ]
   }

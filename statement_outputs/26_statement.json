@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "bank_name": "Axis Bank",
+    "account_holder": "SESHA FHANI D",
+    "account_number": "910010041701828",
+    "statement_period_from": null,
+    "statement_period_to": null,
+    "currency": "INR"
+  },
+  "transactions": [
+    {
+      "date": "19-07-201",
+      "description": "GESH4GMSBHESBHGANURL9OZLL 50u.U0",
+      "amount": null,
+      "debit": null,
+      "credit": null,
+      "balance": 349.0
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "confidence": 1.0,
+    "issues": []
+  }
+}

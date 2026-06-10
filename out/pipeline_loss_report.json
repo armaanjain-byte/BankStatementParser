@@ -1,9 +1,9 @@
 {
   "ranked_failure_categories": {
-    "no_date_detected": 77,
-    "insufficient_numeric_values": 20,
+    "no_date_detected": 76,
+    "insufficient_numeric_values": 13,
     "semantic_mismatch": 11,
-    "date_parse_failed": 7,
+    "date_parse_failed": 8,
     "amount_extraction_failed": 0,
     "unknown": 0
   },
@@ -27,9 +27,9 @@
     {
       "statement_id": "25",
       "reconstructed_rows": 33,
-      "parsed_rows": 9,
-      "assigned_transactions": 9,
-      "parse_conversion_rate": 0.27,
+      "parsed_rows": 16,
+      "assigned_transactions": 16,
+      "parse_conversion_rate": 0.48,
       "assignment_conversion_rate": 1.0
     },
     {
@@ -43,9 +43,9 @@
     {
       "statement_id": "27",
       "reconstructed_rows": 40,
-      "parsed_rows": 0,
+      "parsed_rows": 1,
       "assigned_transactions": 0,
-      "parse_conversion_rate": 0.0,
+      "parse_conversion_rate": 0.03,
       "assignment_conversion_rate": 0.0
     },
     {

@@ -71,17 +71,17 @@ class SemanticAssignmentReport:
         }
 
 
-def assign_transaction(parsed_row: ParsedRow, layout: LayoutDefinition) -> Transaction:
+def assign_transaction(parsed_row: ParsedRow, row: Row, layout: LayoutDefinition) -> Transaction:
     """Assign semantic fields for one ParsedRow and return a Transaction."""
-    return assign_semantics(parsed_row, layout).transaction
+    return assign_semantics(parsed_row, row, layout).transaction
 
 
-def assign_semantics(parsed_row: ParsedRow, layout: LayoutDefinition) -> AssignmentResult:
+def assign_semantics(parsed_row: ParsedRow, row: Row, layout: LayoutDefinition) -> AssignmentResult:
     """Assign one ParsedRow using the detected table layout.
 
     Values are assigned by left-to-right order of detected money columns.
     If the parsed amount count does not exactly match the layout columns,
-    all monetary semantic fields remain None.
+    a geometric nearest-column fallback is used.
     """
     money_columns = _layout_money_columns(layout)
     amount_values = [_parse_amount(value) for value in parsed_row.amounts]
@@ -101,6 +101,24 @@ def assign_semantics(parsed_row: ParsedRow, layout: LayoutDefinition) -> Assignm
                 assigned_values[role] = value
             reason = "assigned by detected layout column order"
             confidence = _assignment_confidence(money_columns)
+        elif len(amount_values) < len(money_columns) and all(value is not None for value in amount_values):
+            amount_centers = [_find_amount_x_center(amt_str, row) for amt_str in parsed_row.amounts]
+            if all(c is not None for c in amount_centers):
+                temp_assignments = []
+                for amt_val, center in zip(amount_values, amount_centers):
+                    nearest_role = min(money_columns, key=lambda mc: abs(center - mc[1].x_center))[0]
+                    temp_assignments.append((amt_val, nearest_role))
+                
+                roles_chosen = [role for _, role in temp_assignments]
+                if len(set(roles_chosen)) == len(temp_assignments):
+                    for amt_val, role in temp_assignments:
+                        assigned_values[role] = amt_val
+                    reason = "assigned by geometric nearest-column fallback"
+                    confidence = _assignment_confidence(money_columns) * 0.9
+                else:
+                    reason = f"geometric fallback resulted in conflicts: {roles_chosen}"
+            else:
+                reason = "could not locate all amount tokens for geometric fallback"
         elif any(value is None for value in amount_values):
             reason = "one or more parsed amounts could not be converted"
         else:
@@ -130,36 +148,38 @@ def assign_semantics(parsed_row: ParsedRow, layout: LayoutDefinition) -> Assignm
     )
 
 
-def assign_rows(parsed_rows: List[ParsedRow], layout: LayoutDefinition) -> List[AssignmentResult]:
+def assign_rows(parsed_rows: List[ParsedRow], rows: List[Row], layout: LayoutDefinition) -> List[AssignmentResult]:
     """Assign all parsed rows using one layout definition."""
-    return [assign_semantics(parsed_row, layout) for parsed_row in parsed_rows]
+    return [assign_semantics(parsed_row, rows[parsed_row.source_row_index], layout) for parsed_row in parsed_rows]
 
 
 def build_semantic_assignment_report(
     parsed_rows: List[ParsedRow],
+    rows: List[Row],
     layout: LayoutDefinition,
     *,
     statement_id: Optional[str] = None,
 ) -> SemanticAssignmentReport:
     """Build a debugging report for semantic assignment."""
-    rows = assign_rows(parsed_rows, layout)
+    results = assign_rows(parsed_rows, rows, layout)
     assigned_row_count = sum(
         1
-        for row in rows
+        for row in results
         if any(value is not None for value in row.assigned_values.values())
     )
 
     return SemanticAssignmentReport(
         statement_id=statement_id,
         layout_summary=_layout_summary(layout),
-        assignment_count=len(rows),
+        assignment_count=len(results),
         assigned_row_count=assigned_row_count,
-        rows=rows,
+        rows=results,
     )
 
 
 def save_semantic_assignment_report(
     parsed_rows: List[ParsedRow],
+    rows: List[Row],
     layout: LayoutDefinition,
     output_path: Union[str, Path],
     *,
@@ -171,6 +191,7 @@ def save_semantic_assignment_report(
 
     report = build_semantic_assignment_report(
         parsed_rows,
+        rows,
         layout,
         statement_id=statement_id,
     )
@@ -191,10 +212,38 @@ def run_from_ocr_file(input_path: Union[str, Path], output_path: Union[str, Path
 
     return save_semantic_assignment_report(
         parsed_rows,
+        rows,
         layout,
         output_path,
         statement_id=input_path.stem.replace("_ocr", ""),
     )
+
+
+def _find_amount_x_center(amount_str: str, row: Row) -> Optional[float]:
+    """Find the geometric x-center of an amount string within a row."""
+    start_idx = row.text.find(amount_str)
+    if start_idx == -1:
+        return None
+    end_idx = start_idx + len(amount_str)
+    
+    current_idx = 0
+    matched_tokens = []
+    for token in row.tokens:
+        token_start = current_idx
+        token_end = current_idx + len(token.text)
+        
+        # Check if the token overlaps with the amount string
+        if token_end > start_idx and token_start < end_idx:
+            matched_tokens.append(token)
+            
+        current_idx += len(token.text) + 1  # +1 for the space separator
+        
+    if matched_tokens:
+        x_min = min(t.bbox[0] for t in matched_tokens)
+        x_max = max(t.bbox[2] for t in matched_tokens)
+        return (x_min + x_max) / 2.0
+        
+    return None
 
 
 def _layout_money_columns(layout: LayoutDefinition) -> List[tuple[str, DetectedColumn]]:
@@ -319,6 +368,7 @@ def main() -> None:
 
         save_semantic_assignment_report(
             parsed_rows,
+            rows,
             layout,
             output_path,
             statement_id=input_path.stem.replace("_ocr", ""),

@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "bank_name": "Punjab National Bank",
+    "account_holder": "delalcl aa",
+    "account_number": "2518XXXXXXXX",
+    "statement_period_from": "26/9/2019",
+    "statement_period_to": "25/12/2019",
+    "currency": null
+  },
+  "transactions": [
+    {
+      "date": "23/12/2019",
+      "description": "21BZ3SBIOC Ref No3000087061",
+      "amount": 226.14,
+      "debit": null,
+      "credit": null,
+      "balance": 889.92
+    },
+    {
+      "date": "17/12/2019",
+      "description": "UPI/935113025907/P2V/sandeepchodhary@ybl SANDEEP",
+      "amount": 390.0,
+      "debit": null,
+      "credit": null,
+      "balance": 663.78
+    },
+    {
+      "date": "12/12/2019",
+      "description": "ATM WDR 934616013196 +SINGHAL TOWER LABOUR",
+      "amount": 3500.0,
+      "debit": null,
+      "credit": null,
+      "balance": 273.78
+    },
+    {
+      "date": "12/12/2019",
+      "description": "DR IMPS 0UT/934616239787/SBINOO10352/38160497052",
+      "amount": 750.0,
+      "debit": null,
+      "credit": null,
+      "balance": 3773.78
+    },
+    {
+      "date": "12/12/2019",
+      "description": "UPI/934664173747/P2V/singhsonal1 1@yblMr SONAL KUM",
+      "amount": 1290.0,
+      "debit": null,
+      "credit": null,
+      "balance": 4523.78
+    },
+    {
+      "date": "11/12/2019",
+      "description": "UPI/934557102809/P2V/8860631005@YbI/MOHHAMMAD ADIL",
+      "amount": 3000.0,
+      "debit": null,
+      "credit": null,
+      "balance": 3233.78
+    },
+    {
+      "date": "09/12/2019",
+      "description": "2518001500010946 Int Pd 01-09-2019 t0 30-11-2019",
+      "amount": 4.0,
+      "debit": null,
+      "credit": null,
+      "balance": 233.78
+    },
+    {
+      "date": "04/12/2019",
+      "description": "UPI/933884521318/P2M/IRCTCINAPP@YbIIRCTC",
+      "amount": 508.19,
+      "debit": null,
+      "credit": null,
+      "balance": 229.78
+    },
+    {
+      "date": "04/12/2019",
+      "description": "UP1/933863980480/P2V/7838767986@ybl/Mr ABDUL ABDU",
+      "amount": 510.0,
+      "debit": null,
+      "credit": null,
+      "balance": 737.97
+    },
+    {
+      "date": "21/11/2019",
+      "description": "APBS REVRSAL DTD 01-06.2018",
+      "amount": 240.25,
+      "debit": null,
+      "credit": null,
+      "balance": 227.97
+    },
+    {
+      "date": "15/11/2019",
+      "description": "ATM WDR 931919032498 +SINGHAL TOWER LABOUR",
+      "amount": 2000.0,
+      "debit": null,
+      "credit": null,
+      "balance": 468.22
+    },
+    {
+      "date": "13/11/2019",
+      "description": "21BZ3SBIOC Ref No3000072841",
+      "amount": 211.57,
+      "debit": null,
+      "credit": null,
+      "balance": 2468.22
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "confidence": 1.0,
+    "issues": []
+  }
+}

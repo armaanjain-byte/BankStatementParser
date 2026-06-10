@@ -72,7 +72,7 @@ def process_statement(image_path: Path, gpu: bool = True) -> BankStatement:
     
     # 5. Semantic Assignment
     assignment_report = build_semantic_assignment_report(
-        parsed_rows, layout, statement_id=image_path.stem
+        parsed_rows, rows, layout, statement_id=image_path.stem
     )
     
     # Extract successfully assigned transactions

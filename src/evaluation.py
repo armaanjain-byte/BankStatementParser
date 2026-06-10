@@ -76,6 +76,10 @@ class PipelineMetrics:
     
     normalized_date_count: int
     recovered_date_parse_count: int
+    
+    # Amount normalization metrics
+    normalized_amount_count: int
+    recovered_amount_parse_count: int
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -135,6 +139,7 @@ def evaluate_pipeline(
     validation_report: ValidationReport,
     failure_reporter: FailureReporter,
     normalized_date_count: int = 0,
+    normalized_amount_count: int = 0,
 ) -> PipelineMetrics:
     """Compute metrics for a single statement and log failures."""
     
@@ -142,6 +147,7 @@ def evaluate_pipeline(
     # A row is "recovered by normalizer" if DATE_RE matches its current text
     # but would NOT have matched its original text (before ordinal stripping).
     recovered_date_parse_count = 0
+    recovered_amount_parse_count = 0
     for parsed_row in parsed_rows:
         row_idx = parsed_row.source_row_index
         if 0 <= row_idx < len(rows):
@@ -150,6 +156,11 @@ def evaluate_pipeline(
             had_date_before = bool(DATE_RE.search(orig_row.original_text))
             if has_date_now and not had_date_before:
                 recovered_date_parse_count += 1
+            # Check if amount normalization recovered an amount
+            has_amount_now = bool(MONEY_RE.search(orig_row.text))
+            had_amount_before = bool(MONEY_RE.search(orig_row.original_text))
+            if has_amount_now and not had_amount_before:
+                recovered_amount_parse_count += 1
                 
     # Define tracking counters
     no_date_detected_count = 0
@@ -278,6 +289,8 @@ def evaluate_pipeline(
         unknown_failure_count=unknown_failure_count,
         normalized_date_count=normalized_date_count,
         recovered_date_parse_count=recovered_date_parse_count,
+        normalized_amount_count=normalized_amount_count,
+        recovered_amount_parse_count=recovered_amount_parse_count,
     )
     
     logger.info(

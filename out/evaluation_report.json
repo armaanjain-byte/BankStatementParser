@@ -1,8 +1,8 @@
 {
   "summary": {
     "total_statements_processed": 6,
-    "total_transactions_assigned": 21,
-    "total_processing_time_seconds": 63.71,
+    "total_transactions_assigned": 28,
+    "total_processing_time_seconds": 76.17,
     "header_extraction_success_rate": 0.6667,
     "average_validation_confidence": 0.2917,
     "average_layout_confidence": 0.8008
@@ -10,6 +10,10 @@
   "normalization": {
     "total_normalized_date_count": 14,
     "total_recovered_date_parse_count": 10
+  },
+  "amount_normalization": {
+    "total_normalized_amount_count": 13,
+    "total_recovered_amount_parse_count": 8
   },
   "statement_metrics": [
     {
@@ -23,14 +27,16 @@
       "header_extraction_success": false,
       "layout_detection_confidence": 0.824,
       "validation_confidence": 0.0,
-      "no_date_detected_count": 19,
-      "date_parse_failed_count": 0,
+      "no_date_detected_count": 18,
+      "date_parse_failed_count": 1,
       "insufficient_numeric_values_count": 2,
       "amount_extraction_failed_count": 0,
       "semantic_mismatch_count": 0,
       "unknown_failure_count": 0,
       "normalized_date_count": 0,
-      "recovered_date_parse_count": 0
+      "recovered_date_parse_count": 0,
+      "normalized_amount_count": 1,
+      "recovered_amount_parse_count": 0
     },
     {
       "statement_id": "24",
@@ -50,27 +56,31 @@
       "semantic_mismatch_count": 10,
       "unknown_failure_count": 0,
       "normalized_date_count": 11,
-      "recovered_date_parse_count": 10
+      "recovered_date_parse_count": 10,
+      "normalized_amount_count": 0,
+      "recovered_amount_parse_count": 0
     },
     {
       "statement_id": "25",
       "ocr_token_count": 107,
       "reconstructed_row_count": 33,
-      "parsed_row_count": 9,
-      "assigned_transaction_count": 9,
-      "parse_conversion_rate": 0.27,
+      "parsed_row_count": 16,
+      "assigned_transaction_count": 16,
+      "parse_conversion_rate": 0.48,
       "assignment_conversion_rate": 1.0,
       "header_extraction_success": false,
       "layout_detection_confidence": 0.0,
       "validation_confidence": 0.75,
       "no_date_detected_count": 12,
       "date_parse_failed_count": 1,
-      "insufficient_numeric_values_count": 11,
+      "insufficient_numeric_values_count": 4,
       "amount_extraction_failed_count": 0,
       "semantic_mismatch_count": 0,
       "unknown_failure_count": 0,
       "normalized_date_count": 1,
-      "recovered_date_parse_count": 0
+      "recovered_date_parse_count": 0,
+      "normalized_amount_count": 11,
+      "recovered_amount_parse_count": 7
     },
     {
       "statement_id": "26",
@@ -90,15 +100,17 @@
       "semantic_mismatch_count": 1,
       "unknown_failure_count": 0,
       "normalized_date_count": 0,
-      "recovered_date_parse_count": 0
+      "recovered_date_parse_count": 0,
+      "normalized_amount_count": 0,
+      "recovered_amount_parse_count": 0
     },
     {
       "statement_id": "27",
       "ocr_token_count": 154,
       "reconstructed_row_count": 40,
-      "parsed_row_count": 0,
+      "parsed_row_count": 1,
       "assigned_transaction_count": 0,
-      "parse_conversion_rate": 0.0,
+      "parse_conversion_rate": 0.03,
       "assignment_conversion_rate": 0.0,
       "header_extraction_success": true,
       "layout_detection_confidence": 1.0,
@@ -110,7 +122,9 @@
       "semantic_mismatch_count": 0,
       "unknown_failure_count": 0,
       "normalized_date_count": 2,
-      "recovered_date_parse_count": 0
+      "recovered_date_parse_count": 0,
+      "normalized_amount_count": 1,
+      "recovered_amount_parse_count": 1
     },
     {
       "statement_id": "28",
@@ -130,7 +144,9 @@
       "semantic_mismatch_count": 0,
       "unknown_failure_count": 0,
       "normalized_date_count": 0,
-      "recovered_date_parse_count": 0
+      "recovered_date_parse_count": 0,
+      "normalized_amount_count": 0,
+      "recovered_amount_parse_count": 0
     }
   ]
 }

@@ -26,7 +26,7 @@
     },
     {
       "date": "Jul2017",
-      "description": "25 Debit CaRD PURCHASE SQ DIVINE PTY LTD BALDIVIS $ AUS",
+      "description": "25 Debit CaRD PURCHASE SQ DIVINE PTY LTD BALDIVIS AUS",
       "amount": 24.5,
       "debit": null,
       "credit": null,
@@ -34,8 +34,24 @@
     },
     {
       "date": "23 Jul 2017",
-      "description": "DebIT CARD PURCHASE CCLES 0287 BALDIIS AUS $",
+      "description": "DebIT CARD PURCHASE CCLES 0287 BALDIIS AUS",
       "amount": 23.58,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "Jul2017",
+      "description": "WITHORAWAL MOBILE 1231093 TFR Wlestcac eSa Waiarusines Savn",
+      "amount": 9200.0,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "19 Jul 2017",
+      "description": "DeposIT LYNNIZZ CLEANING SErVICES Ray 16 916 974 211 ABN:",
+      "amount": 5894.03,
       "debit": null,
       "credit": null,
       "balance": null
@@ -44,6 +60,14 @@
       "date": "Jul2017",
       "description": "14 WITHDRAWAL AT ANZ ATMNORTHB 00013051012540 |30717",
       "amount": 5150.0,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "14 Jul",
+      "description": "?017 DEBIT CARD PURCHASE BP EX ROCKNGHU PK 6172 ROCKINGHAM AUS -",
+      "amount": 350.0,
       "debit": null,
       "credit": null,
       "balance": null
@@ -65,6 +89,22 @@
       "balance": null
     },
     {
+      "date": "Jul2017",
+      "description": "13 PAYMENT BY AUTHORITY TO JETTS BALDIVIS 201716325691",
+      "amount": 925.9,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "Jul2017",
+      "description": "13 Savings Bond WITHDRAWAL MOBILE 1739557 TFR Westoac eSa2",
+      "amount": 81500.0,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
       "date": "13 Jul 2017",
       "description": "DEBIT CARD PURCHASE 0172542 COLES 0384 GOSNELLS 13/07",
       "amount": 8175.55,
@@ -74,8 +114,24 @@
     },
     {
       "date": "13 Jul 2017",
-      "description": "WITHORAWAL MOBILE 1231093 TFR Wesicac eSa Taxc Business Savin ~",
+      "description": "WITHORAWAL MOBILE 1231093 TFR Wesicac eSa Taxc Business Savin",
       "amount": 8300.0,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "Jul2017",
+      "description": "13 DEPOSIT L YNNIZZ CLEANING SERVICES pay 16 916 974211 ABN;",
+      "amount": 5987.2,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "13 Jul 2017",
+      "description": "DePOsIT ONLINE PyMT 175029 JaMIE Chapion",
+      "amount": 530.0,
       "debit": null,
       "credit": null,
       "balance": null

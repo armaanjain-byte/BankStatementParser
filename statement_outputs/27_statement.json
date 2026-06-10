@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "bank_name": "Axis Bank",
+    "account_holder": "VIEK KUMAR SINGH",
+    "account_number": "919010061861194",
+    "statement_period_from": null,
+    "statement_period_to": null,
+    "currency": "INR"
+  },
+  "transactions": [
+    {
+      "date": "13-01-2022",
+      "description": "Statement of Axis Account No :919010061861194 for the period (From 0I-I0-2021.)",
+      "amount": null,
+      "debit": null,
+      "credit": null,
+      "balance": 2021.13
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "confidence": 1.0,
+    "issues": []
+  }
+}

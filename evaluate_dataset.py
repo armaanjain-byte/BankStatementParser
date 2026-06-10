@@ -26,7 +26,7 @@ from src.semantic_assigner import build_semantic_assignment_report
 from src.transaction_parser import parse_rows
 from src.transaction_reconstructor import reconstruct_rows
 from src.validator import validate_statement
-from src.normalizer import normalize_date_strings
+from src.normalizer import normalize_date_strings, normalize_amount_strings
 
 logging.basicConfig(
     level=logging.INFO,
@@ -77,10 +77,11 @@ def evaluate_dataset(input_folder: Path, output_folder: Path, no_gpu: bool = Fal
             
             # Normalization
             rows, normalized_date_count = normalize_date_strings(rows)
+            rows, normalized_amount_count = normalize_amount_strings(rows)
             
             layout = detect_layout(tokens, rows)
             parsed_rows = parse_rows(rows)
-            assignment_report = build_semantic_assignment_report(parsed_rows, layout, statement_id=statement_id)
+            assignment_report = build_semantic_assignment_report(parsed_rows, rows, layout, statement_id=statement_id)
             
             transactions = [
                 r.transaction for r in assignment_report.rows 
@@ -109,6 +110,7 @@ def evaluate_dataset(input_folder: Path, output_folder: Path, no_gpu: bool = Fal
                 validation_report=validation_report,
                 failure_reporter=failure_reporter,
                 normalized_date_count=normalized_date_count,
+                normalized_amount_count=normalized_amount_count,
             )
             metrics_list.append(metrics)
             
@@ -153,6 +155,10 @@ def aggregate_report(metrics_list: List[PipelineMetrics], output_folder: Path, e
         "normalization": {
             "total_normalized_date_count": sum(m.normalized_date_count for m in metrics_list),
             "total_recovered_date_parse_count": sum(m.recovered_date_parse_count for m in metrics_list),
+        },
+        "amount_normalization": {
+            "total_normalized_amount_count": sum(m.normalized_amount_count for m in metrics_list),
+            "total_recovered_amount_parse_count": sum(m.recovered_amount_parse_count for m in metrics_list),
         },
         "statement_metrics": [m.to_dict() for m in metrics_list]
     }

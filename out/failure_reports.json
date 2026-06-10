@@ -70,8 +70,8 @@
     "statement_id": "23"
   },
   {
-    "failure_type": "no_date_detected",
-    "candidate": "imned 0 1,36",
+    "failure_type": "date_parse_failed",
+    "candidate": "0 1.36",
     "statement_id": "23"
   },
   {
@@ -246,47 +246,12 @@
   },
   {
     "failure_type": "insufficient_numeric_values",
-    "candidate": "Jul2017",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "19 Jul 2017",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
     "candidate": "19 Jul",
     "statement_id": "25"
   },
   {
     "failure_type": "no_date_detected",
     "candidate": "Jul 2017 ATM OPERATOR FEE NoRtHB",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "14 Jul",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "Jul2017",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "Jul2017",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "Jul2017",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "13 Jul 2017",
     "statement_id": "25"
   },
   {

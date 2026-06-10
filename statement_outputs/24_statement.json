@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "bank_name": null,
+    "account_holder": "Adama Amad",
+    "account_number": "201301401",
+    "statement_period_from": null,
+    "statement_period_to": null,
+    "currency": "USD"
+  },
+  "transactions": [
+    {
+      "date": "1 June",
+      "description": "Cafeteria",
+      "amount": null,
+      "debit": 9.75,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "3 June",
+      "description": "City Bus Company",
+      "amount": null,
+      "debit": 75.0,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "9 June",
+      "description": "Mr: K's Groceries $",
+      "amount": null,
+      "debit": 38.78,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "11 June",
+      "description": "ATM Withdrawal (GGG Bank) $",
+      "amount": null,
+      "debit": 60.0,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "11 June",
+      "description": "ATM Withdrawal Fee 5",
+      "amount": null,
+      "debit": 1.5,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "15 June",
+      "description": "Direct Deposit Payroll S1,",
+      "amount": null,
+      "debit": null,
+      "credit": 432.05,
+      "balance": null
+    },
+    {
+      "date": "16 June",
+      "description": "ATM Deposit",
+      "amount": null,
+      "debit": 90.0,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "25 June",
+      "description": "Mr: Ks Groceries",
+      "amount": null,
+      "debit": 124.86,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "30 June",
+      "description": "Direct Deposit Payroll S1,",
+      "amount": null,
+      "debit": null,
+      "credit": 432.05,
+      "balance": null
+    },
+    {
+      "date": "30 June",
+      "description": "Personal Cheque Memo: Rent $",
+      "amount": null,
+      "debit": 875.0,
+      "credit": null,
+      "balance": null
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "confidence": 1.0,
+    "issues": []
+  }
+}
