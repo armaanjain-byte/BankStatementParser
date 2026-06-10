@@ -79,12 +79,12 @@ class Transaction:
         balance:     Running balance after this transaction, if available.
     """
 
-    date: Optional[str] = None
-    description: Optional[str] = None
-    amount: Optional[float] = None
-    debit: Optional[float] = None
-    credit: Optional[float] = None
-    balance: Optional[float] = None
+    date: Optional[str] = field(default=None)
+    description: Optional[str] = field(default=None)
+    amount: Optional[float] = field(default=None)
+    debit: Optional[float] = field(default=None)
+    credit: Optional[float] = field(default=None)
+    balance: Optional[float] = field(default=None)
 
 
 # ──────────────────────────────────────────────
@@ -107,12 +107,12 @@ class StatementMetadata:
         currency:              ISO-4217 currency code (e.g. "INR", "USD").
     """
 
-    bank_name: Optional[str] = None
-    account_holder: Optional[str] = None
-    account_number: Optional[str] = None
-    statement_period_from: Optional[str] = None
-    statement_period_to: Optional[str] = None
-    currency: Optional[str] = None
+    bank_name: Optional[str] = field(default=None)
+    account_holder: Optional[str] = field(default=None)
+    account_number: Optional[str] = field(default=None)
+    statement_period_from: Optional[str] = field(default=None)
+    statement_period_to: Optional[str] = field(default=None)
+    currency: Optional[str] = field(default=None)
 
 
 # ──────────────────────────────────────────────

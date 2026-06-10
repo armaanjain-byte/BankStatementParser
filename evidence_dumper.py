@@ -2,7 +2,8 @@ import logging
 from src.ocr import extract_tokens
 from src.transaction_reconstructor import reconstruct_rows
 from src.layout_detector import detect_layout
-from src.transaction_parser import parse_rows, DATE_RE, MONEY_RE
+from src.constants import DATE_RE, MONEY_RE
+from src.transaction_parser import parse_rows
 from src.semantic_assigner import build_semantic_assignment_report
 
 logging.disable(logging.CRITICAL)

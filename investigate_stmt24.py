@@ -13,7 +13,8 @@ from src.ocr import extract_tokens
 from src.transaction_reconstructor import reconstruct_rows
 from src.layout_detector import detect_layout, DetectedColumn
 from src.normalizer import normalize_date_strings, normalize_amount_strings
-from src.transaction_parser import parse_rows, MONEY_RE
+from src.constants import MONEY_RE
+from src.transaction_parser import parse_rows
 from src.semantic_assigner import (
     build_semantic_assignment_report,
     MONEY_ROLES,

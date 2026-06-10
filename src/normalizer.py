@@ -110,7 +110,7 @@ def normalize_date_strings(rows: List[Row]) -> Tuple[List[Row], int]:
 # Import MONEY_RE from the transaction parser — this is the canonical
 # definition of what constitutes a "valid monetary value" downstream.
 # We validate all normalization results against it.
-from src.transaction_parser import MONEY_RE
+from src.constants import MONEY_RE
 
 # Matches tokens that *resemble* monetary values but may contain OCR
 # corruption.  Designed to be broader than MONEY_RE so we can catch
@@ -252,4 +252,3 @@ def normalize_amount_strings(rows: List[Row]) -> Tuple[List[Row], int]:
             )
 
     return rows, normalized_amount_count
-

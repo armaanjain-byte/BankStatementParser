@@ -16,9 +16,8 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Iterable, List, Optional, Union
 
-from src.constants import ALIAS_TO_COLUMN
+from src.constants import ALIAS_TO_COLUMN, MONEY_RE
 from src.schema import OCRToken
-from src.transaction_parser import MONEY_RE
 from src.transaction_reconstructor import Row, reconstruct_rows
 
 logger = logging.getLogger(__name__)
@@ -34,66 +33,10 @@ def _normalize_text(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-LOCAL_COLUMN_ALIASES: dict[str, dict[str, float]] = {
-    "date": {
-        "date": 1.0,
-        "tran date": 0.95,
-        "txn date": 0.95,
-        "transaction date": 0.95,
-    },
-    "description": {
-        "description": 1.0,
-        "details": 1.0,
-        "detuils": 0.70,
-        "particulars": 1.0,
-        "farticulars": 0.72,
-        "remarks": 1.0,
-        "narration": 1.0,
-        "xriplion": 0.55,
-    },
-    "debit": {
-        "debit": 1.0,
-        "dehit": 0.70,
-        "withdrawal": 1.0,
-        "withdrawals": 1.0,
-        "dr": 1.0,
-    },
-    "credit": {
-        "credit": 1.0,
-        "deposit": 1.0,
-        "deposits": 1.0,
-        "cr": 1.0,
-    },
-    "balance": {
-        "balance": 1.0,
-        "bal": 1.0,
-        "balnnct": 0.62,
-        "kalance": 0.70,
-        "pnnc": 0.35,
-    },
-    "amount": {
-        "amount": 1.0,
-        "amt": 0.95,
-    },
-    "instrument": {
-        "instrument": 1.0,
-        "instrumente": 0.75,
-        "chq no": 0.90,
-        "chy no": 0.65,
-    },
-    "type": {
-        "type": 1.0,
-    },
-}
-
-
 ALIAS_MAP: dict[str, tuple[str, float]] = {
-    _normalize_text(alias): (canonical, 0.95)
-    for alias, canonical in ALIAS_TO_COLUMN.items()
+    _normalize_text(alias): (canonical, confidence)
+    for alias, (canonical, confidence) in ALIAS_TO_COLUMN.items()
 }
-for canonical, aliases in LOCAL_COLUMN_ALIASES.items():
-    for alias, confidence in aliases.items():
-        ALIAS_MAP[_normalize_text(alias)] = (canonical, confidence)
 
 
 HEADER_VALUE_DATE_RE = re.compile(

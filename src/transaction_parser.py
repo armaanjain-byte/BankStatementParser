@@ -43,6 +43,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import List, Union
 
+from src import constants
 from src.schema import Transaction
 from src.transaction_reconstructor import Row
 
@@ -118,6 +119,11 @@ DATE_RE = re.compile(
 # Supports standard monetary values like 1,234.56 or 12.34
 # Does NOT match whole integers (e.g. '2021') to avoid year false-positives.
 MONEY_RE = re.compile(r"\b\d+(?:,\d{3})*\.\d{2}\b")
+
+# Canonical shared patterns live in constants.py. These assignments keep
+# legacy imports from this module working while avoiding a circular import risk.
+DATE_RE = constants.DATE_RE
+MONEY_RE = constants.MONEY_RE
 
 
 # ──────────────────────────────────────────────

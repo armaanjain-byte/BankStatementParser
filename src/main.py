@@ -15,6 +15,7 @@ import json
 import logging
 import sys
 import time
+import argparse
 from pathlib import Path
 
 from src.header_extractor import extract_metadata
@@ -25,7 +26,7 @@ from src.semantic_assigner import build_semantic_assignment_report
 from src.transaction_parser import parse_rows
 from src.transaction_reconstructor import reconstruct_rows
 from src.validator import validate_statement
-from src.normalizer import normalize_date_strings
+from src.normalizer import normalize_date_strings, normalize_amount_strings
 
 # ──────────────────────────────────────────────
 #  Config
@@ -34,7 +35,7 @@ from src.normalizer import normalize_date_strings
 INPUT_DIR = Path("test_set")
 OUTPUT_DIR = Path("statement_outputs")
 
-IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".tiff", ".tif", ".bmp", ".webp"}
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".tiff", ".tif", ".bmp", ".webp", ".pdf"}
 
 # ──────────────────────────────────────────────
 #  Logging setup
@@ -52,17 +53,29 @@ logger = logging.getLogger(__name__)
 #  Pipeline processing
 # ──────────────────────────────────────────────
 
-def process_statement(image_path: Path, gpu: bool = True) -> BankStatement:
-    """Run the entire end-to-end extraction pipeline on a single image."""
+def _process_page(
+    image_input,
+    *,
+    statement_id: str,
+    gpu: bool = True,
+    preprocess: bool = True,
+) -> BankStatement:
+    """Run the end-to-end extraction pipeline on a single image/page."""
     
     # 1. OCR
-    tokens = extract_tokens(image_path, gpu=gpu)
+    tokens = extract_tokens(image_input, gpu=gpu, preprocess=preprocess)
     
     # 2. Row Reconstruction
     rows = reconstruct_rows(tokens)
     
     # 2.5 Normalization
-    rows, _ = normalize_date_strings(rows)
+    rows, normalized_date_count = normalize_date_strings(rows)
+    rows, normalized_amount_count = normalize_amount_strings(rows)
+    logger.debug(
+        "Normalized rows: dates=%d, amounts=%d",
+        normalized_date_count,
+        normalized_amount_count,
+    )
     
     # 3. Layout Detection
     layout = detect_layout(tokens, rows)
@@ -72,7 +85,7 @@ def process_statement(image_path: Path, gpu: bool = True) -> BankStatement:
     
     # 5. Semantic Assignment
     assignment_report = build_semantic_assignment_report(
-        parsed_rows, rows, layout, statement_id=image_path.stem
+        parsed_rows, rows, layout, statement_id=statement_id
     )
     
     # Extract successfully assigned transactions
@@ -95,34 +108,83 @@ def process_statement(image_path: Path, gpu: bool = True) -> BankStatement:
     return statement
 
 
-def _output_path_for(image_path: Path) -> Path:
+def process_statement(
+    image_path: Path,
+    gpu: bool = True,
+    preprocess: bool = True,
+) -> BankStatement:
+    """Run the entire end-to-end extraction pipeline on a single image or PDF."""
+    image_path = Path(image_path)
+    if image_path.suffix.lower() != ".pdf":
+        return _process_page(
+            image_path,
+            statement_id=image_path.stem,
+            gpu=gpu,
+            preprocess=preprocess,
+        )
+
+    from src.pdf_converter import pdf_to_images
+
+    pages = pdf_to_images(image_path)
+    page_statements = [
+        _process_page(
+            page,
+            statement_id=f"{image_path.stem}_page_{idx}",
+            gpu=gpu,
+            preprocess=False,
+        )
+        for idx, page in enumerate(pages, start=1)
+    ]
+
+    if not page_statements:
+        return BankStatement()
+
+    combined = BankStatement(
+        metadata=page_statements[0].metadata,
+        transactions=[
+            transaction
+            for statement in page_statements
+            for transaction in statement.transactions
+        ],
+        validation=page_statements[0].validation,
+    )
+    return combined
+
+
+def _output_path_for(image_path: Path, output_dir: Path = OUTPUT_DIR) -> Path:
     """Map an image filename to its JSON output path."""
-    return OUTPUT_DIR / f"{image_path.stem}_statement.json"
+    return output_dir / f"{image_path.stem}_statement.json"
 
 
 # ──────────────────────────────────────────────
 #  Main Batch Runner
 # ──────────────────────────────────────────────
 
-def run(*, gpu: bool = True) -> None:
-    """Process every image in INPUT_DIR and write BankStatement JSON to OUTPUT_DIR."""
+def run(
+    *,
+    input_dir: Path = INPUT_DIR,
+    output_dir: Path = OUTPUT_DIR,
+    gpu: bool = True,
+    preprocess: bool = True,
+) -> None:
+    """Process every image in input_dir and write BankStatement JSON to output_dir."""
 
-    if not INPUT_DIR.exists():
-        logger.error("Input directory not found: %s", INPUT_DIR)
+    if not input_dir.exists():
+        logger.error("Input directory not found: %s", input_dir)
         sys.exit(1)
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     images = sorted(
-        p for p in INPUT_DIR.iterdir()
+        p for p in input_dir.iterdir()
         if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
     )
 
     if not images:
-        logger.warning("No images found in %s", INPUT_DIR)
+        logger.warning("No images found in %s", input_dir)
         sys.exit(0)
 
-    logger.info("Found %d image(s) in %s", len(images), INPUT_DIR)
+    logger.info("Found %d image(s) in %s", len(images), input_dir)
     logger.info("-" * 60)
 
     batch_start = time.perf_counter()
@@ -131,9 +193,9 @@ def run(*, gpu: bool = True) -> None:
         img_start = time.perf_counter()
         
         try:
-            statement = process_statement(image_path, gpu=gpu)
+            statement = process_statement(image_path, gpu=gpu, preprocess=preprocess)
             
-            out_path = _output_path_for(image_path)
+            out_path = _output_path_for(image_path, output_dir)
             with open(out_path, "w", encoding="utf-8") as f:
                 json.dump(statement.to_dict(), f, indent=2, ensure_ascii=False)
                 
@@ -157,17 +219,45 @@ def run(*, gpu: bool = True) -> None:
     logger.info("Done. %d image(s) processed in %.2fs.", len(images), batch_elapsed)
 
 
-if __name__ == "__main__":
-    import argparse
-
+def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Batch E2E: test_set/ images -> statement_outputs/ JSON.",
+        description="Run bank statement OCR extraction.",
     )
+    parser.add_argument("--input", type=Path, default=INPUT_DIR, help="Input folder.")
+    parser.add_argument("--output", type=Path, default=OUTPUT_DIR, help="Output folder.")
     parser.add_argument(
         "--no-gpu",
         action="store_true",
         help="Disable GPU acceleration.",
     )
-    args = parser.parse_args()
+    parser.add_argument(
+        "--no-preprocess",
+        action="store_true",
+        help="Disable OpenCV preprocessing.",
+    )
+    parser.add_argument(
+        "--single",
+        type=Path,
+        default=None,
+        help="Process one image/PDF and print JSON to stdout.",
+    )
+    return parser.parse_args()
 
-    run(gpu=not args.no_gpu)
+
+if __name__ == "__main__":
+    args = _parse_args()
+
+    if args.single:
+        statement = process_statement(
+            args.single,
+            gpu=not args.no_gpu,
+            preprocess=not args.no_preprocess,
+        )
+        print(json.dumps(statement.to_dict(), indent=2, ensure_ascii=False))
+    else:
+        run(
+            input_dir=args.input,
+            output_dir=args.output,
+            gpu=not args.no_gpu,
+            preprocess=not args.no_preprocess,
+        )

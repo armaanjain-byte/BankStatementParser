@@ -23,16 +23,18 @@ from __future__ import annotations
 
 import json
 import logging
-from dataclasses import asdict
 from pathlib import Path
 from typing import List, Union
 
-# pyrefly: ignore [missing-import]
-import easyocr
 
+import easyocr
+import numpy as np
+
+from src.preprocessor import preprocess_for_ocr
 from src.schema import OCRToken
 
 logger = logging.getLogger(__name__)
+MIN_CONFIDENCE = 0.30
 
 # ──────────────────────────────────────────────
 #  Module-level reader (lazy-initialized)
@@ -55,10 +57,15 @@ def _get_reader(languages: list[str] | None = None, gpu: bool = True) -> easyocr
         A ready-to-use ``easyocr.Reader`` instance.
     """
     global _reader
-    if _reader is None:
-        langs = languages or ["en"]
+    langs = list(languages or ["en"])
+    init_langs = getattr(_reader, "_init_langs", None)
+    init_gpu = getattr(_reader, "_init_gpu", None)
+
+    if _reader is None or init_langs != langs or init_gpu != gpu:
         logger.info("Initializing EasyOCR reader (languages=%s, gpu=%s)", langs, gpu)
         _reader = easyocr.Reader(langs, gpu=gpu)
+        _reader._init_langs = langs
+        _reader._init_gpu = gpu
     return _reader
 
 
@@ -89,9 +96,11 @@ def _polygon_to_bbox(polygon: list[list[int | float]]) -> tuple[int, int, int, i
 # ──────────────────────────────────────────────
 
 def extract_tokens(
-    image_path: Union[str, Path],
+    image_path: Union[str, Path, np.ndarray],
     languages: list[str] | None = None,
     gpu: bool = True,
+    preprocess: bool = True,
+    min_confidence: float = MIN_CONFIDENCE,
 ) -> List[OCRToken]:
     """Run OCR on a bank statement image and return structured tokens.
 
@@ -99,6 +108,8 @@ def extract_tokens(
         image_path: Path to the input image (JPEG, PNG, TIFF, etc.).
         languages:  Language codes for EasyOCR (default: ``["en"]``).
         gpu:        Whether to use GPU acceleration.
+        preprocess: Whether to run OpenCV preprocessing before OCR.
+        min_confidence: Drop OCR tokens below this confidence score.
 
     Returns:
         A list of :class:`OCRToken` objects, one per detected text region,
@@ -108,14 +119,21 @@ def extract_tokens(
     Raises:
         FileNotFoundError: If *image_path* does not exist.
     """
-    image_path = Path(image_path)
-    if not image_path.exists():
-        raise FileNotFoundError(f"Image not found: {image_path}")
+    image_name = "<array>"
+    ocr_input: str | np.ndarray
+
+    if isinstance(image_path, np.ndarray):
+        ocr_input = image_path
+    else:
+        path = Path(image_path)
+        image_name = path.name
+        if not path.exists():
+            raise FileNotFoundError(f"Image not found: {path}")
+        ocr_input = preprocess_for_ocr(path) if preprocess else str(path)
 
     reader = _get_reader(languages=languages, gpu=gpu)
-
-    logger.info("Running OCR on %s", image_path.name)
-    raw_results = reader.readtext(str(image_path))
+    logger.info("Running OCR on %s", image_name)
+    raw_results = reader.readtext(ocr_input, detail=1, paragraph=False)
 
     tokens: List[OCRToken] = []
     for bbox_polygon, text, confidence in raw_results:
@@ -127,10 +145,19 @@ def extract_tokens(
         )
         tokens.append(token)
 
+    original_count = len(tokens)
+    tokens = [token for token in tokens if token.confidence >= min_confidence]
+    filtered_count = original_count - len(tokens)
+    logger.debug(
+        "Filtered %d low-confidence tokens (threshold=%s)",
+        filtered_count,
+        min_confidence,
+    )
+
     logger.info(
         "Extracted %d tokens from %s",
         len(tokens),
-        image_path.name,
+        image_name,
     )
     return tokens
 

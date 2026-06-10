@@ -14,6 +14,7 @@ import logging
 import statistics
 import sys
 import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 from typing import List
 
@@ -35,11 +36,85 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".tiff", ".tif", ".bmp", ".webp"}
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".tiff", ".tif", ".bmp", ".webp", ".pdf"}
 
 
-def evaluate_dataset(input_folder: Path, output_folder: Path, no_gpu: bool = False) -> None:
-    """Run the pipeline on all images, collecting telemetry and outputs."""
+def _evaluate_one_image(
+    image_path: Path,
+    statement_outputs_dir: Path,
+    no_gpu: bool,
+) -> tuple[str, PipelineMetrics | None, list[dict], str | None]:
+    statement_id = image_path.stem
+    failure_reporter = FailureReporter(Path("__worker_failures_unused.json"))
+
+    try:
+        if image_path.suffix.lower() == ".pdf":
+            from src.pdf_converter import pdf_to_images
+
+            tokens = []
+            rows = []
+            for page_image in pdf_to_images(image_path):
+                page_tokens = extract_tokens(page_image, gpu=not no_gpu, preprocess=False)
+                tokens.extend(page_tokens)
+                rows.extend(reconstruct_rows(page_tokens))
+        else:
+            tokens = extract_tokens(image_path, gpu=not no_gpu)
+            rows = reconstruct_rows(tokens)
+
+        rows, normalized_date_count = normalize_date_strings(rows)
+        rows, normalized_amount_count = normalize_amount_strings(rows)
+
+        layout = detect_layout(tokens, rows)
+        parsed_rows = parse_rows(rows)
+        assignment_report = build_semantic_assignment_report(
+            parsed_rows,
+            rows,
+            layout,
+            statement_id=statement_id,
+        )
+
+        transactions = [
+            r.transaction for r in assignment_report.rows
+            if any(v is not None for v in r.assigned_values.values())
+        ]
+
+        metadata = extract_metadata(tokens).metadata
+        statement = BankStatement(metadata=metadata, transactions=transactions)
+        validation_report = validate_statement(statement, layout, assignment_report)
+        statement.validation = validation_report
+
+        out_json = statement_outputs_dir / f"{statement_id}_statement.json"
+        with open(out_json, "w", encoding="utf-8") as f:
+            json.dump(statement.to_dict(), f, indent=2, ensure_ascii=False)
+
+        metrics = evaluate_pipeline(
+            statement_id=statement_id,
+            tokens=tokens,
+            rows=rows,
+            parsed_rows=parsed_rows,
+            layout=layout,
+            assignment_report=assignment_report,
+            statement=statement,
+            validation_report=validation_report,
+            failure_reporter=failure_reporter,
+            normalized_date_count=normalized_date_count,
+            normalized_amount_count=normalized_amount_count,
+        )
+        return statement_id, metrics, failure_reporter.failures, None
+    except Exception as exc:
+        return statement_id, None, [], str(exc)
+
+
+def evaluate_dataset(
+    input_folder: Path,
+    output_folder: Path,
+    no_gpu: bool = False,
+    workers: int = 2,
+) -> None:
+    """Run the pipeline on all images, collecting telemetry and outputs.
+
+    Use --workers 1 to disable parallelism, which is useful for debugging.
+    """
     
     if not input_folder.exists() or not input_folder.is_dir():
         logger.error("Input folder does not exist: %s", input_folder)
@@ -66,57 +141,44 @@ def evaluate_dataset(input_folder: Path, output_folder: Path, no_gpu: bool = Fal
     
     start_time = time.perf_counter()
     
-    for idx, image_path in enumerate(images, start=1):
-        statement_id = image_path.stem
-        logger.info("[%d/%d] Processing %s...", idx, len(images), image_path.name)
-        
-        try:
-            # Execute Pipeline
-            tokens = extract_tokens(image_path, gpu=not no_gpu)
-            rows = reconstruct_rows(tokens)
-            
-            # Normalization
-            rows, normalized_date_count = normalize_date_strings(rows)
-            rows, normalized_amount_count = normalize_amount_strings(rows)
-            
-            layout = detect_layout(tokens, rows)
-            parsed_rows = parse_rows(rows)
-            assignment_report = build_semantic_assignment_report(parsed_rows, rows, layout, statement_id=statement_id)
-            
-            transactions = [
-                r.transaction for r in assignment_report.rows 
-                if any(v is not None for v in r.assigned_values.values())
-            ]
-            
-            metadata = extract_metadata(tokens).metadata
-            statement = BankStatement(metadata=metadata, transactions=transactions)
-            validation_report = validate_statement(statement, layout, assignment_report)
-            statement.validation = validation_report
-            
-            # Save Output
-            out_json = statement_outputs_dir / f"{statement_id}_statement.json"
-            with open(out_json, "w", encoding="utf-8") as f:
-                json.dump(statement.to_dict(), f, indent=2, ensure_ascii=False)
-                
-            # Evaluate & Report Failures
-            metrics = evaluate_pipeline(
-                statement_id=statement_id,
-                tokens=tokens,
-                rows=rows,
-                parsed_rows=parsed_rows,
-                layout=layout,
-                assignment_report=assignment_report,
-                statement=statement,
-                validation_report=validation_report,
-                failure_reporter=failure_reporter,
-                normalized_date_count=normalized_date_count,
-                normalized_amount_count=normalized_amount_count,
+    max_workers = max(1, workers)
+    if max_workers == 1:
+        for idx, image_path in enumerate(images, start=1):
+            logger.info("[%d/%d] Processing %s...", idx, len(images), image_path.name)
+            statement_id, metrics, failures, error = _evaluate_one_image(
+                image_path,
+                statement_outputs_dir,
+                no_gpu,
             )
-            metrics_list.append(metrics)
-            
-        except Exception as e:
-            logger.exception("Failed to evaluate %s due to an unhandled error: %s", image_path.name, e)
-            failure_reporter.report_failure("unhandled_exception", str(e), statement_id)
+            if metrics:
+                metrics_list.append(metrics)
+            for failure in failures:
+                failure_reporter.failures.append(failure)
+            if error:
+                logger.error("Failed to evaluate %s: %s", image_path.name, error)
+                failure_reporter.report_failure("unhandled_exception", error, statement_id)
+    else:
+        with ProcessPoolExecutor(max_workers=max_workers) as executor:
+            future_to_image = {
+                executor.submit(
+                    _evaluate_one_image,
+                    image_path,
+                    statement_outputs_dir,
+                    no_gpu,
+                ): image_path
+                for image_path in images
+            }
+            for idx, future in enumerate(as_completed(future_to_image), start=1):
+                image_path = future_to_image[future]
+                statement_id, metrics, failures, error = future.result()
+                if metrics:
+                    metrics_list.append(metrics)
+                for failure in failures:
+                    failure_reporter.failures.append(failure)
+                if error:
+                    logger.error("Failed to evaluate %s: %s", image_path.name, error)
+                    failure_reporter.report_failure("unhandled_exception", error, statement_id)
+                logger.info("[%d/%d] Finished %s", idx, len(images), image_path.name)
 
     # Save failures
     failure_reporter.save()
@@ -205,6 +267,7 @@ if __name__ == "__main__":
     parser.add_argument("input_folder", type=Path, help="Folder containing statement images.")
     parser.add_argument("--output_folder", type=Path, default=Path("."), help="Where to output reports.")
     parser.add_argument("--no-gpu", action="store_true", help="Disable GPU for OCR.")
+    parser.add_argument("--workers", type=int, default=2, help="Parallel worker processes. Use 1 to disable parallelism.")
     
     args = parser.parse_args()
-    evaluate_dataset(args.input_folder, args.output_folder, args.no_gpu)
+    evaluate_dataset(args.input_folder, args.output_folder, args.no_gpu, args.workers)

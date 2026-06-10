@@ -1,2 +1,4 @@
 # Bank Statement Parser — Python dependencies
 easyocr>=1.7
+opencv-python>=4.8
+pymupdf>=1.23

@@ -36,10 +36,11 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import List
 
+from src.constants import DATE_RE, MONEY_RE
 from src.layout_detector import LayoutDefinition
 from src.schema import BankStatement, OCRToken, ValidationReport
 from src.semantic_assigner import SemanticAssignmentReport
-from src.transaction_parser import ParsedRow, MONEY_RE, DATE_RE
+from src.transaction_parser import ParsedRow
 from src.transaction_reconstructor import Row
 
 logger = logging.getLogger(__name__)

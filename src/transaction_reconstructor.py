@@ -116,16 +116,16 @@ def _build_row(tokens: List[OCRToken]) -> Row:
 
 def reconstruct_rows(
     tokens: List[OCRToken],
-    threshold: float = 12.0,
+    threshold: float | None = None,
 ) -> List[Row]:
     """Cluster OCR tokens into logical rows by vertical position.
 
     Args:
         tokens:    List of :class:`OCRToken` objects from a single page.
-        threshold: Maximum vertical distance (in pixels) between the
+        threshold: Optional maximum vertical distance (in pixels) between the
                    y-centers of two tokens for them to be considered
-                   part of the same row.  Default ``12.0`` works well
-                   for standard 300 DPI statement scans.
+                   part of the same row.  When omitted, this is computed
+                   from average token height.
 
     Returns:
         A list of :class:`Row` objects, ordered top-to-bottom by
@@ -133,6 +133,19 @@ def reconstruct_rows(
     """
     if not tokens:
         return []
+
+    threshold_source = "caller-specified"
+    if threshold is None:
+        heights = [token.bbox[3] - token.bbox[1] for token in tokens]
+        avg_height = sum(heights) / len(heights) if heights else 0.0
+        threshold = avg_height * 0.7 if avg_height > 0 else 12.0
+        threshold_source = "adaptive"
+
+    logger.debug(
+        "Row clustering threshold: %.1fpx (%s)",
+        threshold,
+        threshold_source,
+    )
 
     # Step 1: Sort all tokens by vertical center (top → bottom)
     sorted_tokens = sorted(tokens, key=_token_y_center)
@@ -260,8 +273,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "-t", "--threshold",
         type=float,
-        default=12.0,
-        help="Y-clustering threshold in pixels (default: 12.0).",
+        default=None,
+        help="Y-clustering threshold in pixels. Defaults to adaptive token-height scaling.",
     )
 
     args = parser.parse_args()
