@@ -2,7 +2,7 @@
   "summary": {
     "total_statements_processed": 6,
     "total_transactions_assigned": 40,
-    "total_processing_time_seconds": 67.5,
+    "total_processing_time_seconds": 68.01,
     "header_extraction_success_rate": 0.6667,
     "average_validation_confidence": 0.7917,
     "average_layout_confidence": 0.8008
