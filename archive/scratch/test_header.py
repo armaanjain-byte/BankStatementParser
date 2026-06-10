@@ -5,7 +5,7 @@ import logging
 from pathlib import Path
 
 from src.schema import OCRToken
-from src.header_extractor import extract_metadata
+from archive.header_extractor import extract_metadata
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(message)s", datefmt="%H:%M:%S")
 

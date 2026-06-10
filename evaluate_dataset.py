@@ -18,8 +18,8 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 from typing import List
 
-from src.evaluation import FailureReporter, PipelineMetrics, evaluate_pipeline
-from src.header_extractor import extract_metadata
+from archive.evaluation import FailureReporter, PipelineMetrics, evaluate_pipeline
+from archive.header_extractor import extract_metadata
 from src.layout_detector import detect_layout
 from src.ocr import extract_tokens
 from src.schema import BankStatement

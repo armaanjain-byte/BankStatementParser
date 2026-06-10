@@ -18,7 +18,7 @@ import time
 import argparse
 from pathlib import Path
 
-from src.header_extractor import extract_metadata
+from archive.header_extractor import extract_metadata
 from src.layout_detector import detect_layout
 from src.schema import BankStatement
 from src.semantic_assigner import build_semantic_assignment_report
@@ -29,7 +29,7 @@ from src.normalizer import normalize_date_strings, normalize_amount_strings
 
 # ──────────────────────────────────────────────
 #  Config
-# ──────────────────────────────────────────────
+# ─────────────────────────────────────────────
 
 INPUT_DIR = Path("test_set")
 OUTPUT_DIR = Path("statement_outputs")
