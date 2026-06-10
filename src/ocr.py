@@ -146,7 +146,6 @@ def extract_tokens(
         if not preprocess:
             if _is_low_quality(path):
                 import cv2
-                import numpy as np
                 img = cv2.imread(str(path), cv2.IMREAD_GRAYSCALE)
                 variance = float(np.var(img)) if img is not None else 0.0
                 logger.warning(

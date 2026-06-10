@@ -1,7 +1,7 @@
 {
   "metadata": {
     "bank_name": "HSBC",
-    "account_holder": "SV United Kingdom",
+    "account_holder": "Bturt blori",
     "account_number": null,
     "statement_period_from": null,
     "statement_period_to": null,
@@ -16,6 +16,16 @@
         "issue_type": "no_transactions",
         "severity": "WARNING",
         "description": "No transactions were extracted from the statement."
+      },
+      {
+        "issue_type": "layout_inferred",
+        "severity": "WARNING",
+        "description": "Layout was inferred from data rows instead of a table header."
+      },
+      {
+        "issue_type": "unassigned_amounts",
+        "severity": "WARNING",
+        "description": "1 transactions had amounts that could not be semantically assigned."
       },
       {
         "issue_type": "missing_account_number",

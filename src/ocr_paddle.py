@@ -21,7 +21,7 @@ def _get_ocr(use_gpu: bool = True):
         from paddleocr import PaddleOCR
         logger.info("Initializing PaddleOCR (gpu=%s)", use_gpu)
         device = "gpu" if use_gpu else "cpu"
-        _ocr = PaddleOCR(lang="en", device=device)
+        _ocr = PaddleOCR(lang="en", device=device, enable_mkldnn=False)
     return _ocr
 
 def _paddle_result_to_tokens(result, min_confidence: float = 0.10) -> List[OCRToken]:
@@ -32,18 +32,35 @@ def _paddle_result_to_tokens(result, min_confidence: float = 0.10) -> List[OCRTo
     for page in result:
         if page is None:
             continue
-        for line in page:
-            # PaddleOCR format: [[bbox_points], (text, confidence)]
-            bbox_points, (text, confidence) = line
-            if confidence < min_confidence:
-                continue
-            xs = [pt[0] for pt in bbox_points]
-            ys = [pt[1] for pt in bbox_points]
-            tokens.append(OCRToken(
-                text=text.strip(),
-                confidence=float(confidence),
-                bbox=(int(min(xs)), int(min(ys)), int(max(xs)), int(max(ys))),
-            ))
+        if hasattr(page, 'keys') or isinstance(page, dict):
+            rec_texts = page.get('rec_texts', [])
+            rec_scores = page.get('rec_scores', [])
+            rec_boxes = page.get('rec_boxes', [])
+            for i in range(len(rec_texts)):
+                text = rec_texts[i]
+                confidence = rec_scores[i]
+                bbox = rec_boxes[i]
+                if confidence < min_confidence:
+                    continue
+                bbox_tuple = (int(bbox[0]), int(bbox[1]), int(bbox[2]), int(bbox[3]))
+                tokens.append(OCRToken(
+                    text=text.strip(),
+                    confidence=float(confidence),
+                    bbox=bbox_tuple,
+                ))
+        else:
+            for line in page:
+                # PaddleOCR format: [[bbox_points], (text, confidence)]
+                bbox_points, (text, confidence) = line
+                if confidence < min_confidence:
+                    continue
+                xs = [pt[0] for pt in bbox_points]
+                ys = [pt[1] for pt in bbox_points]
+                tokens.append(OCRToken(
+                    text=text.strip(),
+                    confidence=float(confidence),
+                    bbox=(int(min(xs)), int(min(ys)), int(max(xs)), int(max(ys))),
+                ))
     logger.debug("PaddleOCR extracted %d tokens (min_conf=%.2f)", len(tokens), min_confidence)
     return tokens
 

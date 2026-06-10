@@ -9,17 +9,47 @@
   },
   "transactions": [
     {
-      "date": "13-01-2022",
-      "description": "Statement of Axis Account No :919010061861194 for the period (From 0I-I0-2021.)",
+      "date": "10.00-202",
+      "description": ".00E BanJraju 32.004LOQ",
       "amount": null,
-      "debit": null,
+      "debit": 10.0,
       "credit": null,
-      "balance": 2021.13
+      "balance": null
+    },
+    {
+      "date": "12.00-10",
+      "description": ".00-2W2E IUUU SYLQQ",
+      "amount": null,
+      "debit": 12.0,
+      "credit": 10.0,
+      "balance": null
+    },
+    {
+      "date": "10.00-202",
+      "description": "1&-.00 JU Zu2uu",
+      "amount": null,
+      "debit": 10.0,
+      "credit": 202.0,
+      "balance": null
+    },
+    {
+      "date": "4.00-11",
+      "description": ".00-202.00L SuuU",
+      "amount": null,
+      "debit": 4.0,
+      "credit": 11.0,
+      "balance": null
     }
   ],
   "validation": {
     "passed": true,
-    "confidence": 1.0,
-    "issues": []
+    "confidence": 0.95,
+    "issues": [
+      {
+        "issue_type": "unassigned_amounts",
+        "severity": "WARNING",
+        "description": "6 transactions had amounts that could not be semantically assigned."
+      }
+    ]
   }
 }
