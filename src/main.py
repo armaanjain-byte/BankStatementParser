@@ -2,11 +2,16 @@
 main.py — End-to-end OCR and extraction runner for the Bank Statement Parser.
 
 Runs the complete pipeline:
-  Image -> OCR -> Row Reconstruction -> Layout Detection -> 
-  Transaction Parsing -> Semantic Assignment -> Header Extraction -> 
+  Image -> OCR -> Row Reconstruction -> Layout Detection ->
+  Transaction Parsing -> Semantic Assignment -> Header Extraction ->
   Validation -> BankStatement
 
 Outputs a serialized BankStatement to JSON.
+
+Rule 2: The pipeline selects the appropriate backend (PaddleOCR or EasyOCR)
+        at the top of _process_page() only.  All code below that point
+        operates on OCRToken objects and does not know which engine produced
+        them.
 """
 
 from __future__ import annotations
@@ -20,16 +25,16 @@ from pathlib import Path
 
 from archive.header_extractor import extract_metadata
 from src.layout_detector import detect_layout
-from src.schema import BankStatement
+from src.models.transaction_models import BankStatement
+from src.normalizers import normalize_date_strings, normalize_amount_strings
 from src.semantic_assigner import build_semantic_assignment_report
 from src.transaction_parser import parse_rows
 from src.transaction_reconstructor import reconstruct_rows
 from src.validator import validate_statement
-from src.normalizer import normalize_date_strings, normalize_amount_strings
 
 # ──────────────────────────────────────────────
 #  Config
-# ─────────────────────────────────────────────
+# ──────────────────────────────────────────────
 
 INPUT_DIR = Path("test_set")
 OUTPUT_DIR = Path("statement_outputs")
@@ -61,18 +66,20 @@ def _process_page(
     use_paddle: bool = True,
 ) -> BankStatement:
     """Run the end-to-end extraction pipeline on a single image/page."""
-    
-    # 1. OCR
+
+    # 1. OCR — select backend; everything downstream is backend-agnostic.
     if use_paddle:
-        from src.ocr_paddle import extract_tokens
+        from src.backends.paddleocr_backend import PaddleOCRBackend
+        backend = PaddleOCRBackend()
     else:
-        from src.ocr import extract_tokens
-        
-    tokens = extract_tokens(image_input, gpu=gpu, preprocess=preprocess)
-    
+        from src.backends.easyocr_backend import EasyOCRBackend
+        backend = EasyOCRBackend()
+
+    tokens = backend.extract_tokens(image_input, gpu=gpu, preprocess=preprocess)
+
     # 2. Row Reconstruction
     rows = reconstruct_rows(tokens)
-    
+
     # 2.5 Normalization
     rows, normalized_date_count = normalize_date_strings(rows)
     rows, normalized_amount_count = normalize_amount_strings(rows)
@@ -81,35 +88,35 @@ def _process_page(
         normalized_date_count,
         normalized_amount_count,
     )
-    
+
     # 3. Layout Detection
     layout = detect_layout(tokens, rows)
-    
+
     # 4. Transaction Parsing
     parsed_rows = parse_rows(rows)
-    
+
     # 5. Semantic Assignment
     assignment_report = build_semantic_assignment_report(
         parsed_rows, rows, layout, statement_id=statement_id
     )
-    
+
     # Extract successfully assigned transactions
     transactions = []
     for r in assignment_report.rows:
         if any(v is not None for v in r.assigned_values.values()):
             transactions.append(r.transaction)
-            
+
     # 6. Header Extraction
     extraction_result = extract_metadata(tokens)
     metadata = extraction_result.metadata
-    
+
     # 7. Build preliminary BankStatement
     statement = BankStatement(metadata=metadata, transactions=transactions)
-    
+
     # 8. Validation
     validation_report = validate_statement(statement, layout, assignment_report)
     statement.validation = validation_report
-    
+
     return statement
 
 
@@ -200,7 +207,7 @@ def run(
 
     for idx, image_path in enumerate(images, start=1):
         img_start = time.perf_counter()
-        
+
         try:
             statement = process_statement(
                 image_path,
@@ -208,13 +215,13 @@ def run(
                 preprocess=preprocess,
                 use_paddle=use_paddle,
             )
-            
+
             out_path = _output_path_for(image_path, output_dir)
             with open(out_path, "w", encoding="utf-8") as f:
                 json.dump(statement.to_dict(), f, indent=2, ensure_ascii=False)
-                
+
             elapsed = time.perf_counter() - img_start
-            
+
             logger.info(
                 "[%d/%d] %-20s | txns: %4d | passed: %5s | %.2fs",
                 idx,

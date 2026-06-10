@@ -1,180 +1,46 @@
 """
-schema.py — Core data structures for the Bank Statement Parser.
+schema.py — Backward-compatibility layer for the Bank Statement Parser.
 
-Defines the canonical shapes of data flowing through the pipeline:
+Rule 7: This module must remain as a backward-compatibility shim so that
+existing imports such as:
 
-    Image → OCR → [OCRToken, ...] → Reconstruction → Transaction → BankStatement
+    from src.schema import OCRToken
+    from src.schema import Transaction
+    from src.schema import BankStatement
 
-All structures use dataclasses for clarity, immutability hints, and
-zero-dependency serialization (via dataclasses.asdict).
+continue to work without modification after the migration to the
+models/ package.
 
-Design decisions
-────────────────
-• Fields that may not be extractable from every statement are Optional
-  with a default of None.  This keeps the pipeline resilient — partial
-  results are still valid objects.
-• Monetary values (amount, debit, credit, balance) are Optional[float].
-  We intentionally avoid Decimal here because upstream OCR output is
-  inherently imprecise; Decimal precision would give false confidence.
-  Downstream consumers should round/quantize as needed.
-• bbox is a tuple of four ints (x_min, y_min, x_max, y_max) following
-  the standard top-left / bottom-right convention used by EasyOCR.
+All canonical definitions now live in:
+    src/models/ocr_models.py        → OCRToken
+    src/models/transaction_models.py → Transaction, StatementMetadata,
+                                       BankStatement
+    src/models/validation_models.py  → ValidationIssue, ValidationReport
+
+This file re-exports every public name so that existing call sites are
+unaffected.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
-from typing import List, Optional, Tuple
+# ── OCR layer ─────────────────────────────────
+from src.models.ocr_models import OCRToken
 
+# ── Transaction / metadata layer ──────────────
+from src.models.transaction_models import (
+    BankStatement,
+    StatementMetadata,
+    Transaction,
+)
 
-# ──────────────────────────────────────────────
-#  OCR Layer
-# ──────────────────────────────────────────────
+# ── Validation layer ───────────────────────────
+from src.models.validation_models import ValidationIssue, ValidationReport
 
-@dataclass
-class OCRToken:
-    """A single token produced by the OCR engine.
-
-    Attributes:
-        text:       The recognized text content of this token.
-        confidence: OCR confidence score in the range [0.0, 1.0].
-        bbox:       Bounding box as (x_min, y_min, x_max, y_max) in pixels.
-                    Coordinates follow the top-left origin convention.
-    """
-
-    text: str
-    confidence: float
-    bbox: Tuple[int, int, int, int]
-
-    def __post_init__(self) -> None:
-        if not (0.0 <= self.confidence <= 1.0):
-            raise ValueError(
-                f"confidence must be in [0.0, 1.0], got {self.confidence}"
-            )
-        if len(self.bbox) != 4:
-            raise ValueError(
-                f"bbox must have exactly 4 elements, got {len(self.bbox)}"
-            )
-
-
-# ──────────────────────────────────────────────
-#  Transaction Layer
-# ──────────────────────────────────────────────
-
-@dataclass
-class Transaction:
-    """A single financial transaction extracted from a bank statement.
-
-    At minimum a transaction should have a date, but during reconstruction
-    some fields may be unavailable, so everything is Optional.
-
-    Attributes:
-        date:        Transaction date as it appears on the statement
-                     (e.g. "01/04/2025", "01 Apr 2025").  Kept as a raw
-                     string; date normalization is a downstream concern.
-        description: Narration / particulars / remarks text.
-        amount:      Generic transaction amount when direction is unknown.
-        debit:       Amount debited (withdrawn), or None if not applicable.
-        credit:      Amount credited (deposited), or None if not applicable.
-        balance:     Running balance after this transaction, if available.
-    """
-
-    date: Optional[str] = field(default=None)
-    description: Optional[str] = field(default=None)
-    amount: Optional[float] = field(default=None)
-    debit: Optional[float] = field(default=None)
-    credit: Optional[float] = field(default=None)
-    balance: Optional[float] = field(default=None)
-
-
-# ──────────────────────────────────────────────
-#  Metadata Layer
-# ──────────────────────────────────────────────
-
-@dataclass
-class StatementMetadata:
-    """Header-level metadata extracted from the bank statement.
-
-    These fields are typically found in the letterhead or summary block
-    at the top of a statement page.
-
-    Attributes:
-        bank_name:             Name of the issuing bank.
-        account_holder:        Name of the account holder.
-        account_number:        Full or masked account number.
-        statement_period_from: Start date of the statement period (raw string).
-        statement_period_to:   End date of the statement period (raw string).
-        currency:              ISO-4217 currency code (e.g. "INR", "USD").
-    """
-
-    bank_name: Optional[str] = field(default=None)
-    account_holder: Optional[str] = field(default=None)
-    account_number: Optional[str] = field(default=None)
-    statement_period_from: Optional[str] = field(default=None)
-    statement_period_to: Optional[str] = field(default=None)
-    currency: Optional[str] = field(default=None)
-
-
-# ──────────────────────────────────────────────
-#  Validation Layer
-# ──────────────────────────────────────────────
-
-@dataclass
-class ValidationIssue:
-    """An issue found during statement validation.
-    
-    Attributes:
-        issue_type: The type of issue (e.g., 'date_parse_failure', 'missing_columns').
-        severity:   The severity of the issue ('WARNING' or 'ERROR').
-        description: Human-readable explanation of the issue.
-    """
-    issue_type: str
-    severity: str
-    description: str
-
-
-@dataclass
-class ValidationReport:
-    """Report generated by the validation engine.
-    
-    Attributes:
-        passed:     True if no ERROR severity issues are present.
-        confidence: An overall confidence score [0.0, 1.0].
-        issues:     List of validation issues detected.
-    """
-    passed: bool = True
-    confidence: float = 1.0
-    issues: List[ValidationIssue] = field(default_factory=list)
-
-
-# ──────────────────────────────────────────────
-#  Top-Level Container
-# ──────────────────────────────────────────────
-
-@dataclass
-class BankStatement:
-    """Complete parsed representation of a bank statement.
-
-    This is the final output of the parsing pipeline and the shape of the
-    standardized JSON that gets written to disk.
-
-    Attributes:
-        metadata:     Statement-level metadata (bank name, account info, etc.).
-        transactions: Ordered list of transactions extracted from the statement.
-        validation:   The validation report for the extraction process.
-    """
-
-    metadata: StatementMetadata = field(default_factory=StatementMetadata)
-    transactions: List[Transaction] = field(default_factory=list)
-    validation: ValidationReport = field(default_factory=ValidationReport)
-
-    # ── Convenience helpers ──────────────────
-
-    def to_dict(self) -> dict:
-        """Serialize the entire statement to a plain dict (JSON-ready)."""
-        return asdict(self)
-
-    @property
-    def transaction_count(self) -> int:
-        """Number of transactions currently held."""
-        return len(self.transactions)
+__all__ = [
+    "BankStatement",
+    "OCRToken",
+    "StatementMetadata",
+    "Transaction",
+    "ValidationIssue",
+    "ValidationReport",
+]
