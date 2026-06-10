@@ -130,6 +130,18 @@ MONEY_RE = constants.MONEY_RE
 #  Stage 1 Logic
 # ──────────────────────────────────────────────
 
+HEADER_FOOTER_KEYWORDS = frozenset({
+    "statement of", "statement for", "account no", "account number",
+    "for the period", "opening balance", "closing balance", "start balance",
+    "end balance", "brought forward", "carried forward", "page", "total",
+    "account summary", "sort code", "branch", "ifsc", "swift",
+})
+
+def _is_header_or_footer(text: str) -> bool:
+    t = text.lower()
+    return any(kw in t for kw in HEADER_FOOTER_KEYWORDS)
+
+
 def parse_rows(rows: List[Row]) -> List[ParsedRow]:
     """Identify transaction rows and extract core components.
     
@@ -150,6 +162,10 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
         amounts = MONEY_RE.findall(text)
         
         if primary_date_match and amounts:
+            if _is_header_or_footer(text):
+                logger.debug("Skipped header/footer row: %s", text[:60])
+                continue
+
             # We found a transaction row
             date_str = primary_date_match.group(0)
             

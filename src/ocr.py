@@ -34,7 +34,7 @@ from src.preprocessor import preprocess_for_ocr
 from src.schema import OCRToken
 
 logger = logging.getLogger(__name__)
-MIN_CONFIDENCE = 0.30
+MIN_CONFIDENCE = 0.10
 
 # ──────────────────────────────────────────────
 #  Module-level reader (lazy-initialized)
@@ -95,11 +95,24 @@ def _polygon_to_bbox(polygon: list[list[int | float]]) -> tuple[int, int, int, i
 #  Core public API
 # ──────────────────────────────────────────────
 
+def _is_low_quality(image_path) -> bool:
+    """Return True if the image likely needs preprocessing (phone photo, faded scan)."""
+    import cv2
+    import numpy as np
+    img = cv2.imread(str(image_path), cv2.IMREAD_GRAYSCALE)
+    if img is None:
+        return False
+    # Bimodal check: clean digital PDFs have high pixel variance (black text on white bg).
+    # Low-quality scans / photos have compressed, noisy histograms.
+    variance = float(np.var(img))
+    return variance < 1800  # tuned threshold; digital statements typically score 3000-8000
+
+
 def extract_tokens(
     image_path: Union[str, Path, np.ndarray],
     languages: list[str] | None = None,
     gpu: bool = True,
-    preprocess: bool = True,
+    preprocess: bool = False,
     min_confidence: float = MIN_CONFIDENCE,
 ) -> List[OCRToken]:
     """Run OCR on a bank statement image and return structured tokens.
@@ -129,6 +142,19 @@ def extract_tokens(
         image_name = path.name
         if not path.exists():
             raise FileNotFoundError(f"Image not found: {path}")
+            
+        if not preprocess:
+            if _is_low_quality(path):
+                import cv2
+                import numpy as np
+                img = cv2.imread(str(path), cv2.IMREAD_GRAYSCALE)
+                variance = float(np.var(img)) if img is not None else 0.0
+                logger.warning(
+                    "Low-quality image detected (variance=%s), enabling preprocessing automatically.",
+                    f"{variance:.0f}"
+                )
+                preprocess = True
+                
         ocr_input = preprocess_for_ocr(path) if preprocess else str(path)
 
     reader = _get_reader(languages=languages, gpu=gpu)

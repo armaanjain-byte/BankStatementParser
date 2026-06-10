@@ -1,6 +1,26 @@
 [
   {
     "failure_type": "no_date_detected",
+    "candidate": "15\"h June Monthly Account Fee $ 12.99",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Financial ESL Literacy Toolkit",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "0 Bow",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "LIVEWORKSHEETS",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "no_date_detected",
     "candidate": "Start balanee 600.201.OOO",
     "statement_id": "23"
   },
@@ -106,26 +126,6 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "15\"h June Monthly Account Fee $ 12.99",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Financial ESL Literacy Toolkit",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "0 Bow",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "LIVEWORKSHEETS",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "no_date_detected",
     "candidate": "estpac",
     "statement_id": "25"
   },
@@ -195,6 +195,11 @@
     "statement_id": "25"
   },
   {
+    "failure_type": "no_date_detected",
+    "candidate": "16 916 974 211",
+    "statement_id": "25"
+  },
+  {
     "failure_type": "insufficient_numeric_values",
     "candidate": "19 Jul",
     "statement_id": "25"
@@ -206,7 +211,12 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "Cooyright ' AEN33 Do7 457 141 &AFSL 2017 Westnac",
+    "candidate": "Cooyright ' 2017 Westnac Banuno Corparabor",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "AEN33 Do7 457 141 &AFSL NJshaHrt ccdi: |cajo 23...",
     "statement_id": "25"
   },
   {
@@ -231,7 +241,12 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "@LU-W ICONN/H4592805/91101003206508407071Ucurr ...",
+    "candidate": "ICONN/H4592805/91101003206508407071Ucurr",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "@LU-W suuu.uU 2941L.00",
     "statement_id": "26"
   },
   {
@@ -281,12 +296,27 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "1&-4l-2W CASH-ATWSBI GOWLIGUDA HYDHYDERABADA7UZ44",
+    "candidate": "CASH-ATWSBI",
     "statement_id": "26"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "1&-0k-Z0 CASH-ATM-AXIS KURNOOL BRANCHKURNOOL/48074",
+    "candidate": "1&-4l-2W GOWLIGUDA HYDHYDERABADA7UZ44 Sou.UU",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "CASH-ATM-AXIS KURNOOL",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "1&-0k-Z0 BRANCHKURNOOL/48074 I0QU.@0",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "PURTRINETHRA SUPER",
     "statement_id": "26"
   },
   {
@@ -321,7 +351,17 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "excludes the amount matked uS Ien: The clesing ...",
+    "candidate": "helshe has found the account cOnect",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "The clesing balance as shown/displayed includes...",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "excludes the amount matked uS Ien: Many \" Hence...",
     "statement_id": "26"
   },
   {
@@ -331,7 +371,12 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "We Would like debit card number through emails ...",
+    "candidate": "We Would like fellerate thal policy. Axis Bank ...",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "debit card number through emails OR phone call ...",
     "statement_id": "26"
   },
   {
@@ -346,17 +391,32 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "OL424 91901006[86119- Im Pd.01-0J-202I I0 3u-09 2E",
+    "candidate": "91901006[86119- Im Pd.01-0J-202I I0 3u-09",
     "statement_id": "27"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "06-1U-102E NEFTIN279210112976809/4 K MANFOKARUR",
+    "candidate": "OL424 2E",
     "statement_id": "27"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "07-14-ZU2L UPVPZA/IZSOS] Ban Fayment",
+    "candidate": "NEFTIN279210112976809/4 K",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06-1U-102E MANFOKARUR 8752.U0",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPVPZA/IZSOS] 10SIVBank Acco State",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "07-14-ZU2L Ban Fayment 1QuU.UU",
     "statement_id": "27"
   },
   {
@@ -366,7 +426,12 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "(0s-10-2021 UPVP2A/2S[37296985/Bank Acco State ...",
+    "candidate": "UPVP2A/2S[37296985/Bank Acco State",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "(0s-10-2021 BampvnicnI LOQU.UO",
     "statement_id": "27"
   },
   {
@@ -381,17 +446,32 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "IKZUE Bar] ment UPVP2A/28354630747/SONU KUMACICI",
+    "candidate": "UPVP2A/28354630747/SONU KUMACICI",
     "statement_id": "27"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "10-202E BanJraju UPVP2A/12831674181M/RAU KUMAUnion",
+    "candidate": "IKZUE Bar] ment ZLuUU",
     "statement_id": "27"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "ILIZUE Baukucni UPVF_A/28383 +933WBank Acco Union",
+    "candidate": "UPVP2A/12831674181M/RAU KUMAUnion",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "10-202E BanJraju 324LOQ",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPVF_A/28383 +933WBank Acco Union",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "ILIZUE Baukucni 2140,",
     "statement_id": "27"
   },
   {
@@ -401,7 +481,17 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "12-10-2W2E UPVT _W12853357845.3/Dream[ MYesBak_...",
+    "candidate": "UPVT _W12853357845.3/Dream[ MYesBak_YP",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "12-10-2W2E 4mC [( IUUU",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPVPEWL28638844593/RELIANCE",
     "statement_id": "27"
   },
   {
@@ -416,7 +506,12 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "KZUE UPVI _A/12887945+4SWSulena DSlle Ban Pavment",
+    "candidate": "UPVI _A/12887945+4SWSulena DSlle",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "KZUE Ban Pavment 5w",
     "statement_id": "27"
   },
   {
@@ -431,12 +526,22 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "1&-10-202 UPVPEWI29[7092652SSPORTA TEKotak MANP...",
+    "candidate": "UPVPEWI29[7092652SSPORTA TEKotak",
     "statement_id": "27"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "19-10-ZW2E UPVF2W/29251770469/Drezun[ HYesBank_...",
+    "candidate": "1&-10-202 MANPalenl JU",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPVF2W/29251770469/Drezun[ HYesBank_YIP",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "19-10-ZW2E avmenC 9,",
     "statement_id": "27"
   },
   {
@@ -451,7 +556,12 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "04-2W2 NEFTINJ062101 !883084584 K MANPOKARUR VS",
+    "candidate": "NEFTINJ062101 !883084584 K",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "04-2W2 MANPOKARUR VS 1676,0",
     "statement_id": "27"
   },
   {
@@ -461,22 +571,47 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "04-11-202L UPVPEAYI 3083223956 VRAUU KUMAUnion ...",
+    "candidate": "UPVPEAYI 3083223956 VRAUU KUMAUnion",
     "statement_id": "27"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "0AL204 UPVFZA/I30S7653067-RAU KUMAUnion Banpvmeni",
+    "candidate": "04-11-202L BAmpivd SuuU",
     "statement_id": "27"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "4k24 UPVPZA/I30853397101/RAJU KUMA/Union Bampvncn",
+    "candidate": "UPVFZA/I30S7653067-RAU KUMAUnion",
     "statement_id": "27"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "@ZUL Ban Ujiwel UPVPZAJI30S16546042Bank AccolSiate",
+    "candidate": "0AL204 Banpvmeni LWu",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPVPZA/I30853397101/RAJU KUMA/Union",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "4k24 Bampvncn J4Wu",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPVPZAJI30S16546042Bank AccolSiate",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "@ZUL Ban Ujiwel 4QuU.uU",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPVP2W/1 30852967289/Dream [ YesBank YIP",
     "statement_id": "27"
   },
   {

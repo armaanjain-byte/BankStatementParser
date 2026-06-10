@@ -1,4 +1,15 @@
-# Bank Statement Parser — Python dependencies
-easyocr>=1.7
-opencv-python>=4.8
-pymupdf>=1.23
+# Core OCR (choose one backend or install both)
+easyocr>=1.7,<2.0          # legacy backend, kept for compatibility
+paddleocr>=2.7             # recommended backend (better table accuracy)
+paddlepaddle>=2.6          # CPU; swap for paddlepaddle-gpu for GPU support
+
+# Image processing
+opencv-python>=4.8,<5.0   # used by preprocessor.py (low-quality fallback only)
+numpy>=1.24,<2.0
+Pillow>=10.0
+
+# Date parsing
+python-dateutil>=2.8
+
+# PDF input (optional)
+# pymupdf>=1.23

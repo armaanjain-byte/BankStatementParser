@@ -20,7 +20,6 @@ from pathlib import Path
 
 from src.header_extractor import extract_metadata
 from src.layout_detector import detect_layout
-from src.ocr import extract_tokens
 from src.schema import BankStatement
 from src.semantic_assigner import build_semantic_assignment_report
 from src.transaction_parser import parse_rows
@@ -58,11 +57,17 @@ def _process_page(
     *,
     statement_id: str,
     gpu: bool = True,
-    preprocess: bool = True,
+    preprocess: bool = False,
+    use_paddle: bool = True,
 ) -> BankStatement:
     """Run the end-to-end extraction pipeline on a single image/page."""
     
     # 1. OCR
+    if use_paddle:
+        from src.ocr_paddle import extract_tokens
+    else:
+        from src.ocr import extract_tokens
+        
     tokens = extract_tokens(image_input, gpu=gpu, preprocess=preprocess)
     
     # 2. Row Reconstruction
@@ -111,7 +116,8 @@ def _process_page(
 def process_statement(
     image_path: Path,
     gpu: bool = True,
-    preprocess: bool = True,
+    preprocess: bool = False,
+    use_paddle: bool = True,
 ) -> BankStatement:
     """Run the entire end-to-end extraction pipeline on a single image or PDF."""
     image_path = Path(image_path)
@@ -121,6 +127,7 @@ def process_statement(
             statement_id=image_path.stem,
             gpu=gpu,
             preprocess=preprocess,
+            use_paddle=use_paddle,
         )
 
     from src.pdf_converter import pdf_to_images
@@ -132,6 +139,7 @@ def process_statement(
             statement_id=f"{image_path.stem}_page_{idx}",
             gpu=gpu,
             preprocess=False,
+            use_paddle=use_paddle,
         )
         for idx, page in enumerate(pages, start=1)
     ]
@@ -165,7 +173,8 @@ def run(
     input_dir: Path = INPUT_DIR,
     output_dir: Path = OUTPUT_DIR,
     gpu: bool = True,
-    preprocess: bool = True,
+    preprocess: bool = False,
+    use_paddle: bool = True,
 ) -> None:
     """Process every image in input_dir and write BankStatement JSON to output_dir."""
 
@@ -193,7 +202,12 @@ def run(
         img_start = time.perf_counter()
         
         try:
-            statement = process_statement(image_path, gpu=gpu, preprocess=preprocess)
+            statement = process_statement(
+                image_path,
+                gpu=gpu,
+                preprocess=preprocess,
+                use_paddle=use_paddle,
+            )
             
             out_path = _output_path_for(image_path, output_dir)
             with open(out_path, "w", encoding="utf-8") as f:
@@ -236,6 +250,11 @@ def _parse_args() -> argparse.Namespace:
         help="Disable OpenCV preprocessing.",
     )
     parser.add_argument(
+        "--no-paddle",
+        action="store_true",
+        help="Disable PaddleOCR and fallback to EasyOCR.",
+    )
+    parser.add_argument(
         "--single",
         type=Path,
         default=None,
@@ -252,6 +271,7 @@ if __name__ == "__main__":
             args.single,
             gpu=not args.no_gpu,
             preprocess=not args.no_preprocess,
+            use_paddle=not args.no_paddle,
         )
         print(json.dumps(statement.to_dict(), indent=2, ensure_ascii=False))
     else:
@@ -260,4 +280,5 @@ if __name__ == "__main__":
             output_dir=args.output,
             gpu=not args.no_gpu,
             preprocess=not args.no_preprocess,
+            use_paddle=not args.no_paddle,
         )
