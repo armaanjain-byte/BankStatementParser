@@ -1,15 +1,15 @@
 {
   "global_failure_counts": {
-    "OCR_CORRUPTION": 59,
-    "ROW_FRAGMENTATION": 46,
-    "INSUFFICIENT_NUMERIC_VALUES": 12,
-    "SEMANTIC_MISMATCH": 1,
+    "OCR_CORRUPTION": 53,
+    "ROW_FRAGMENTATION": 31,
+    "INSUFFICIENT_NUMERIC_VALUES": 20,
+    "SEMANTIC_MISMATCH": 11,
     "DATE_FORMAT_UNSUPPORTED": 0
   },
   "engineering_roi_ranking": [
-    "1. OCR improvement -> recover ~59 rows",
-    "2. Row reconstruction improvement -> recover ~46 rows",
-    "3. Amount extraction / Semantic improvement -> recover ~13 rows",
+    "1. OCR improvement -> recover ~53 rows",
+    "2. Row reconstruction improvement -> recover ~31 rows",
+    "3. Amount extraction / Semantic improvement -> recover ~31 rows",
     "4. Date parser improvement -> recover ~0 rows"
   ],
   "recommendation": "Based on expected transaction recovery, the highest-leverage next engineering task is: OCR improvement.",
@@ -19,41 +19,41 @@
       "primary_root_cause": "OCR_CORRUPTION",
       "ocr_corrupted_rows": 14,
       "unsupported_date_rows": 0,
-      "fragmented_rows": 7,
-      "insufficient_numeric_rows": 0,
+      "fragmented_rows": 5,
+      "insufficient_numeric_rows": 2,
       "semantic_mismatch_rows": 0,
       "quality_scores": {
         "ocr_quality": 0.55,
-        "reconstruction_quality": 0.77,
-        "parsing_quality": 1.0
+        "reconstruction_quality": 0.84,
+        "parsing_quality": 0.0
       }
     },
     {
       "statement_id": "24",
-      "primary_root_cause": "ROW_FRAGMENTATION",
+      "primary_root_cause": "SEMANTIC_MISMATCH",
       "ocr_corrupted_rows": 1,
       "unsupported_date_rows": 0,
-      "fragmented_rows": 13,
+      "fragmented_rows": 3,
       "insufficient_numeric_rows": 0,
-      "semantic_mismatch_rows": 0,
+      "semantic_mismatch_rows": 10,
       "quality_scores": {
         "ocr_quality": 0.96,
-        "reconstruction_quality": 0.52,
-        "parsing_quality": 1.0
+        "reconstruction_quality": 0.89,
+        "parsing_quality": 0.5
       }
     },
     {
       "statement_id": "25",
-      "primary_root_cause": "ROW_FRAGMENTATION",
-      "ocr_corrupted_rows": 10,
+      "primary_root_cause": "INSUFFICIENT_NUMERIC_VALUES",
+      "ocr_corrupted_rows": 4,
       "unsupported_date_rows": 0,
-      "fragmented_rows": 12,
-      "insufficient_numeric_rows": 5,
+      "fragmented_rows": 9,
+      "insufficient_numeric_rows": 11,
       "semantic_mismatch_rows": 0,
       "quality_scores": {
-        "ocr_quality": 0.7,
-        "reconstruction_quality": 0.64,
-        "parsing_quality": 0.55
+        "ocr_quality": 0.88,
+        "reconstruction_quality": 0.73,
+        "parsing_quality": 0.45
       }
     },
     {

@@ -25,6 +25,14 @@
       "balance": null
     },
     {
+      "date": "Jul2017",
+      "description": "25 Debit CaRD PURCHASE SQ DIVINE PTY LTD BALDIVIS $ AUS",
+      "amount": 24.5,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
       "date": "23 Jul 2017",
       "description": "DebIT CARD PURCHASE CCLES 0287 BALDIIS AUS $",
       "amount": 23.58,
@@ -33,9 +41,25 @@
       "balance": null
     },
     {
+      "date": "Jul2017",
+      "description": "14 WITHDRAWAL AT ANZ ATMNORTHB 00013051012540 |30717",
+      "amount": 5150.0,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
       "date": "14 Jul 2017",
       "description": "DEBIT CARD PURCHASE ALH VENUES BRASS MONKWA AUS 8743",
       "amount": 310.0,
+      "debit": null,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "Jul2017",
+      "description": "Debn CARD PURCHASE TRANsPERTH ticket GOSN GOSNELLS AJS",
+      "amount": 85.2,
       "debit": null,
       "credit": null,
       "balance": null

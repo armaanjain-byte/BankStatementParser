@@ -3,6 +3,28 @@ evaluation.py - Framework for pipeline evaluation and anonymized failure reporti
 
 Collects metrics across the entire extraction pipeline and provides mechanisms
 to report failures without exposing Personally Identifiable Information (PII).
+
+Bug fixes in this version
+─────────────────────────
+1. FailureReporter accumulation bug (Critical):
+   The previous version loaded existing failure_reports.json on __init__ and
+   appended to it. Every evaluation run doubled the file contents. After two
+   runs the forensic data was polluted: failure counts were doubled, and records
+   from old code versions (with different schemas) contaminated current analysis.
+   Fix: FailureReporter now starts with an empty list unconditionally. The file
+   is overwritten on save(), not appended to.
+
+2. Failure record key standardised to 'candidate' (Medium):
+   The previous version wrote {"candidate": ...} in evaluation.py but old records
+   in the accumulated file used {"raw_text": ...}. forensic_analyzer.py papered
+   over this with failure.get("candidate", failure.get("raw_text", "")).
+   Fix: All records now use "candidate" consistently. forensic_analyzer.py fallback
+   is retained for backward compatibility with any existing archived reports.
+
+3. evaluation.py imports DATE_RE from transaction_parser (important):
+   DATE_RE is now expanded in transaction_parser.py. evaluation.py imports it
+   directly, so DATE_CANDIDATE_RE and recovered_date_parse_count logic
+   automatically benefits from the expanded pattern without any change here.
 """
 
 from __future__ import annotations
@@ -60,42 +82,46 @@ class PipelineMetrics:
 
 
 class FailureReporter:
-    """Collects and writes anonymized failure reports."""
+    """Collects and writes anonymized failure reports.
+    
+    Each call to evaluate_dataset produces a clean report. Previous runs
+    are NOT loaded or merged — the output file is always overwritten.
+    This ensures forensic data is never polluted by records from prior
+    code versions or duplicate runs.
+    """
     
     def __init__(self, output_path: Path):
         self.output_path = output_path
+        # Always start clean. Do NOT load prior runs.
+        # Previous version loaded existing file here, causing accumulation across runs.
         self.failures: List[dict] = []
-        
-        if self.output_path.exists():
-            try:
-                with open(self.output_path, "r", encoding="utf-8") as f:
-                    self.failures = json.load(f)
-            except json.JSONDecodeError:
-                self.failures = []
 
     def report_failure(self, failure_type: str, candidate: str, statement_id: str) -> None:
         """Report an anonymized failure.
         
         Args:
-            failure_type: E.g., 'date_parse', 'amount_parse', 'semantic_assignment'.
-            candidate: The specific token or constrained substring that failed.
-                      NEVER pass full descriptions or entire row texts here to avoid PII.
-            statement_id: The ID of the statement.
+            failure_type: Category of failure (e.g. 'date_parse_failed', 'no_date_detected').
+            candidate:    The specific token or short substring that failed.
+                          NEVER pass full row text here — truncate to avoid PII.
+                          Automatically truncated to 50 chars.
+            statement_id: The statement image stem (e.g. '24', '27').
         """
-        # Ensure we are not storing massive strings that might contain PII
+        # Truncate to avoid storing PII in bulk text that happened to contain a date
         if len(candidate) > 50:
             candidate = candidate[:47] + "..."
             
         self.failures.append({
             "failure_type": failure_type,
-            "candidate": candidate,
-            "statement_id": statement_id
+            "candidate": candidate,        # Standardised key — was "raw_text" in old code
+            "statement_id": statement_id,
         })
         
     def save(self) -> None:
+        """Write current run's failures to disk, overwriting any previous file."""
         self.output_path.parent.mkdir(parents=True, exist_ok=True)
         with open(self.output_path, "w", encoding="utf-8") as f:
             json.dump(self.failures, f, indent=2, ensure_ascii=False)
+        logger.info("Saved %d failure records -> %s", len(self.failures), self.output_path)
 
 
 def evaluate_pipeline(
@@ -112,7 +138,9 @@ def evaluate_pipeline(
 ) -> PipelineMetrics:
     """Compute metrics for a single statement and log failures."""
     
-    # Calculate recovered date parse counts
+    # Calculate recovered date parse counts:
+    # A row is "recovered by normalizer" if DATE_RE matches its current text
+    # but would NOT have matched its original text (before ordinal stripping).
     recovered_date_parse_count = 0
     for parsed_row in parsed_rows:
         row_idx = parsed_row.source_row_index
@@ -136,7 +164,11 @@ def evaluate_pipeline(
         header_idx = max(hr.source_row_index for hr in layout.header_rows)
         
     # Get all row indices that were successfully assigned
-    assigned_indices = {r.source_row_index for r in assignment_report.rows if r.transaction and any(v is not None for v in r.assigned_values.values())}
+    assigned_indices = {
+        r.source_row_index
+        for r in assignment_report.rows
+        if r.transaction and any(v is not None for v in r.assigned_values.values())
+    }
     
     # Analyze all rows in the transaction zone
     for idx, row in enumerate(rows):
@@ -144,47 +176,72 @@ def evaluate_pipeline(
             continue
             
         if idx in assigned_indices:
-            continue  # Row succeeded!
+            continue  # Row succeeded — skip
             
-        # If we reach here, the row failed to become an assigned transaction.
-        # Find out why:
-        
-        # Did it even become a ParsedRow?
-        parsed_row_obj = next((pr for pr in parsed_rows if pr.source_row_index == idx), None)
+        # Row failed to become an assigned transaction. Classify why.
+        parsed_row_obj = next(
+            (pr for pr in parsed_rows if pr.source_row_index == idx), None
+        )
         
         if not parsed_row_obj:
-            # Failed to parse. Why?
+            # Failed at parse stage — never became a ParsedRow
             has_date = bool(DATE_RE.search(row.text))
             has_amount = bool(MONEY_RE.search(row.text))
             
             if has_date and not has_amount:
+                # Date present, no amount — row is likely split across lines
                 insufficient_numeric_values_count += 1
-                failure_reporter.report_failure("insufficient_numeric_values", DATE_RE.search(row.text).group(0), statement_id)
+                failure_reporter.report_failure(
+                    "insufficient_numeric_values",
+                    DATE_RE.search(row.text).group(0),
+                    statement_id,
+                )
             elif not has_date:
-                # Did it have a candidate?
+                # No date at all — check if there's a date-like candidate
                 candidate_match = DATE_CANDIDATE_RE.search(row.text)
                 if candidate_match:
+                    # Has something date-like that DATE_RE still rejected = OCR corruption
                     date_parse_failed_count += 1
-                    failure_reporter.report_failure("date_parse_failed", candidate_match.group(0), statement_id)
+                    failure_reporter.report_failure(
+                        "date_parse_failed",
+                        candidate_match.group(0),
+                        statement_id,
+                    )
                 else:
+                    # No date-like pattern at all = non-transaction row or severe corruption
                     no_date_detected_count += 1
-                    # Can't log candidate if none detected, just use first few tokens
                     first_few = " ".join(t.text for t in row.tokens[:3])
-                    failure_reporter.report_failure("no_date_detected", first_few, statement_id)
+                    failure_reporter.report_failure(
+                        "no_date_detected",
+                        first_few,
+                        statement_id,
+                    )
             else:
                 unknown_failure_count += 1
+
         else:
-            # It became a ParsedRow, but failed semantic assignment
-            assigned_row = next((ar for ar in assignment_report.rows if ar.source_row_index == idx), None)
+            # Became a ParsedRow but failed semantic assignment
+            assigned_row = next(
+                (ar for ar in assignment_report.rows if ar.source_row_index == idx),
+                None,
+            )
             
             if assigned_row:
                 reason = assigned_row.reason
                 if reason == "one or more parsed amounts could not be converted":
                     amount_extraction_failed_count += 1
-                    failure_reporter.report_failure("amount_extraction_failed", str(assigned_row.raw_amounts), statement_id)
+                    failure_reporter.report_failure(
+                        "amount_extraction_failed",
+                        str(assigned_row.raw_amounts),
+                        statement_id,
+                    )
                 elif "amount count does not match" in reason:
                     semantic_mismatch_count += 1
-                    failure_reporter.report_failure("semantic_mismatch", f"amounts: {len(assigned_row.raw_amounts)}", statement_id)
+                    failure_reporter.report_failure(
+                        "semantic_mismatch",
+                        f"amounts: {len(assigned_row.raw_amounts)}",
+                        statement_id,
+                    )
                 else:
                     unknown_failure_count += 1
             else:
@@ -195,8 +252,12 @@ def evaluate_pipeline(
     parsed_rows_count = len(parsed_rows)
     assigned_count = assignment_report.assigned_row_count
     
-    parse_conversion_rate = parsed_rows_count / reconstructed_rows if reconstructed_rows > 0 else 0.0
-    assignment_conversion_rate = assigned_count / parsed_rows_count if parsed_rows_count > 0 else 0.0
+    parse_conversion_rate = (
+        parsed_rows_count / reconstructed_rows if reconstructed_rows > 0 else 0.0
+    )
+    assignment_conversion_rate = (
+        assigned_count / parsed_rows_count if parsed_rows_count > 0 else 0.0
+    )
 
     metrics = PipelineMetrics(
         statement_id=statement_id,
@@ -219,7 +280,11 @@ def evaluate_pipeline(
         recovered_date_parse_count=recovered_date_parse_count,
     )
     
-    logger.info("Evaluated pipeline for %s: %d assigned txns, %.2f confidence", 
-                statement_id, metrics.assigned_transaction_count, metrics.validation_confidence)
+    logger.info(
+        "Evaluated pipeline for %s: %d assigned txns, %.2f confidence",
+        statement_id,
+        metrics.assigned_transaction_count,
+        metrics.validation_confidence,
+    )
     
     return metrics

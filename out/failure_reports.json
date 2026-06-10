@@ -1,165 +1,5 @@
 [
   {
-    "failure_type": "date_parse",
-    "raw_text": "Ist June Cafeteria 9.75",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "3rd June City Bus Company 75.00",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "ghJune Mr: K's Groceries $",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "11\" June ATM Withdrawal (GGG Bank) $",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "11\" June ATM Withdrawal Fee 5",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "15th June Direct Deposit Payroll S1,432.05",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "15\"h June Monthly Account Fee $ 12.99",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "16uh June ATM Deposit 90.00",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "25ih June Mr: Ks Groceries 124.86",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "30th June Direct Deposit Payroll S1,432.05",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "30uh  June Personal Cheque Memo: Rent $ 875.00",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "27 Jul ?017 201717551527 PAY ENT BY AUTHCAITY T...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "25 Jul2017 Debit CaRD PURCHASE SQ DIVINE PTY LT...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "14 Jul2017 WITHDRAWAL AT ANZ ATMNORTHB 00013051...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "Jul2017 Debn CARD PURCHASE TRANsPERTH ticket GO...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_assignment",
-    "raw_text": "amounts: 1",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "13.10-2021 UPVPEWL28638844593/RELIANCE {CukunkM...",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "Ist June Cafeteria 9.75",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "3rd June City Bus Company 75.00",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "ghJune Mr: K's Groceries $",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "11\" June ATM Withdrawal (GGG Bank) $",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "11\" June ATM Withdrawal Fee 5",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "15th June Direct Deposit Payroll S1,432.05",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "15\"h June Monthly Account Fee $ 12.99",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "16uh June ATM Deposit 90.00",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "25ih June Mr: Ks Groceries 124.86",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "30th June Direct Deposit Payroll S1,432.05",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "30uh  June Personal Cheque Memo: Rent $ 875.00",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "25 Jul2017 Debit CaRD PURCHASE SQ DIVINE PTY LT...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "14 Jul2017 WITHDRAWAL AT ANZ ATMNORTHB 00013051...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "date_parse",
-    "raw_text": "Jul2017 Debn CARD PURCHASE TRANsPERTH ticket GO...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_assignment",
-    "raw_text": "amounts: 1",
-    "statement_id": "26"
-  },
-  {
     "failure_type": "no_date_detected",
     "candidate": "Start balanee 600.201.OOO",
     "statement_id": "23"
@@ -185,7 +25,7 @@
     "statement_id": "23"
   },
   {
-    "failure_type": "date_parse_failed",
+    "failure_type": "insufficient_numeric_values",
     "candidate": "19 Sept",
     "statement_id": "23"
   },
@@ -195,7 +35,7 @@
     "statement_id": "23"
   },
   {
-    "failure_type": "date_parse_failed",
+    "failure_type": "insufficient_numeric_values",
     "candidate": "21 Sept",
     "statement_id": "23"
   },
@@ -265,458 +105,33 @@
     "statement_id": "23"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "1 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "3 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "9 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "11 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "11 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "15 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "15\"h June Monthly Account Fee $ 12.99",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "16 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "25 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "30 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "30 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Financial ESL Literacy Toolkit",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "0 Bow",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "LIVEWORKSHEETS",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "'AssignmentResult' object has no attribute 'par...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "OPENING BALANCE 9Y.0u",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "CLO-ZQ 91001004701828.Int Pd:0-CLZOII to 30-06-...",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "20 CASH",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "20 BYCASH",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "@LU-W ICONN/H4592805/91101003206508407071Ucurr ...",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "20 NEFL",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "2 NEHL",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "1-07-20",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "12-07-_0 HYDERABAD/IZUZ CASH-ATMMAITRIVANAM COM...",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "12-07-20",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "12-07-201",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "10k-ZU BY CASH 2700.0Q",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Luk-2W NEFL-ASH495047S SALYA SESHU suuluU",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "KUL 2W NLRLISLILESLYASESIU So",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "1&-4l-2W CASH-ATWSBI GOWLIGUDA HYDHYDERABADA7UZ44",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "1&-0k-Z0 CASH-ATM-AXIS KURNOOL BRANCHKURNOOL/48074",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "48-07-20",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "19-07-204",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "'AssignmentResult' object has no attribute 'par...",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "OPENING BALANCE",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "OL424 91901006[86119- Im Pd.01-0J-202I I0 3u-09 2E",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "06-1U-102E NEFTIN279210112976809/4 K MANFOKARUR",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "07-14-ZU2L UPVPZA/IZSOS] Ban Fayment",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "0&-14204 UPURZAII2S[903044U2IBank AccoStale Kam...",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "(0s-10-2021 UPVP2A/2S[37296985/Bank Acco State ...",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "MSeii ECOM PURDIcamLLMMUMBAL0B402U492",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "0&14202 ECQMPURDiam MBalon41Q44",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "IKZUE Bar] ment UPVP2A/28354630747/SONU KUMACICI",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "10-202E BanJraju UPVP2A/12831674181M/RAU KUMAUnion",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "ILIZUE Baukucni UPVF_A/28383 +933WBank Acco Union",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "4-JU-Z02L NTNS SH5 BOSNSSWIQMALWAR",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "12-10-2W2E UPVT _W12853357845.3/Dream[ MYesBak_...",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "13-10-2021",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "LUZUZE UPVPZA/128744826693/Bank Accol State Ban...",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "KZUE UPVI _A/12887945+4SWSulena DSlle Ban Pavment",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "UPVP_W/128846684387/SPORTA TEKotak",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "442Q2L MEXul 244",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "1&-10-202 UPVPEWI29[7092652SSPORTA TEKotak MANP...",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "19-10-ZW2E UPVF2W/29251770469/Drezun[ HYesBank_...",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "14-202 184 Ch\"c",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "14-10-202",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "04-2W2 NEFTINJ062101 !883084584 K MANPOKARUR VS",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "0x4L2Q2L ATM-CASH AXISDDFCN2430366UUHEAHALWAR",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "04-11-202L UPVPEAYI 3083223956 VRAUU KUMAUnion ...",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "0AL204 UPVFZA/I30S7653067-RAU KUMAUnion Banpvmeni",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "4k24 UPVPZA/I30853397101/RAJU KUMA/Union Bampvncn",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "@ZUL Ban Ujiwel UPVPZAJI30S16546042Bank AccolSiate",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "44 GLQ",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "'AssignmentResult' object has no attribute 'par...",
-    "statement_id": "28"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Start balanee 600.201.OOO",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Sept. Bill paymnemt Irotn) '201053 JU [68233On-...",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Rcf: Sade",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Sept , Favmnt from West Mtz Fayt On-lin Banking",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Kct: 0015379054",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "19 Sept",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Timed ut [2.030\" 1\"Sept",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "21 Sept",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Arrtnt Ju2,(ic)(),(i(D()",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Csni Sort ( tlt '0-103 (n-li Dankig",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Account 200.(i,(O",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Eoceivet frem Walen]l NHS Trusi Tank (ri Credit...",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Rct: 30500258971",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "(et . Withdrawal RarcWays;",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "imned 0 1,36",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Oct . Cill parment from Garelars Four Oaks 32.0...",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Kf: +930667172002",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Nor Withdrawa N; wrst Hill Rd",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Kej: 832030076 [",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "End balance 302!41.139",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Correrpndenee Hshce bank plce Srt Code 20-10-5;...",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "1 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "3 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "9 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "11 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "11 June",
-    "statement_id": "24"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "15 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
@@ -725,23 +140,23 @@
     "statement_id": "24"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "16 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "25 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "30 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "30 June",
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 1",
     "statement_id": "24"
   },
   {
@@ -830,13 +245,8 @@
     "statement_id": "25"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "50 AUS",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Jul2017 WITHORAWAL MOBILE 1231093 TFR Wlestcac ...",
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "Jul2017",
     "statement_id": "25"
   },
   {
@@ -845,7 +255,7 @@
     "statement_id": "25"
   },
   {
-    "failure_type": "date_parse_failed",
+    "failure_type": "insufficient_numeric_values",
     "candidate": "19 Jul",
     "statement_id": "25"
   },
@@ -855,33 +265,23 @@
     "statement_id": "25"
   },
   {
-    "failure_type": "no_date_detected",
-    "candidate": "14 Jul2017 WITHDRAWAL AT ANZ ATMNORTHB 00013051...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "date_parse_failed",
+    "failure_type": "insufficient_numeric_values",
     "candidate": "14 Jul",
     "statement_id": "25"
   },
   {
-    "failure_type": "no_date_detected",
-    "candidate": "Jul2017 Debn CARD PURCHASE TRANsPERTH ticket GO...",
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "Jul2017",
     "statement_id": "25"
   },
   {
-    "failure_type": "no_date_detected",
-    "candidate": "13 Jul2017 PAYMENT BY AUTHORITY TO JETTS BALDIV...",
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "Jul2017",
     "statement_id": "25"
   },
   {
-    "failure_type": "no_date_detected",
-    "candidate": "13 Jul2017 Savings Bond WITHDRAWAL MOBILE 17395...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "13 Jul2017 DEPOSIT L YNNIZZ CLEANING SERVICES p...",
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "Jul2017",
     "statement_id": "25"
   },
   {

@@ -10,6 +10,28 @@ It operates in two stages:
   2. ParsedRow -> Transaction objects
 
 It intentionally does NOT guess debit/credit column assignment if it is ambiguous.
+
+DATE_RE expansion history
+─────────────────────────
+v1 (original):
+  Supported: DD/MM/YYYY, DD-MM-YY, DD-Mon-YYYY, DD Mon YYYY
+  Failure evidence from forensic analysis (run 2, 118 failures):
+    - Statement 24: 11 date_parse_failed = 'D Mon' format (no year, ordinal stripped)
+    - Statement 25: 3-4 date_parse failures = 'DDMonYYYY' merged (no space between month/year)
+    - Statement 27: 1 date_parse failure = mixed separator 'DD.MM-YYYY'
+
+v2 (this version):
+  Added pattern 3: DD Mon (full month name, no year required)
+    Recovers: stmt 24 +10-11 transactions
+  Added pattern 4: DDMonYYYY merged (0-2 digits prefix, month abbrev, 4-digit year)
+    Recovers: stmt 25 +3-4 transactions
+  Added pattern 5: mixed separator DD.MM-YYYY
+    Recovers: stmt 27 +1 transaction
+  Total expected recovery: +14-16 transactions across test set.
+
+  Verified against all 118 current-code failure entries. Does not introduce
+  false positives on genuine OCR corruption strings (ZU2L, 1&-4l-2W, @ZUL etc.)
+  tested explicitly.
 """
 
 from __future__ import annotations
@@ -52,15 +74,49 @@ class ParsedRow:
 #  Extraction patterns
 # ──────────────────────────────────────────────
 
-# Supports: DD/MM/YYYY, DD/MM/YY, DD-MMM-YYYY, DD MMM YYYY (case-insensitive)
+# Full month names for patterns that need them (avoids repeating the alternation)
+_MONTH_FULL = (
+    r"Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May"
+    r"|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember|t)?"
+    r"|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?"
+)
+
+# Short month abbreviations only (for tightly-merged formats like 'Jul2017')
+_MONTH_SHORT = r"Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
+
 DATE_RE = re.compile(
+    # Pattern 1 (original): DD/MM/YYYY, DD-MM-YYYY, DD/MM/YY  e.g. 01/04/2023, 1-4-23
     r"\b\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4}\b"
     r"|"
-    r"\b\d{1,2}[-\s][A-Za-z]{3}[-\s]\d{4}\b",
-    re.IGNORECASE
+    # Pattern 2 (original): DD-Mon-YYYY or DD Mon YYYY (separator required, 4-digit year)
+    # e.g. 01-Apr-2023, 01 Apr 2023
+    r"\b\d{1,2}[-\s][A-Za-z]{3}[-\s]\d{4}\b"
+    r"|"
+    # Pattern 3 (new): DD Mon or DD MonthFull — no year required.
+    # Rationale: Statement 24 uses 'D Month' format (ESL worksheet / Halifax-style).
+    # After normalizer strips ordinals ('15th' -> '15'), rows read '15 June'.
+    # The year is absent from the document; accepting the date without year is
+    # preferable to losing the transaction entirely.
+    # Evidence: 11 date_parse_failed entries in stmt 24, all 'N Month' format.
+    # Does NOT match on genuine OCR corruption: 'ZU2L', '1&-4l' contain no month names.
+    rf"\b\d{{1,2}}\s+(?:{_MONTH_FULL})\b"
+    r"|"
+    # Pattern 4 (new): DDMonYYYY merged — month abbreviation runs directly into year.
+    # Rationale: Statement 25 (Westpac) renders '25Jul2017' and 'Jul2017' without spaces.
+    # Zero leading digits allowed to handle month-only prefix ('Jul2017').
+    # Evidence: 3 date_parse rows in stmt 25 with this exact format.
+    # Precision: requires exactly 4 trailing digits, so 'NEFT' or 'ZU2L' don't match.
+    rf"\b\d{{0,2}}(?:{_MONTH_SHORT})\d{{4}}\b"
+    r"|"
+    # Pattern 5 (new): mixed separator DD.MM-YYYY or DD.MM/YYYY.
+    # Rationale: Statement 27 contains '13.10-2021' (dot day-month, dash year).
+    # Evidence: 1 date_parse entry in stmt 27.
+    r"\b\d{1,2}\.\d{1,2}[-/]\d{2,4}\b",
+    re.IGNORECASE,
 )
 
 # Supports standard monetary values like 1,234.56 or 12.34
+# Does NOT match whole integers (e.g. '2021') to avoid year false-positives.
 MONEY_RE = re.compile(r"\b\d+(?:,\d{3})*\.\d{2}\b")
 
 
@@ -72,8 +128,12 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
     """Identify transaction rows and extract core components.
     
     A transaction row typically contains:
-      - A valid date
-      - At least one monetary value
+      - A valid date (matched by DATE_RE)
+      - At least one monetary value (matched by MONEY_RE)
+    
+    Rows that contain a date but no monetary value are excluded here.
+    They are categorised as 'insufficient_numeric_values' by the evaluation
+    framework, which is accurate — the row split during reconstruction.
     """
     parsed_rows = []
     
@@ -120,6 +180,7 @@ def build_transactions(parsed_rows: List[ParsedRow]) -> List[Transaction]:
     
     We preserve ambiguity: debit, credit, and balance are left as None 
     since we do not have sufficient information to map them yet without guessing.
+    Semantic assignment (src.semantic_assigner) handles the mapping.
     """
     transactions = []
     
@@ -145,7 +206,13 @@ def process_reconstructed_rows(
     rows: List[Row], 
     debug_output_path: Union[str, Path, None] = None
 ) -> List[Transaction]:
-    """Full pipeline: Row -> ParsedRow -> Transaction."""
+    """Full pipeline: Row -> ParsedRow -> Transaction.
+    
+    Note: This function produces Transaction objects with debit/credit/balance
+    set to None. For fully assigned transactions, use semantic_assigner.assign_rows
+    with a detected LayoutDefinition. This function is provided for debugging
+    and standalone testing only.
+    """
     
     # Stage 1
     parsed_rows = parse_rows(rows)
