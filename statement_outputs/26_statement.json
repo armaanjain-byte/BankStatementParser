@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "bank_name": "Axis Bank",
+    "account_holder": "SESHA PHANID",
+    "account_number": "910010041701828",
+    "statement_period_from": null,
+    "statement_period_to": null,
+    "currency": "INR"
+  },
+  "transactions": [
+    {
+      "date": "7.00-20",
+      "description": "-,112,011,120,011,100.32",
+      "amount": null,
+      "debit": 4.0,
+      "credit": 7.0,
+      "balance": 2.01120111200111e+16
+    },
+    {
+      "date": "7.00-12",
+      "description": ".00- CASH-ATM/ICICI",
+      "amount": null,
+      "debit": 7.0,
+      "credit": 12.0,
+      "balance": 2011.0
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "confidence": 1.0,
+    "issues": []
+  }
+}

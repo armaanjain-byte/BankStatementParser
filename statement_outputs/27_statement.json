@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "bank_name": "Axis Bank",
+    "account_holder": "VIVEK KUMAR SINGH",
+    "account_number": "814141",
+    "statement_period_from": null,
+    "statement_period_to": null,
+    "currency": "INR"
+  },
+  "transactions": [
+    {
+      "date": "1.00-10",
+      "description": ".00-202,120,211,00",
+      "amount": null,
+      "debit": 1.0,
+      "credit": 10.0,
+      "balance": 202120211001.0
+    },
+    {
+      "date": "10.00-10",
+      "description": ".00- UPI/P2A/128316741813/RAJU KUMA/Uni0n",
+      "amount": null,
+      "debit": 10.0,
+      "credit": 10.0,
+      "balance": 2021.0
+    },
+    {
+      "date": "10.00-10",
+      "description": ".00- UPI/P2A/128383449334/Bank Acco/Union",
+      "amount": null,
+      "debit": 10.0,
+      "credit": 10.0,
+      "balance": 2021.0
+    },
+    {
+      "date": "12.00-10",
+      "description": "- ayment",
+      "amount": null,
+      "debit": 12.0,
+      "credit": 2021.0,
+      "balance": 100089100.24
+    },
+    {
+      "date": "13.00-10",
+      "description": ".00- UPI/P2A/128744826693/Bank Acco/State",
+      "amount": null,
+      "debit": 13.0,
+      "credit": 10.0,
+      "balance": 2021.0
+    },
+    {
+      "date": "14.00-10",
+      "description": ".00- UPI/P2A/128879454450/Sulena D/State",
+      "amount": null,
+      "debit": 14.0,
+      "credit": 10.0,
+      "balance": 2021.0
+    },
+    {
+      "date": "15.00-10",
+      "description": ".00- UPI/P2M/128846684387/SPORTA TE/Kotak",
+      "amount": null,
+      "debit": 15.0,
+      "credit": 10.0,
+      "balance": 2021.0
+    },
+    {
+      "date": "18.00-10",
+      "description": ".00- UPI/P2M/129251770469/Dream11/YesBank_Y/P",
+      "amount": null,
+      "debit": 18.0,
+      "credit": 10.0,
+      "balance": 2021.0
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "confidence": 0.9,
+    "issues": [
+      {
+        "issue_type": "unassigned_amounts",
+        "severity": "WARNING",
+        "description": "25 transactions had amounts that could not be semantically assigned."
+      },
+      {
+        "issue_type": "missing_balances",
+        "severity": "WARNING",
+        "description": "25 transactions are missing balance values despite layout having a balance column."
+      }
+    ]
+  }
+}

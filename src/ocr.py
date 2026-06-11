@@ -31,8 +31,8 @@ from pathlib import Path
 from typing import List, Union
 
 import numpy as np
-
-from src.backends.easyocr_backend import EasyOCRBackend
+from src.backends.paddleocr_backend import PaddleOCRBackend
+from archive.easyocr_backend import EasyOCRBackend
 from src.models.ocr_models import OCRToken
 
 logger = logging.getLogger(__name__)
@@ -40,7 +40,7 @@ MIN_CONFIDENCE = 0.10
 
 # Module-level backend singleton (mirrors the original _reader singleton
 # pattern so that repeated calls within the same process are cheap).
-_backend: EasyOCRBackend = EasyOCRBackend()
+_backend: EasyOCRBackend = PaddleOCRBackend()
 
 
 # ──────────────────────────────────────────────

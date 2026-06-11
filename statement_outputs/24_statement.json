@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "bank_name": null,
+    "account_holder": "Adama Amad",
+    "account_number": "201301401",
+    "statement_period_from": null,
+    "statement_period_to": null,
+    "currency": "USD"
+  },
+  "transactions": [
+    {
+      "date": "1 June",
+      "description": "Cafeteria $",
+      "amount": null,
+      "debit": 9.75,
+      "credit": null,
+      "balance": null
+    },
+    {
+      "date": "00 June",
+      "description": "11. ATM Withdrawal GGG Bank",
+      "amount": null,
+      "debit": 11.0,
+      "credit": 60.0,
+      "balance": null
+    },
+    {
+      "date": "00 June",
+      "description": "11. ATMWithdrawal Fee",
+      "amount": null,
+      "debit": 11.0,
+      "credit": 1.5,
+      "balance": null
+    },
+    {
+      "date": "00 June",
+      "description": "15. Monthly Account Fee",
+      "amount": null,
+      "debit": 15.0,
+      "credit": 12.99,
+      "balance": null
+    },
+    {
+      "date": "00 June",
+      "description": "16. ATM Deposit",
+      "amount": null,
+      "debit": 16.0,
+      "credit": 90.0,
+      "balance": null
+    },
+    {
+      "date": "00 June",
+      "description": "30. Personal Cheque Memo:Rent",
+      "amount": null,
+      "debit": 30.0,
+      "credit": 875.0,
+      "balance": null
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "confidence": 1.0,
+    "issues": []
+  }
+}

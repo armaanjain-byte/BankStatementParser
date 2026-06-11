@@ -72,7 +72,7 @@ def _process_page(
         from src.backends.paddleocr_backend import PaddleOCRBackend
         backend = PaddleOCRBackend()
     else:
-        from src.backends.easyocr_backend import EasyOCRBackend
+        from archive.easyocr_backend import EasyOCRBackend
         backend = EasyOCRBackend()
 
     tokens = backend.extract_tokens(image_input, gpu=gpu, preprocess=preprocess)
