@@ -21,7 +21,7 @@ from typing import List
 from archive.evaluation import FailureReporter, PipelineMetrics, evaluate_pipeline
 from archive.header_extractor import extract_metadata
 from src.layout_detector import detect_layout
-from src.ocr import extract_tokens
+from archive.ocr import extract_tokens
 from src.schema import BankStatement
 from src.semantic_assigner import build_semantic_assignment_report
 from src.transaction_parser import parse_rows

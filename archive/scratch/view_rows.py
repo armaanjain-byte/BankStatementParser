@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from src.ocr import extract_tokens
+from archive.ocr import extract_tokens
 from src.transaction_reconstructor import reconstruct_rows
 from src.normalizer import normalize_date_strings, normalize_amount_strings
 from src.layout_detector import detect_layout

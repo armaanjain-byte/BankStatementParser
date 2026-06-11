@@ -31,7 +31,7 @@ from src.semantic_assigner import build_semantic_assignment_report
 from src.transaction_parser import parse_rows
 from src.transaction_reconstructor import reconstruct_rows
 from src.validator import validate_statement
-
+from src.backends.paddleocr_backend import PaddleOCRBackend
 # ──────────────────────────────────────────────
 #  Config
 # ──────────────────────────────────────────────
@@ -68,12 +68,7 @@ def _process_page(
     """Run the end-to-end extraction pipeline on a single image/page."""
 
     # 1. OCR — select backend; everything downstream is backend-agnostic.
-    if use_paddle:
-        from src.backends.paddleocr_backend import PaddleOCRBackend
-        backend = PaddleOCRBackend()
-    else:
-        from archive.easyocr_backend import EasyOCRBackend
-        backend = EasyOCRBackend()
+    backend=PaddleOCRBackend() 
 
     tokens = backend.extract_tokens(image_input, gpu=gpu, preprocess=preprocess)
 
