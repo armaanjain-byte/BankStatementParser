@@ -50,21 +50,6 @@
     "statement_id": "12"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "12"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "12"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "12"
-  },
-  {
     "failure_type": "no_date_detected",
     "candidate": "GENERATE PDP EMAIL STATEMENT",
     "statement_id": "12"
@@ -290,11 +275,6 @@
     "statement_id": "2"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "19"
-  },
-  {
     "failure_type": "no_date_detected",
     "candidate": "Totol 920.00 11.00",
     "statement_id": "19"
@@ -325,16 +305,6 @@
     "statement_id": "21"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "20"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
-    "statement_id": "20"
-  },
-  {
     "failure_type": "no_date_detected",
     "candidate": "Page 1 f1",
     "statement_id": "20"
@@ -352,11 +322,6 @@
   {
     "failure_type": "no_date_detected",
     "candidate": "Sept , Favmnt from West Mtz Fayt Kct: 0015379054",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
     "statement_id": "23"
   },
   {
@@ -435,68 +400,8 @@
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "25"
-  },
-  {
     "failure_type": "date_parse_failed",
     "candidate": "00 ATM",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
     "statement_id": "25"
   },
   {
@@ -570,11 +475,6 @@
     "statement_id": "26"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "26"
-  },
-  {
     "failure_type": "no_date_detected",
     "candidate": "TKANSACHONTOAL 462Wu JZW",
     "statement_id": "26"
@@ -603,51 +503,6 @@
     "failure_type": "no_date_detected",
     "candidate": "SuspIcious pAm emails; received by you. cusomCE...",
     "statement_id": "26"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 7",
-    "statement_id": "22"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 7",
-    "statement_id": "22"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 7",
-    "statement_id": "22"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Closing Balance $5,710.87",
-    "statement_id": "22"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Are you Get your statements delivered directly to",
-    "statement_id": "22"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "ready your email account",
-    "statement_id": "22"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "to go Avoid the monthly",
-    "statement_id": "22"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "2 paper",
-    "statement_id": "22"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "28"
   },
   {
     "failure_type": "semantic_mismatch",
@@ -735,6 +590,46 @@
     "statement_id": "27"
   },
   {
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 7",
+    "statement_id": "22"
+  },
+  {
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 7",
+    "statement_id": "22"
+  },
+  {
+    "failure_type": "semantic_mismatch",
+    "candidate": "amounts: 7",
+    "statement_id": "22"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Closing Balance $5,710.87",
+    "statement_id": "22"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Are you Get your statements delivered directly to",
+    "statement_id": "22"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "ready your email account",
+    "statement_id": "22"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "to go Avoid the monthly",
+    "statement_id": "22"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "2 paper",
+    "statement_id": "22"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "wwer qte Sereeeereer Chhnathssn",
     "statement_id": "29"
@@ -743,11 +638,6 @@
     "failure_type": "no_date_detected",
     "candidate": "ANONNT",
     "statement_id": "29"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "3"
   },
   {
     "failure_type": "date_parse_failed",
@@ -888,11 +778,6 @@
     "failure_type": "date_parse_failed",
     "candidate": "00 MSS",
     "statement_id": "34"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "35"
   },
   {
     "failure_type": "no_date_detected",
@@ -1105,56 +990,6 @@
     "statement_id": "42"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 5",
-    "statement_id": "43"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
-    "statement_id": "43"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
-    "statement_id": "43"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
-    "statement_id": "43"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
-    "statement_id": "43"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "43"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
-    "statement_id": "43"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
-    "statement_id": "43"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "43"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "43"
-  },
-  {
     "failure_type": "no_date_detected",
     "candidate": "LENDER - Member",
     "statement_id": "43"
@@ -1300,74 +1135,9 @@
     "statement_id": "49"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "50"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "50"
-  },
-  {
     "failure_type": "no_date_detected",
     "candidate": "1=Detail 9=Delete F8=Incomplete F9=Last Record ...",
     "statement_id": "50"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 5",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "OZOZ Anr 21 a CZOZ Anr 30 ) no Acy",
-    "statement_id": "51"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Joqwnn boooy $+'th'? 6Z8z Aff +c uo sousp",
-    "statement_id": "51"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "0 dim",
-    "statement_id": "51"
   },
   {
     "failure_type": "insufficient_numeric_values",
@@ -1428,6 +1198,21 @@
     "failure_type": "no_date_detected",
     "candidate": "IFSC paisabazaar",
     "statement_id": "52"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "OZOZ Anr 21 a CZOZ Anr 30 ) no Acy",
+    "statement_id": "51"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Joqwnn boooy $+'th'? 6Z8z Aff +c uo sousp",
+    "statement_id": "51"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "0 dim",
+    "statement_id": "51"
   },
   {
     "failure_type": "semantic_mismatch",
@@ -1535,11 +1320,6 @@
     "statement_id": "58"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "58"
-  },
-  {
     "failure_type": "date_parse_failed",
     "candidate": "00-18.00",
     "statement_id": "58"
@@ -1625,16 +1405,6 @@
     "statement_id": "61"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "61"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "61"
-  },
-  {
     "failure_type": "no_date_detected",
     "candidate": "OSBI anywhere",
     "statement_id": "62"
@@ -1698,11 +1468,6 @@
     "failure_type": "no_date_detected",
     "candidate": "TO TRANSFER INSUF BAL ATMDECLINE CHARGE-220817",
     "statement_id": "62"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "63"
   },
   {
     "failure_type": "no_date_detected",
@@ -1801,21 +1566,6 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "K**$S* #.",
-    "statement_id": "68"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "D Hi",
-    "statement_id": "68"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "T M",
-    "statement_id": "68"
-  },
-  {
-    "failure_type": "no_date_detected",
     "candidate": "q osonb oud Aq n n oy",
     "statement_id": "67"
   },
@@ -1828,6 +1578,21 @@
     "failure_type": "no_date_detected",
     "candidate": "3OX NH0r r pq Aeennnaennnr",
     "statement_id": "67"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "K**$S* #.",
+    "statement_id": "68"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "D Hi",
+    "statement_id": "68"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "T M",
+    "statement_id": "68"
   },
   {
     "failure_type": "no_date_detected",
@@ -1848,11 +1613,6 @@
     "failure_type": "no_date_detected",
     "candidate": "t tat/tttt to/",
     "statement_id": "69"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "7"
   },
   {
     "failure_type": "insufficient_numeric_values",
@@ -1893,11 +1653,6 @@
     "failure_type": "date_parse_failed",
     "candidate": "5 Purchase",
     "statement_id": "71"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "14 AFSL",
-    "statement_id": "72"
   },
   {
     "failure_type": "no_date_detected",
@@ -2005,9 +1760,9 @@
     "statement_id": "70"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "73"
+    "failure_type": "date_parse_failed",
+    "candidate": "14 AFSL",
+    "statement_id": "72"
   },
   {
     "failure_type": "date_parse_failed",
@@ -2033,16 +1788,6 @@
     "failure_type": "no_date_detected",
     "candidate": "Royal Bank of Scotland Plc.Registered Office, T...",
     "statement_id": "74"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "75"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "75"
   },
   {
     "failure_type": "no_date_detected",
@@ -2085,6 +1830,11 @@
     "statement_id": "75"
   },
   {
+    "failure_type": "no_date_detected",
+    "candidate": "14",
+    "statement_id": "77"
+  },
+  {
     "failure_type": "semantic_mismatch",
     "candidate": "amounts: 2",
     "statement_id": "76"
@@ -2098,11 +1848,6 @@
     "failure_type": "no_date_detected",
     "candidate": "Authorized by the Prudential Regulation Authori...",
     "statement_id": "76"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "14",
-    "statement_id": "77"
   },
   {
     "failure_type": "insufficient_numeric_values",
@@ -2193,11 +1938,6 @@
     "failure_type": "no_date_detected",
     "candidate": "14.0 CHANDIGARH CHIN 10,000.00",
     "statement_id": "79"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "8"
   },
   {
     "failure_type": "semantic_mismatch",
@@ -2345,16 +2085,6 @@
     "statement_id": "83"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "83"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "83"
-  },
-  {
     "failure_type": "date_parse_failed",
     "candidate": "00 SACENTSF",
     "statement_id": "83"
@@ -2455,16 +2185,6 @@
     "statement_id": "85"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "85"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
-    "statement_id": "85"
-  },
-  {
     "failure_type": "date_parse_failed",
     "candidate": "00 SACENTSF",
     "statement_id": "85"
@@ -2570,11 +2290,6 @@
     "statement_id": "90"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "90"
-  },
-  {
     "failure_type": "date_parse_failed",
     "candidate": "00-7.00",
     "statement_id": "89"
@@ -2657,11 +2372,6 @@
   {
     "failure_type": "insufficient_numeric_values",
     "candidate": "2026-11-27",
-    "statement_id": "92"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
     "statement_id": "92"
   },
   {
