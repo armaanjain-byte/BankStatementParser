@@ -265,7 +265,7 @@ def aggregate_report(metrics_list: List[PipelineMetrics], output_folder: Path, e
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate the Bank Statement Parser dataset.")
     parser.add_argument("input_folder", type=Path, help="Folder containing statement images.")
-    parser.add_argument("--output_folder", type=Path, default=Path("."), help="Where to output reports.")
+    parser.add_argument("--output_folder", type=Path, default=Path("out"), help="Where to output reports.")
     parser.add_argument("--no-gpu", action="store_true", help="Disable GPU for OCR.")
     parser.add_argument("--workers", type=int, default=2, help="Parallel worker processes. Use 1 to disable parallelism.")
     

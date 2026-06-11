@@ -1,7 +1,7 @@
 """
 preprocessor.py — OpenCV image preprocessing for OCR quality improvement.
 
-Applies a sequence of image enhancements before the image is passed to EasyOCR.
+Applies a sequence of image enhancements before the image is passed to the OCR backend.
 Each step is optional and order-sensitive. Conservative defaults are used.
 """
 from __future__ import annotations
@@ -21,7 +21,7 @@ def preprocess_for_ocr(image_path: str | Path, debug: bool = False) -> np.ndarra
       4. Adaptive thresholding (binarize)
       5. Morphological cleanup (remove fine noise)
     
-    Returns a uint8 numpy array ready for EasyOCR.
+    Returns a uint8 numpy array ready for OCR.
     """
     img = cv2.imread(str(image_path), cv2.IMREAD_GRAYSCALE)
     if img is None:

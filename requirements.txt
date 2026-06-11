@@ -1,5 +1,4 @@
-# Core OCR (choose one backend or install both)
-easyocr>=1.7,<2.0          # legacy backend, kept for compatibility
+# Core OCR 
 paddleocr>=2.7             # recommended backend (better table accuracy)
 paddlepaddle>=2.6          # CPU; swap for paddlepaddle-gpu for GPU support
 

@@ -8,10 +8,9 @@ Runs the complete pipeline:
 
 Outputs a serialized BankStatement to JSON.
 
-Rule 2: The pipeline selects the appropriate backend (PaddleOCR or EasyOCR)
-        at the top of _process_page() only.  All code below that point
-        operates on OCRToken objects and does not know which engine produced
-        them.
+Rule 2: The pipeline uses PaddleOCR at the top of _process_page(). All code
+        below that point operates on OCRToken objects and does not know
+        which engine produced them.
 """
 
 from __future__ import annotations
@@ -63,11 +62,10 @@ def _process_page(
     statement_id: str,
     gpu: bool = True,
     preprocess: bool = False,
-    use_paddle: bool = True,
 ) -> BankStatement:
     """Run the end-to-end extraction pipeline on a single image/page."""
 
-    # 1. OCR — select backend; everything downstream is backend-agnostic.
+    # 1. OCR — everything downstream is backend-agnostic.
     backend=PaddleOCRBackend() 
 
     tokens = backend.extract_tokens(image_input, gpu=gpu, preprocess=preprocess)
@@ -119,7 +117,6 @@ def process_statement(
     image_path: Path,
     gpu: bool = True,
     preprocess: bool = False,
-    use_paddle: bool = True,
 ) -> BankStatement:
     """Run the entire end-to-end extraction pipeline on a single image or PDF."""
     image_path = Path(image_path)
@@ -129,7 +126,6 @@ def process_statement(
             statement_id=image_path.stem,
             gpu=gpu,
             preprocess=preprocess,
-            use_paddle=use_paddle,
         )
 
     from src.pdf_converter import pdf_to_images
@@ -141,7 +137,6 @@ def process_statement(
             statement_id=f"{image_path.stem}_page_{idx}",
             gpu=gpu,
             preprocess=False,
-            use_paddle=use_paddle,
         )
         for idx, page in enumerate(pages, start=1)
     ]
@@ -176,7 +171,6 @@ def run(
     output_dir: Path = OUTPUT_DIR,
     gpu: bool = True,
     preprocess: bool = False,
-    use_paddle: bool = True,
 ) -> None:
     """Process every image in input_dir and write BankStatement JSON to output_dir."""
 
@@ -208,7 +202,6 @@ def run(
                 image_path,
                 gpu=gpu,
                 preprocess=preprocess,
-                use_paddle=use_paddle,
             )
 
             out_path = _output_path_for(image_path, output_dir)
@@ -251,11 +244,7 @@ def _parse_args() -> argparse.Namespace:
         action="store_true",
         help="Disable OpenCV preprocessing.",
     )
-    parser.add_argument(
-        "--no-paddle",
-        action="store_true",
-        help="Disable PaddleOCR and fallback to EasyOCR.",
-    )
+    
     parser.add_argument(
         "--single",
         type=Path,
@@ -273,7 +262,6 @@ if __name__ == "__main__":
             args.single,
             gpu=not args.no_gpu,
             preprocess=not args.no_preprocess,
-            use_paddle=not args.no_paddle,
         )
         print(json.dumps(statement.to_dict(), indent=2, ensure_ascii=False))
     else:
@@ -282,5 +270,4 @@ if __name__ == "__main__":
             output_dir=args.output,
             gpu=not args.no_gpu,
             preprocess=not args.no_preprocess,
-            use_paddle=not args.no_paddle,
         )

@@ -1,10 +1,10 @@
 """
-ocr.py — EasyOCR entry point for the Bank Statement Parser.
+ocr.py — OCR entry point for the Bank Statement Parser.
 
 Responsibilities (and *only* these):
   1. Accept a path to a bank statement image.
-  2. Delegate to EasyOCRBackend to extract every text detection.
-  3. Convert raw EasyOCR results into a list of OCRToken objects.
+  2. Delegate to OCR backend to extract every text detection.
+  3. Convert raw OCR results into a list of OCRToken objects.
   4. Optionally serialize those tokens to a human-readable JSON file.
 
 This module does NOT perform:
@@ -16,7 +16,7 @@ Rule 2: Downstream pipeline code must not know which backend produced the
         OCRToken objects.  The public extract_tokens() function here returns
         the same OCRToken contract regardless of backend.
 
-EasyOCR output format (per detection):
+OCR output format (per detection):
     (bbox, text, confidence)
     where bbox is a list of four [x, y] corner points (polygon).
     We convert the polygon to an axis-aligned bounding box
@@ -32,7 +32,7 @@ from typing import List, Union
 
 import numpy as np
 from src.backends.paddleocr_backend import PaddleOCRBackend
-from archive.easyocr_backend import EasyOCRBackend
+
 from src.models.ocr_models import OCRToken
 
 logger = logging.getLogger(__name__)
@@ -40,7 +40,7 @@ MIN_CONFIDENCE = 0.10
 
 # Module-level backend singleton (mirrors the original _reader singleton
 # pattern so that repeated calls within the same process are cheap).
-_backend: EasyOCRBackend = PaddleOCRBackend()
+_backend= PaddleOCRBackend()
 
 
 # ──────────────────────────────────────────────
@@ -59,14 +59,14 @@ def extract_tokens(
     Args:
         image_path:     Path to the input image (JPEG, PNG, TIFF, etc.)
                         or a NumPy array already loaded into memory.
-        languages:      Language codes for EasyOCR (default: ``["en"]``).
+        languages:      Language codes for OCR (default: ``["en"]``).
         gpu:            Whether to use GPU acceleration.
         preprocess:     Whether to run OpenCV preprocessing before OCR.
         min_confidence: Drop OCR tokens below this confidence score.
 
     Returns:
         A list of :class:`OCRToken` objects, one per detected text region,
-        ordered by EasyOCR's default reading-order heuristic (roughly
+        ordered by the backend's default reading-order heuristic (roughly
         top-to-bottom, left-to-right).
 
     Raises:
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     )
 
     parser = argparse.ArgumentParser(
-        description="Run EasyOCR on a bank statement image and emit structured JSON.",
+        description="Run OCR on a bank statement image and emit structured JSON.",
     )
     parser.add_argument(
         "image",
