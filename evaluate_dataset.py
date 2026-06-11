@@ -124,7 +124,7 @@ def evaluate_dataset(
     statement_outputs_dir = output_folder / "statement_outputs"
     statement_outputs_dir.mkdir(parents=True, exist_ok=True)
     
-    failure_reporter = FailureReporter(output_folder / "failure_reports.json")
+    failure_reporter = FailureReporter(output_folder / "out/failure_reports.json")
     
     images = sorted(
         p for p in input_folder.iterdir()
@@ -225,7 +225,7 @@ def aggregate_report(metrics_list: List[PipelineMetrics], output_folder: Path, e
         "statement_metrics": [m.to_dict() for m in metrics_list]
     }
     
-    evaluation_report_path = output_folder / "evaluation_report.json"
+    evaluation_report_path = output_folder / "out/evaluation_report.json"
     with open(evaluation_report_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
         
@@ -257,7 +257,7 @@ def aggregate_report(metrics_list: List[PipelineMetrics], output_folder: Path, e
             "assignment_conversion_rate": m.assignment_conversion_rate
         })
         
-    loss_report_path = output_folder / "pipeline_loss_report.json"
+    loss_report_path = output_folder / "out/pipeline_loss_report.json"
     with open(loss_report_path, "w", encoding="utf-8") as f:
         json.dump(loss_report, f, indent=2, ensure_ascii=False)
 
