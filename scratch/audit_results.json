@@ -1,0 +1,143 @@
+{
+  "stages": {
+    "OCR": {
+      "in": 668,
+      "out": 668,
+      "rejected": 0
+    },
+    "Row Reconstruction": {
+      "in": 668,
+      "out": 246,
+      "rejected": 0
+    },
+    "Transaction Candidate Detection": {
+      "in": 246,
+      "out": 32,
+      "rejected": 214
+    },
+    "Date Extraction": {
+      "in": 0,
+      "out": 0,
+      "rejected": 0
+    },
+    "Transaction Parsing": {
+      "in": 32,
+      "out": 42,
+      "rejected": -10
+    },
+    "Semantic Assignment": {
+      "in": 42,
+      "out": 38,
+      "rejected": 4
+    },
+    "Validation": {
+      "in": 38,
+      "out": 38,
+      "rejected": 0
+    }
+  },
+  "statements": {
+    "23": {
+      "reconstructed_rows": 32,
+      "parsed_rows": 2,
+      "assigned_transactions": 2
+    },
+    "24": {
+      "reconstructed_rows": 27,
+      "parsed_rows": 11,
+      "assigned_transactions": 10
+    },
+    "25": {
+      "reconstructed_rows": 44,
+      "parsed_rows": 14,
+      "assigned_transactions": 11
+    },
+    "26": {
+      "reconstructed_rows": 51,
+      "parsed_rows": 2,
+      "assigned_transactions": 2
+    },
+    "27": {
+      "reconstructed_rows": 61,
+      "parsed_rows": 1,
+      "assigned_transactions": 1
+    },
+    "28": {
+      "reconstructed_rows": 31,
+      "parsed_rows": 12,
+      "assigned_transactions": 12
+    }
+  },
+  "semantic_rejections": {
+    "could not locate all amount tokens for geometric fallback": [
+      {
+        "text": "2015-06-15\"h June Monthly Account Fee $ 12.99",
+        "amounts": [
+          "12.99"
+        ],
+        "columns": [
+          [
+            "debit",
+            580.0
+          ],
+          [
+            "credit",
+            757.0
+          ]
+        ],
+        "reason": "could not locate all amount tokens for geometric fallback"
+      },
+      {
+        "text": "2017-07-11 WITHORAWAL MOBILE 1,231,093.00 TFR Wlestcac eSa Waiarusines Savn 9,200.00",
+        "amounts": [
+          "1,231,093.00",
+          "9,200.00"
+        ],
+        "columns": [
+          [
+            "amount",
+            448.3
+          ]
+        ],
+        "reason": "could not locate all amount tokens for geometric fallback"
+      },
+      {
+        "text": "2026-07-132017 WITHDRAWAL MOBILE 1,739,557.00 TFR Westoac eSa2 81,500.00",
+        "amounts": [
+          "1,739,557.00",
+          "81,500.00"
+        ],
+        "columns": [
+          [
+            "amount",
+            448.3
+          ]
+        ],
+        "reason": "could not locate all amount tokens for geometric fallback"
+      },
+      {
+        "text": "2017-07-13 GOSNELLS 13.00/7.00",
+        "amounts": [
+          "13.00",
+          "7.00"
+        ],
+        "columns": [
+          [
+            "amount",
+            448.3
+          ]
+        ],
+        "reason": "could not locate all amount tokens for geometric fallback"
+      }
+    ]
+  },
+  "date_failures": {
+    "date_parse_failed": [
+      "0201-07-19 GESH4GMSBHESBHGANURL9OZLL 50.00u.U0 349.00"
+    ]
+  },
+  "failure_counts": {
+    "Semantic Assignment Loss": 4,
+    "date_parse_failed": 1
+  }
+}

@@ -101,31 +101,32 @@ def assign_semantics(parsed_row: ParsedRow, row: Row, layout: LayoutDefinition) 
                 assigned_values[role] = value
             reason = "assigned by detected layout column order"
             confidence = _assignment_confidence(money_columns)
-        elif len(amount_values) < len(money_columns) and all(value is not None for value in amount_values):
+        elif len(amount_values) != len(money_columns) and all(value is not None for value in amount_values):
             amount_centers = [_find_amount_x_center(amt_str, row) for amt_str in parsed_row.amounts]
             if all(c is not None for c in amount_centers):
-                temp_assignments = []
-                for amt_val, center in zip(amount_values, amount_centers):
-                    nearest_role = min(money_columns, key=lambda mc: abs(center - mc[1].x_center))[0]
-                    temp_assignments.append((amt_val, nearest_role))
+                distances = []
+                for i, (amt_val, center) in enumerate(zip(amount_values, amount_centers)):
+                    for role, col in money_columns:
+                        distances.append((abs(center - col.x_center), i, role, amt_val))
                 
-                roles_chosen = [role for _, role in temp_assignments]
-                if len(set(roles_chosen)) == len(temp_assignments):
-                    for amt_val, role in temp_assignments:
+                distances.sort(key=lambda x: x[0])
+                
+                used_amounts = set()
+                used_roles = set()
+                for dist, i, role, amt_val in distances:
+                    if i not in used_amounts and role not in used_roles:
                         assigned_values[role] = amt_val
-                    reason = "assigned by geometric nearest-column fallback"
-                    confidence = _assignment_confidence(money_columns) * 0.9
-                else:
-                    reason = f"geometric fallback resulted in conflicts: {roles_chosen}"
+                        used_amounts.add(i)
+                        used_roles.add(role)
+                        
+                reason = "assigned by geometric distance matching (mismatched counts)"
+                confidence = _assignment_confidence(money_columns) * 0.85
             else:
                 reason = "could not locate all amount tokens for geometric fallback"
         elif any(value is None for value in amount_values):
             reason = "one or more parsed amounts could not be converted"
         else:
-            reason = (
-                "amount count does not match detected money columns "
-                f"({len(amount_values)} amounts, {len(money_columns)} columns)"
-            )
+            reason = "unhandled condition in semantic assignment"
 
     transaction = Transaction(
         date=parsed_row.date,

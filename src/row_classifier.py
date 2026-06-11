@@ -65,7 +65,7 @@ class RowClassifier:
         
         # Page markers - indicate pagination
         self.page_patterns = re.compile(
-            r"\b(page\s+\d+|of\s+\d+|-\s*\d+\s*-|continued|contd|contd\.|more|next\s+page|"
+            r"\b(page\s+\d+|of\s+\d+|(?:^|\s)-\s*\d+\s*-(?:\s|$)|continued|contd|contd\.|more|next\s+page|"
             r"^page\b|^\d+\s*$)\b",
             re.IGNORECASE
         )

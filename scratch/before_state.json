@@ -1,0 +1,315 @@
+{
+  "23": {
+    "parsed_rows": 2,
+    "assigned_transactions": 2,
+    "validation_confidence": 0.95,
+    "transactions": [
+      {
+        "raw_text": "2026-09-19 Withdrawal Earclans, Kotherhithe Cash Dehit 32.00.0no.Ono 801.00,0no",
+        "date": "2026-09-19",
+        "amount": null,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2026-09-20 Timed ut [2.03\" 1\"Sept",
+        "date": "2026-09-20",
+        "amount": null,
+        "debit": null,
+        "credit": null
+      }
+    ]
+  },
+  "24": {
+    "parsed_rows": 11,
+    "assigned_transactions": 10,
+    "validation_confidence": 0.9,
+    "transactions": [
+      {
+        "raw_text": "Adama Amad For 2030-06-01 June 2,015.00",
+        "date": "2030-06-01",
+        "amount": null,
+        "debit": null,
+        "credit": 2015.0
+      },
+      {
+        "raw_text": "2026-06-01 Cafeteria 9.75",
+        "date": "2026-06-01",
+        "amount": null,
+        "debit": 9.75,
+        "credit": null
+      },
+      {
+        "raw_text": "2026-06-03 City Bus Company 75.00",
+        "date": "2026-06-03",
+        "amount": null,
+        "debit": 75.0,
+        "credit": null
+      },
+      {
+        "raw_text": "2026-06-09 Mr: K's Groceries $ 38.78",
+        "date": "2026-06-09",
+        "amount": null,
+        "debit": 38.78,
+        "credit": null
+      },
+      {
+        "raw_text": "2026-06-11 ATM Withdrawal Fee 51.50",
+        "date": "2026-06-11",
+        "amount": null,
+        "debit": 51.5,
+        "credit": null
+      },
+      {
+        "raw_text": "2026-06-15 Direct Deposit Payroll S1,432.05",
+        "date": "2026-06-15",
+        "amount": null,
+        "debit": null,
+        "credit": 432.05
+      },
+      {
+        "raw_text": "2026-06-16 ATM Deposit 90.00",
+        "date": "2026-06-16",
+        "amount": null,
+        "debit": null,
+        "credit": 90.0
+      },
+      {
+        "raw_text": "2026-06-25 Mr: Ks Groceries 124.86",
+        "date": "2026-06-25",
+        "amount": null,
+        "debit": 124.86,
+        "credit": null
+      },
+      {
+        "raw_text": "2026-06-30 Direct Deposit Payroll S1,432.05",
+        "date": "2026-06-30",
+        "amount": null,
+        "debit": null,
+        "credit": 432.05
+      },
+      {
+        "raw_text": "2026-06-30 Personal Cheque Memo: Rent $ 875.00",
+        "date": "2026-06-30",
+        "amount": null,
+        "debit": 875.0,
+        "credit": null
+      }
+    ]
+  },
+  "25": {
+    "parsed_rows": 14,
+    "assigned_transactions": 11,
+    "validation_confidence": 0.7,
+    "transactions": [
+      {
+        "raw_text": "2017-07-27 WITHDRAWAL At HANDYBANK BALDIVIS 5.11 30,000.25/7,417.00",
+        "date": "2017-07-27",
+        "amount": 5.11,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2017-07-27 201717551527 PAY ENT BY AUTHCAITY TO JETTS BALDIVIS 425.90",
+        "date": "2017-07-27",
+        "amount": 425.9,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2017-07-26 DEPOSIT LYNNIZZ CLEANING SEAVICES pay ABN: 5,921.00",
+        "date": "2017-07-26",
+        "amount": 5921.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2017-07-19 DeposIT LYNNIZZ CLEANING SErVICES Ray ABN: 5,894.03",
+        "date": "2017-07-19",
+        "amount": 5894.03,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2026-07-142017 WITHDRAWAL AT ANZ ATMNORTHB 5,150.00",
+        "date": "2026-07-14",
+        "amount": 5150.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2001-07-143051012540 |30,717.00",
+        "date": "2001-07-14",
+        "amount": 30717.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2017-07-11 Debn CARD PURCHASE TRANsPERTH ticket GOSN 85.20",
+        "date": "2017-07-11",
+        "amount": 85.2,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2026-07-132017 PAYMENT BY AUTHORITY TO JETTS BALDIVIS 925.90",
+        "date": "2026-07-13",
+        "amount": 925.9,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2017-07-13 WITHORAWAL MOBILE 1,231,093.00 TFR Wesicac eSa Taxc Business Savin 8,300.00",
+        "date": "2017-07-13",
+        "amount": 8300.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2026-07-132017 DEPOSIT L YNNIZZ CLEANING SERVICES pay ABN; 5,987.20",
+        "date": "2026-07-13",
+        "amount": 5987.2,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2017-07-13 DePOsIT ONLINE PyMT 175,029.00 JaMIE Chapion 530.00",
+        "date": "2017-07-13",
+        "amount": 530.0,
+        "debit": null,
+        "credit": null
+      }
+    ]
+  },
+  "26": {
+    "parsed_rows": 2,
+    "assigned_transactions": 2,
+    "validation_confidence": 0.95,
+    "transactions": [
+      {
+        "raw_text": "2020-01-07 IEASLCOBSBLNGALOREVLOQZUL ICU.(U 11,914.00,QQ",
+        "date": "2020-01-07",
+        "amount": null,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2020-12-07 CYDERABADIZOZIT 40.00),(U 5,914.00 Qu",
+        "date": "2020-12-07",
+        "amount": null,
+        "debit": 40.0,
+        "credit": null
+      }
+    ]
+  },
+  "27": {
+    "parsed_rows": 1,
+    "assigned_transactions": 1,
+    "validation_confidence": 0.9,
+    "transactions": [
+      {
+        "raw_text": "2021-10-13 {CukunkMOZMkku 149.74 (0",
+        "date": "2021-10-13",
+        "amount": null,
+        "debit": null,
+        "credit": 149.74
+      }
+    ]
+  },
+  "28": {
+    "parsed_rows": 12,
+    "assigned_transactions": 12,
+    "validation_confidence": 0.95,
+    "transactions": [
+      {
+        "raw_text": "2019-12-23 226.14 889.92 21BZ3SBIOC Ref No3000087061",
+        "date": "2019-12-23",
+        "amount": 226.14,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-12-17 390.00 663.78 UPI/935113025907/P2V/sandeepchodhary@ybl SANDEEP",
+        "date": "2019-12-17",
+        "amount": 390.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-12-12 3500.00 273.78 ATM WDR 934616013196 +SINGHAL TOWER LABOUR",
+        "date": "2019-12-12",
+        "amount": 3500.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-12-12 750.00 DR 3,773.78 IMPS 0UT/934616239787/SBINOO1352.00/38160497052",
+        "date": "2019-12-12",
+        "amount": 750.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-12-12 1290.00 4,523.78 UPI/934664173747/P2V/singhsonal1 1@yblMr SONAL",
+        "date": "2019-12-12",
+        "amount": 1290.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-11-12 3000.00 3,233.78 UPI/934557102809/P2V/8860631005@YbI/MOHHAMMAD",
+        "date": "2019-11-12",
+        "amount": 3000.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-09-12 4.00 233.78 2518001500010946 Int Pd 2019-01-09 t0 2019-11-30",
+        "date": "2019-09-12",
+        "amount": 4.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-04-12 508.19 229.78 UPI/933884521318/P2M/IRCTCINAPP@YbIIRCTC",
+        "date": "2019-04-12",
+        "amount": 508.19,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-04-12 510.00 737.97 UP1/933863980480/P2V/7838767986@ybl/Mr ABDUL",
+        "date": "2019-04-12",
+        "amount": 510.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-11-21 240.25 227.97 APBS REVRSAL DTD 1.00-6.20",
+        "date": "2019-11-21",
+        "amount": 240.25,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-11-15 2000.00 468.22 ATM WDR 931919032498 +SINGHAL TOWER LABOUR",
+        "date": "2019-11-15",
+        "amount": 2000.0,
+        "debit": null,
+        "credit": null
+      },
+      {
+        "raw_text": "2019-11-13 211.57 2,468.22 21BZ3SBIOC Ref No3000072841",
+        "date": "2019-11-13",
+        "amount": 211.57,
+        "debit": null,
+        "credit": null
+      }
+    ]
+  },
+  "_summary": {
+    "parsed_rows": 42,
+    "assigned_transactions": 38,
+    "validation_confidence": 0.8916666666666667
+  }
+}

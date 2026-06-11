@@ -40,11 +40,11 @@ class TransactionCandidateDetector:
         
         # Broad pattern to catch mangled OCR dates that DATE_RE might reject
         self.date_candidate_re = re.compile(
-            r"\b\d{1,2}[\s/\-\.]+(?:\d{1,2}|[A-Za-z]{3})[\s/\-\.]+(?:\d{2,4})\b|"
-            r"\b\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]{3,9}\s+\d{2,4}\b|"
-            r"\b\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]{3,9}\b|"
+            r"\b\d{1,2}[\s/\-\.]+(?:\d{1,2}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*)[\s/\-\.]+(?:\d{2,4})\b|"
+            r"\b\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{2,4}\b|"
+            r"\b\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\b|"
             r"\b\d{4}[/\-]\d{1,2}[/\-]\d{1,2}\b|"
-            r"\b\d{1,2}[A-Za-z]{3}\d{0,4}\b",
+            r"\b\d{1,2}(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\d{0,4}\b",
             re.IGNORECASE
         )
         

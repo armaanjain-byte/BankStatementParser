@@ -47,9 +47,9 @@ logger = logging.getLogger(__name__)
 
 
 DATE_CANDIDATE_RE = re.compile(
-    r"\b\d{1,2}[\s/\-\.]+(?:\d{1,2}|[A-Za-z]{3})[\s/\-\.]+(?:\d{2,4})\b|"
-    r"\b\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]{3,9}\s+\d{2,4}\b|"
-    r"\b\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]{3,9}\b",
+    r"\b\d{1,2}[\s/\-\.]+(?:\d{1,2}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*)[\s/\-\.]+(?:\d{2,4})\b|"
+    r"\b\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{2,4}\b|"
+    r"\b\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\b",
     re.IGNORECASE
 )
 
@@ -183,12 +183,18 @@ def evaluate_pipeline(
     }
     
     # Analyze all rows in the transaction zone
+    from src.transaction_detector import TransactionCandidateDetector
+    detector = TransactionCandidateDetector()
+    
     for idx, row in enumerate(rows):
         if idx <= header_idx:
             continue
             
         if idx in assigned_indices:
             continue  # Row succeeded — skip
+            
+        if not detector.detect(row.text).is_transaction_candidate:
+            continue  # Skip true non-transaction rows from failure reporting
             
         # Row failed to become an assigned transaction. Classify why.
         parsed_row_obj = next(

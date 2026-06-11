@@ -122,6 +122,12 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
             continue
             
         primary_date_match = DATE_RE.search(text)
+        if primary_date_match:
+            from src.date_validator import validate_date_candidate
+            is_valid, _ = validate_date_candidate(primary_date_match.group(0))
+            if not is_valid:
+                primary_date_match = None
+                
         amounts = MONEY_RE.findall(text)
         
         if primary_date_match and amounts:
@@ -152,6 +158,39 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
                 source_row_index=idx
             ))
             
+    # -- Contextual Year Inference --
+    import datetime
+    from collections import Counter
+    
+    current_year = datetime.datetime.now().year
+    valid_years = []
+    
+    # First pass: collect all valid years
+    for pr in parsed_rows:
+        try:
+            # All canonicalized dates are in YYYY-MM-DD format
+            if len(pr.date) >= 10 and pr.date[4] == '-' and pr.date[7] == '-':
+                y = int(pr.date[:4])
+                if 1990 <= y <= current_year + 1:
+                    valid_years.append(y)
+        except ValueError:
+            pass
+            
+    if valid_years:
+        dominant_year = Counter(valid_years).most_common(1)[0][0]
+        
+        # Second pass: replace out-of-bounds years with the dominant year
+        for pr in parsed_rows:
+            try:
+                if len(pr.date) >= 10 and pr.date[4] == '-' and pr.date[7] == '-':
+                    y = int(pr.date[:4])
+                    if y < 1990 or y > current_year + 1:
+                        # Replace the YYYY part with dominant_year
+                        pr.date = f"{dominant_year:04d}{pr.date[4:]}"
+                        logger.debug("Repaired out-of-range year %d to dominant year %d for row %d", y, dominant_year, pr.source_row_index)
+            except ValueError:
+                pass
+                
     logger.info("Parsed %d transaction rows out of %d total rows", len(parsed_rows), len(rows))
     return parsed_rows
 

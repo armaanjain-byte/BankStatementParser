@@ -1,0 +1,108 @@
+{
+  "stages": {
+    "OCR": {
+      "in": 668,
+      "out": 668,
+      "rejected": 0
+    },
+    "Row Reconstruction": {
+      "in": 668,
+      "out": 246,
+      "rejected": 0
+    },
+    "Row Classification": {
+      "in": 246,
+      "out": 203,
+      "rejected": 43
+    },
+    "Transaction Candidate Detection": {
+      "in": 203,
+      "out": 68,
+      "rejected": 135
+    },
+    "Date Extraction": {
+      "in": 68,
+      "out": 47,
+      "rejected": 21
+    },
+    "Transaction Parsing": {
+      "in": 47,
+      "out": 47,
+      "rejected": 0
+    },
+    "Semantic Assignment": {
+      "in": 47,
+      "out": 43,
+      "rejected": 4
+    }
+  },
+  "statements": {
+    "23": {
+      "reconstructed_rows": 32,
+      "parsed_rows": 2,
+      "assigned_transactions": 2
+    },
+    "24": {
+      "reconstructed_rows": 27,
+      "parsed_rows": 11,
+      "assigned_transactions": 10
+    },
+    "25": {
+      "reconstructed_rows": 44,
+      "parsed_rows": 14,
+      "assigned_transactions": 11
+    },
+    "26": {
+      "reconstructed_rows": 51,
+      "parsed_rows": 5,
+      "assigned_transactions": 5
+    },
+    "27": {
+      "reconstructed_rows": 61,
+      "parsed_rows": 3,
+      "assigned_transactions": 3
+    },
+    "28": {
+      "reconstructed_rows": 31,
+      "parsed_rows": 12,
+      "assigned_transactions": 12
+    }
+  },
+  "semantic_rejections": [
+    {
+      "text": "2015-06-15\"h June Monthly Account Fee $ 12.99",
+      "amounts": [
+        "12.99"
+      ],
+      "reason": "could not locate all amount tokens for geometric fallback"
+    },
+    {
+      "text": "2017-07-11 WITHORAWAL MOBILE 1,231,093.00 TFR Wlestcac eSa Waiarusines Savn 9,200.00",
+      "amounts": [
+        "1,231,093.00",
+        "9,200.00"
+      ],
+      "reason": "could not locate all amount tokens for geometric fallback"
+    },
+    {
+      "text": "2026-07-132017 WITHDRAWAL MOBILE 1,739,557.00 TFR Westoac eSa2 81,500.00",
+      "amounts": [
+        "1,739,557.00",
+        "81,500.00"
+      ],
+      "reason": "could not locate all amount tokens for geometric fallback"
+    },
+    {
+      "text": "2017-07-13 GOSNELLS 13.00/7.00",
+      "amounts": [
+        "13.00",
+        "7.00"
+      ],
+      "reason": "could not locate all amount tokens for geometric fallback"
+    }
+  ],
+  "date_failures": {
+    "no_date_detected": 14,
+    "date_parse_failed": 7
+  }
+}

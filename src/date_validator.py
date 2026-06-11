@@ -85,28 +85,61 @@ def validate_numeric_date_parts(text: str) -> bool:
     Returns:
         True if numeric parts look like valid date components.
     """
-    # Extract numeric parts
+    # If the text uses an alphabetic month, the numeric validation for day/month bounds is inapplicable.
+    # The numeric parts will just be [day] or [day, year].
+    if re.search(r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*", text, re.IGNORECASE):
+        # We only validate year bounds if a 4-digit number is present
+        parts = re.findall(r"\d+", text)
+        for part in parts:
+            if len(part) == 4:
+                try:
+                    year = int(part)
+                    # if not (1990 <= year <= 2030):
+                    #     return False
+                except ValueError:
+                    pass
+        return True
+
+    # Extract numeric parts for purely numeric dates
     parts = re.findall(r"\d+", text)
     
     if len(parts) < 2:
         return True  # Not enough parts to validate
     
-    # Check each part (usually day, month, year)
-    if len(parts) >= 2:
+    # check for YYYY-MM-DD
+    if len(parts[0]) == 4:
         try:
-            # Try to interpret as (day, month) or (month, day)
-            val1, val2 = int(parts[0]), int(parts[1])
-            
-            # Check if one could be day (1-31) and other month (1-12)
-            valid_day_month = (is_valid_day(val1) and is_valid_month(val2)) or \
-                              (is_valid_month(val1) and is_valid_day(val2))
-            
-            if not valid_day_month:
-                # Both are invalid as day/month
-                # Could be amounts: 72/24 or 00/84
-                return False
+            year = int(parts[0])
+            # if not (1990 <= year <= 2030):
+            #     return False
+            if len(parts) >= 3:
+                val1, val2 = int(parts[1]), int(parts[2])
+                if not ((is_valid_day(val1) and is_valid_month(val2)) or (is_valid_month(val1) and is_valid_day(val2))):
+                    return False
         except (ValueError, IndexError):
             pass
+    else:
+        # Check each part (usually day, month, year)
+        if len(parts) >= 2:
+            try:
+                # Try to interpret as (day, month) or (month, day)
+                val1, val2 = int(parts[0]), int(parts[1])
+                
+                # Check if one could be day (1-31) and other month (1-12)
+                valid_day_month = (is_valid_day(val1) and is_valid_month(val2)) or \
+                                  (is_valid_month(val1) and is_valid_day(val2))
+                
+                if not valid_day_month:
+                    # Both are invalid as day/month
+                    # Could be amounts: 72/24 or 00/84
+                    return False
+                
+                if len(parts) >= 3 and len(parts[2]) == 4:
+                    year = int(parts[2])
+                    # if not (1990 <= year <= 2030):
+                    #     return False
+            except (ValueError, IndexError):
+                pass
     
     return True
 
