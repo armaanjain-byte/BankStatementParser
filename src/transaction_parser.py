@@ -120,11 +120,6 @@ DATE_RE = re.compile(
 # Does NOT match whole integers (e.g. '2021') to avoid year false-positives.
 MONEY_RE = re.compile(r"\b\d+(?:,\d{3})*\.\d{2}\b")
 
-# Canonical shared patterns live in constants.py. These assignments keep
-# legacy imports from this module working while avoiding a circular import risk.
-DATE_RE = constants.DATE_RE
-MONEY_RE = constants.MONEY_RE
-
 
 # ──────────────────────────────────────────────
 #  Stage 1 Logic

@@ -1,10 +1,10 @@
 {
   "ranked_failure_categories": {
-    "no_date_detected": 333,
-    "date_parse_failed": 119,
-    "semantic_mismatch": 96,
-    "unknown": 52,
-    "insufficient_numeric_values": 25,
+    "date_parse_failed": 428,
+    "no_date_detected": 388,
+    "semantic_mismatch": 45,
+    "unknown": 36,
+    "insufficient_numeric_values": 3,
     "amount_extraction_failed": 0
   },
   "statement_conversions": [
@@ -27,10 +27,10 @@
     {
       "statement_id": "12",
       "reconstructed_rows": 8,
-      "parsed_rows": 4,
+      "parsed_rows": 1,
       "assigned_transactions": 1,
-      "parse_conversion_rate": 0.5,
-      "assignment_conversion_rate": 0.25
+      "parse_conversion_rate": 0.12,
+      "assignment_conversion_rate": 1.0
     },
     {
       "statement_id": "13",
@@ -51,25 +51,25 @@
     {
       "statement_id": "14",
       "reconstructed_rows": 24,
-      "parsed_rows": 8,
-      "assigned_transactions": 3,
-      "parse_conversion_rate": 0.33,
-      "assignment_conversion_rate": 0.38
+      "parsed_rows": 1,
+      "assigned_transactions": 1,
+      "parse_conversion_rate": 0.04,
+      "assignment_conversion_rate": 1.0
     },
     {
       "statement_id": "15",
       "reconstructed_rows": 25,
-      "parsed_rows": 12,
-      "assigned_transactions": 11,
-      "parse_conversion_rate": 0.48,
-      "assignment_conversion_rate": 0.92
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "16",
       "reconstructed_rows": 15,
-      "parsed_rows": 2,
+      "parsed_rows": 0,
       "assigned_transactions": 0,
-      "parse_conversion_rate": 0.13,
+      "parse_conversion_rate": 0.0,
       "assignment_conversion_rate": 0.0
     },
     {
@@ -99,10 +99,10 @@
     {
       "statement_id": "19",
       "reconstructed_rows": 21,
-      "parsed_rows": 11,
-      "assigned_transactions": 8,
-      "parse_conversion_rate": 0.52,
-      "assignment_conversion_rate": 0.73
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "21",
@@ -115,58 +115,58 @@
     {
       "statement_id": "20",
       "reconstructed_rows": 29,
-      "parsed_rows": 19,
-      "assigned_transactions": 17,
-      "parse_conversion_rate": 0.66,
-      "assignment_conversion_rate": 0.89
+      "parsed_rows": 1,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.03,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "23",
       "reconstructed_rows": 18,
-      "parsed_rows": 1,
+      "parsed_rows": 0,
       "assigned_transactions": 0,
-      "parse_conversion_rate": 0.06,
+      "parse_conversion_rate": 0.0,
       "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "24",
       "reconstructed_rows": 25,
-      "parsed_rows": 12,
-      "assigned_transactions": 11,
-      "parse_conversion_rate": 0.48,
-      "assignment_conversion_rate": 0.92
+      "parsed_rows": 1,
+      "assigned_transactions": 1,
+      "parse_conversion_rate": 0.04,
+      "assignment_conversion_rate": 1.0
     },
     {
       "statement_id": "25",
       "reconstructed_rows": 29,
-      "parsed_rows": 18,
-      "assigned_transactions": 6,
-      "parse_conversion_rate": 0.62,
-      "assignment_conversion_rate": 0.33
+      "parsed_rows": 1,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.03,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "26",
       "reconstructed_rows": 30,
-      "parsed_rows": 6,
-      "assigned_transactions": 3,
-      "parse_conversion_rate": 0.2,
-      "assignment_conversion_rate": 0.5
+      "parsed_rows": 2,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.07,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "27",
       "reconstructed_rows": 32,
-      "parsed_rows": 9,
-      "assigned_transactions": 5,
-      "parse_conversion_rate": 0.28,
-      "assignment_conversion_rate": 0.56
+      "parsed_rows": 7,
+      "assigned_transactions": 3,
+      "parse_conversion_rate": 0.22,
+      "assignment_conversion_rate": 0.43
     },
     {
       "statement_id": "28",
       "reconstructed_rows": 24,
-      "parsed_rows": 12,
-      "assigned_transactions": 11,
-      "parse_conversion_rate": 0.5,
-      "assignment_conversion_rate": 0.92
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "22",
@@ -179,25 +179,25 @@
     {
       "statement_id": "29",
       "reconstructed_rows": 3,
-      "parsed_rows": 1,
+      "parsed_rows": 0,
       "assigned_transactions": 0,
-      "parse_conversion_rate": 0.33,
+      "parse_conversion_rate": 0.0,
       "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "3",
       "reconstructed_rows": 23,
-      "parsed_rows": 2,
-      "assigned_transactions": 1,
-      "parse_conversion_rate": 0.09,
-      "assignment_conversion_rate": 0.5
+      "parsed_rows": 1,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.04,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "30",
       "reconstructed_rows": 22,
-      "parsed_rows": 5,
-      "assigned_transactions": 5,
-      "parse_conversion_rate": 0.23,
+      "parsed_rows": 1,
+      "assigned_transactions": 1,
+      "parse_conversion_rate": 0.05,
       "assignment_conversion_rate": 1.0
     },
     {
@@ -219,10 +219,10 @@
     {
       "statement_id": "32",
       "reconstructed_rows": 33,
-      "parsed_rows": 25,
-      "assigned_transactions": 23,
-      "parse_conversion_rate": 0.76,
-      "assignment_conversion_rate": 0.92
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "34",
@@ -235,10 +235,10 @@
     {
       "statement_id": "35",
       "reconstructed_rows": 17,
-      "parsed_rows": 10,
-      "assigned_transactions": 3,
-      "parse_conversion_rate": 0.59,
-      "assignment_conversion_rate": 0.3
+      "parsed_rows": 5,
+      "assigned_transactions": 1,
+      "parse_conversion_rate": 0.29,
+      "assignment_conversion_rate": 0.2
     },
     {
       "statement_id": "37",
@@ -275,38 +275,38 @@
     {
       "statement_id": "43",
       "reconstructed_rows": 27,
-      "parsed_rows": 12,
-      "assigned_transactions": 2,
-      "parse_conversion_rate": 0.44,
-      "assignment_conversion_rate": 0.17
+      "parsed_rows": 3,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.11,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "44",
       "reconstructed_rows": 28,
-      "parsed_rows": 13,
-      "assigned_transactions": 13,
-      "parse_conversion_rate": 0.46,
-      "assignment_conversion_rate": 1.0
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "45",
       "reconstructed_rows": 19,
-      "parsed_rows": 4,
-      "assigned_transactions": 3,
-      "parse_conversion_rate": 0.21,
-      "assignment_conversion_rate": 0.75
-    },
-    {
-      "statement_id": "46",
-      "reconstructed_rows": 25,
-      "parsed_rows": 12,
-      "assigned_transactions": 12,
-      "parse_conversion_rate": 0.48,
+      "parsed_rows": 1,
+      "assigned_transactions": 1,
+      "parse_conversion_rate": 0.05,
       "assignment_conversion_rate": 1.0
     },
     {
       "statement_id": "47",
       "reconstructed_rows": 4,
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
+    },
+    {
+      "statement_id": "46",
+      "reconstructed_rows": 25,
       "parsed_rows": 0,
       "assigned_transactions": 0,
       "parse_conversion_rate": 0.0,
@@ -321,20 +321,20 @@
       "assignment_conversion_rate": 0.0
     },
     {
-      "statement_id": "50",
-      "reconstructed_rows": 15,
-      "parsed_rows": 5,
-      "assigned_transactions": 3,
-      "parse_conversion_rate": 0.33,
-      "assignment_conversion_rate": 0.6
-    },
-    {
       "statement_id": "5",
       "reconstructed_rows": 28,
-      "parsed_rows": 18,
-      "assigned_transactions": 10,
-      "parse_conversion_rate": 0.64,
-      "assignment_conversion_rate": 0.56
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
+    },
+    {
+      "statement_id": "50",
+      "reconstructed_rows": 15,
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "52",
@@ -371,10 +371,10 @@
     {
       "statement_id": "54",
       "reconstructed_rows": 32,
-      "parsed_rows": 13,
-      "assigned_transactions": 13,
-      "parse_conversion_rate": 0.41,
-      "assignment_conversion_rate": 1.0
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "56",
@@ -395,10 +395,10 @@
     {
       "statement_id": "58",
       "reconstructed_rows": 11,
-      "parsed_rows": 4,
-      "assigned_transactions": 3,
-      "parse_conversion_rate": 0.36,
-      "assignment_conversion_rate": 0.75
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "6",
@@ -417,6 +417,14 @@
       "assignment_conversion_rate": 0.0
     },
     {
+      "statement_id": "60",
+      "reconstructed_rows": 26,
+      "parsed_rows": 1,
+      "assigned_transactions": 1,
+      "parse_conversion_rate": 0.04,
+      "assignment_conversion_rate": 1.0
+    },
+    {
       "statement_id": "61",
       "reconstructed_rows": 7,
       "parsed_rows": 3,
@@ -425,28 +433,20 @@
       "assignment_conversion_rate": 0.0
     },
     {
-      "statement_id": "60",
-      "reconstructed_rows": 26,
-      "parsed_rows": 11,
-      "assigned_transactions": 10,
-      "parse_conversion_rate": 0.42,
-      "assignment_conversion_rate": 0.91
-    },
-    {
       "statement_id": "62",
       "reconstructed_rows": 24,
-      "parsed_rows": 11,
-      "assigned_transactions": 11,
-      "parse_conversion_rate": 0.46,
-      "assignment_conversion_rate": 1.0
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "63",
       "reconstructed_rows": 31,
-      "parsed_rows": 11,
-      "assigned_transactions": 10,
-      "parse_conversion_rate": 0.35,
-      "assignment_conversion_rate": 0.91
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "64",
@@ -459,10 +459,10 @@
     {
       "statement_id": "65",
       "reconstructed_rows": 18,
-      "parsed_rows": 6,
-      "assigned_transactions": 6,
-      "parse_conversion_rate": 0.33,
-      "assignment_conversion_rate": 1.0
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "66",
@@ -499,10 +499,10 @@
     {
       "statement_id": "7",
       "reconstructed_rows": 21,
-      "parsed_rows": 8,
-      "assigned_transactions": 7,
-      "parse_conversion_rate": 0.38,
-      "assignment_conversion_rate": 0.88
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "71",
@@ -515,42 +515,42 @@
     {
       "statement_id": "70",
       "reconstructed_rows": 22,
-      "parsed_rows": 1,
+      "parsed_rows": 0,
       "assigned_transactions": 0,
-      "parse_conversion_rate": 0.05,
+      "parse_conversion_rate": 0.0,
       "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "72",
       "reconstructed_rows": 23,
-      "parsed_rows": 9,
-      "assigned_transactions": 8,
-      "parse_conversion_rate": 0.39,
-      "assignment_conversion_rate": 0.89
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "73",
       "reconstructed_rows": 20,
-      "parsed_rows": 6,
-      "assigned_transactions": 3,
-      "parse_conversion_rate": 0.3,
-      "assignment_conversion_rate": 0.5
+      "parsed_rows": 2,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.1,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "74",
       "reconstructed_rows": 28,
-      "parsed_rows": 17,
-      "assigned_transactions": 17,
-      "parse_conversion_rate": 0.61,
-      "assignment_conversion_rate": 1.0
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "75",
       "reconstructed_rows": 28,
-      "parsed_rows": 11,
-      "assigned_transactions": 9,
-      "parse_conversion_rate": 0.39,
-      "assignment_conversion_rate": 0.82
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "77",
@@ -563,10 +563,10 @@
     {
       "statement_id": "76",
       "reconstructed_rows": 29,
-      "parsed_rows": 17,
-      "assigned_transactions": 16,
-      "parse_conversion_rate": 0.59,
-      "assignment_conversion_rate": 0.94
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "78",
@@ -579,42 +579,42 @@
     {
       "statement_id": "79",
       "reconstructed_rows": 19,
-      "parsed_rows": 7,
-      "assigned_transactions": 7,
-      "parse_conversion_rate": 0.37,
-      "assignment_conversion_rate": 1.0
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "8",
       "reconstructed_rows": 27,
-      "parsed_rows": 15,
-      "assigned_transactions": 13,
-      "parse_conversion_rate": 0.56,
-      "assignment_conversion_rate": 0.87
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "80",
       "reconstructed_rows": 25,
-      "parsed_rows": 8,
-      "assigned_transactions": 8,
-      "parse_conversion_rate": 0.32,
-      "assignment_conversion_rate": 1.0
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "81",
       "reconstructed_rows": 21,
-      "parsed_rows": 8,
-      "assigned_transactions": 1,
-      "parse_conversion_rate": 0.38,
-      "assignment_conversion_rate": 0.12
+      "parsed_rows": 7,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.33,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "83",
       "reconstructed_rows": 16,
-      "parsed_rows": 5,
-      "assigned_transactions": 3,
-      "parse_conversion_rate": 0.31,
-      "assignment_conversion_rate": 0.6
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "82",
@@ -627,10 +627,10 @@
     {
       "statement_id": "85",
       "reconstructed_rows": 16,
-      "parsed_rows": 5,
-      "assigned_transactions": 3,
-      "parse_conversion_rate": 0.31,
-      "assignment_conversion_rate": 0.6
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "84",
@@ -659,18 +659,18 @@
     {
       "statement_id": "90",
       "reconstructed_rows": 11,
-      "parsed_rows": 5,
+      "parsed_rows": 4,
       "assigned_transactions": 0,
-      "parse_conversion_rate": 0.45,
+      "parse_conversion_rate": 0.36,
       "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "89",
       "reconstructed_rows": 30,
-      "parsed_rows": 11,
-      "assigned_transactions": 1,
-      "parse_conversion_rate": 0.37,
-      "assignment_conversion_rate": 0.09
+      "parsed_rows": 7,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.23,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "91",
@@ -683,18 +683,18 @@
     {
       "statement_id": "92",
       "reconstructed_rows": 20,
-      "parsed_rows": 6,
-      "assigned_transactions": 5,
-      "parse_conversion_rate": 0.3,
-      "assignment_conversion_rate": 0.83
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "93",
       "reconstructed_rows": 22,
-      "parsed_rows": 8,
-      "assigned_transactions": 8,
-      "parse_conversion_rate": 0.36,
-      "assignment_conversion_rate": 1.0
+      "parsed_rows": 0,
+      "assigned_transactions": 0,
+      "parse_conversion_rate": 0.0,
+      "assignment_conversion_rate": 0.0
     },
     {
       "statement_id": "94",

@@ -50,18 +50,18 @@
     "statement_id": "12"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
+    "failure_type": "date_parse_failed",
+    "candidate": "11-29 2018",
     "statement_id": "12"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "no_date_detected",
+    "candidate": "31-Mar-2018 SMSChargesQtrOCT17-DEC17+ GST@18%",
     "statement_id": "12"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
+    "failure_type": "date_parse_failed",
+    "candidate": "00 IMPS",
     "statement_id": "12"
   },
   {
@@ -96,6 +96,16 @@
   },
   {
     "failure_type": "date_parse_failed",
+    "candidate": "1 YOUR",
+    "statement_id": "14"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "2 YOUR",
+    "statement_id": "14"
+  },
+  {
+    "failure_type": "date_parse_failed",
     "candidate": "2 YOUR",
     "statement_id": "14"
   },
@@ -103,6 +113,61 @@
     "failure_type": "date_parse_failed",
     "candidate": "2 CREDIT",
     "statement_id": "14"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 PRCR",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 PRCR",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 ERCR",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 pRcR",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02 EFT",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02 FRCR",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02 PRcR",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03 CWDE",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07 EFT",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07 CWDR",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10 CHDR",
+    "statement_id": "15"
   },
   {
     "failure_type": "no_date_detected",
@@ -147,6 +212,16 @@
   {
     "failure_type": "no_date_detected",
     "candidate": "Chauma Gurgaon, 122017,India Account name",
+    "statement_id": "16"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "31 Your",
+    "statement_id": "16"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "93 Units",
     "statement_id": "16"
   },
   {
@@ -290,8 +365,8 @@
     "statement_id": "2"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
+    "failure_type": "date_parse_failed",
+    "candidate": "18 0.00",
     "statement_id": "19"
   },
   {
@@ -325,8 +400,83 @@
     "statement_id": "21"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
+    "failure_type": "date_parse_failed",
+    "candidate": "08-31 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08-31 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08-31 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08-31 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "04-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "04-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "05-09 2018",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "05-09 2018",
     "statement_id": "20"
   },
   {
@@ -355,8 +505,8 @@
     "statement_id": "23"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
+    "failure_type": "no_date_detected",
+    "candidate": "19 Sept Withdrawal Timed ut [2.030\"",
     "statement_id": "23"
   },
   {
@@ -391,6 +541,61 @@
   },
   {
     "failure_type": "date_parse_failed",
+    "candidate": "01 Cafeteria",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03 City",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "ghJune Mr: K's Groceries $",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11 ATM",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11 ATM",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "15 Direct",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "15\"h June Monthly Account Fee $ 12.99",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "16 ATM",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "25ih June Mr: Ks Groceries 124.86",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "30 Direct",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "30 Personal",
+    "statement_id": "24"
+  },
+  {
+    "failure_type": "date_parse_failed",
     "candidate": "0 Bow",
     "statement_id": "24"
   },
@@ -415,8 +620,8 @@
     "statement_id": "25"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2006-12-18",
+    "failure_type": "no_date_detected",
+    "candidate": "Account opened:18-Dec-2006",
     "statement_id": "25"
   },
   {
@@ -435,33 +640,43 @@
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
+    "failure_type": "date_parse_failed",
+    "candidate": "5.11 30",
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "no_date_detected",
+    "candidate": "27 Jul ?017 201717551527 PAY ENT BY AUTHCAITY T...",
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "26 DEPOSIT",
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "11 Debit",
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "23 DebIT",
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "00 TFR",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "19 DeposIT",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 DeBIT",
     "statement_id": "25"
   },
   {
@@ -470,13 +685,33 @@
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
+    "failure_type": "no_date_detected",
+    "candidate": "14 Jul2017 WITHDRAWAL AT ANZ ATMNORTHB 00013051...",
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "00 DEBIT",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "14 DEBIT",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11 Debn",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11 PAYMENT",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11 Savings",
     "statement_id": "25"
   },
   {
@@ -485,18 +720,18 @@
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "00 TFR",
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "11 DEPOSIT",
     "statement_id": "25"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "13 DePOsIT",
     "statement_id": "25"
   },
   {
@@ -535,13 +770,23 @@
     "statement_id": "26"
   },
   {
+    "failure_type": "no_date_detected",
+    "candidate": "1-07-20 IEASLCOBSBLNGALOREVLOQZUL CASH-ATMMAITR...",
+    "statement_id": "26"
+  },
+  {
     "failure_type": "date_parse_failed",
     "candidate": "00-7.00",
     "statement_id": "26"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "0201-12-07",
+    "failure_type": "no_date_detected",
+    "candidate": "12-07-20 CYDERABADIZOZIT CASHATMCICI",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "12-07-201 BANKHYDERABADAZOZH #SQUU",
     "statement_id": "26"
   },
   {
@@ -570,8 +815,13 @@
     "statement_id": "26"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "date_parse_failed",
+    "candidate": "07-20 0204",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "19-07-201 GESH4GMSBHESBHGANURL9OZLL CASH-ATMSBI...",
     "statement_id": "26"
   },
   {
@@ -640,6 +890,11 @@
     "statement_id": "27"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "13 UPVPZA",
+    "statement_id": "27"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "LUZUZE BanFAYment UPVI _A/12887945+4SWSulena DSlle",
     "statement_id": "27"
@@ -657,6 +912,11 @@
   {
     "failure_type": "semantic_mismatch",
     "candidate": "amounts: 7",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "14-10-202 NEFTINJ062101 !883084584 K Cousomidncd",
     "statement_id": "27"
   },
   {
@@ -690,8 +950,63 @@
     "statement_id": "27"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "date_parse_failed",
+    "candidate": "12-23 226",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12-17 390",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12-12 3500",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12-12 750",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12-12 1290",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11-12 3000",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12 4.00",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "04-12 508",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "04-12 510",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11-21 240",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11-15 2000",
+    "statement_id": "28"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11-13 211",
     "statement_id": "28"
   },
   {
@@ -745,6 +1060,11 @@
     "statement_id": "29"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "00/5.10",
+    "statement_id": "29"
+  },
+  {
     "failure_type": "semantic_mismatch",
     "candidate": "amounts: 4",
     "statement_id": "3"
@@ -777,6 +1097,11 @@
   {
     "failure_type": "date_parse_failed",
     "candidate": "00 IMPSAR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "15 IMPSAR",
     "statement_id": "3"
   },
   {
@@ -813,6 +1138,26 @@
     "failure_type": "date_parse_failed",
     "candidate": "00 IMPSAB",
     "statement_id": "3"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-03 2026",
+    "statement_id": "30"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-09 2026",
+    "statement_id": "30"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-25 2026",
+    "statement_id": "30"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 Misc",
+    "statement_id": "30"
   },
   {
     "failure_type": "no_date_detected",
@@ -876,6 +1221,126 @@
   },
   {
     "failure_type": "date_parse_failed",
+    "candidate": "04-24 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-05 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-05 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "09-05 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "09-05 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "05-15 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "05-15 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "05-15 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "05-15 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "05-15 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12 13 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "14 15 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06-06 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06-13 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "18 19 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06-28 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-07 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "22 23 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-26 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-27 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-08 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08-08 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "09-08 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08-22 2017",
+    "statement_id": "32"
+  },
+  {
+    "failure_type": "date_parse_failed",
     "candidate": "00 UOOOC",
     "statement_id": "34"
   },
@@ -890,8 +1355,13 @@
     "statement_id": "34"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "date_parse_failed",
+    "candidate": "09-05 2021",
+    "statement_id": "35"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "09/07/2021 7,039.31 09/17/2021",
     "statement_id": "35"
   },
   {
@@ -1105,38 +1575,38 @@
     "statement_id": "42"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 5",
+    "failure_type": "date_parse_failed",
+    "candidate": "04 Signature",
     "statement_id": "43"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
+    "failure_type": "date_parse_failed",
+    "candidate": "09-04 2018",
     "statement_id": "43"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
+    "failure_type": "date_parse_failed",
+    "candidate": "09-05 2018",
     "statement_id": "43"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
+    "failure_type": "date_parse_failed",
+    "candidate": "09-07 2018",
     "statement_id": "43"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
+    "failure_type": "date_parse_failed",
+    "candidate": "00 ATM",
     "statement_id": "43"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "date_parse_failed",
+    "candidate": "10 Signature",
     "statement_id": "43"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 6",
+    "failure_type": "date_parse_failed",
+    "candidate": "09-11 2018",
     "statement_id": "43"
   },
   {
@@ -1165,6 +1635,41 @@
     "statement_id": "44"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 DEPOSIT",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "1-Aug WITHDRAWALS STATE GOVT TAX ON",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "1-Aug WITHDRAWAL/CHEQUE 301095 45.00",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "1-Aug WITHDRAWAL/CHEQUE 301096 883.30",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "5-Aug WITHDRAWAL/CHEQUE 301086 36.00",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "7-Aug WITHDRAWAL/CHEQUE 301099 855.10",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "8-Aug WITHDRAWAL/CHEQUE 301100 566.60",
+    "statement_id": "44"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "10-AugWITHDRAWAL/CHEQUE 301097 141.80 4,382.32",
     "statement_id": "44"
@@ -1175,8 +1680,18 @@
     "statement_id": "44"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "13 DEPOSIT",
+    "statement_id": "44"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "15-AugWITHDRAWAL/CHEQUE 300903 362.50 4,422.22",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "18-Aug WITHDRAWAL/CHEQUE 300902 90.40 4,331.82",
     "statement_id": "44"
   },
   {
@@ -1190,8 +1705,23 @@
     "statement_id": "44"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "20 DEPOSIT",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "21 DEPOSIT",
+    "statement_id": "44"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "22-Aog WITHDRAWAL/CHEQUE 300905 266.98 3,550.47",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "24 DEPOSIT",
     "statement_id": "44"
   },
   {
@@ -1201,23 +1731,33 @@
   },
   {
     "failure_type": "no_date_detected",
+    "candidate": "29-Aug WITHDRAWAL/CHEQUE 300911 598.40 3,153.77",
+    "statement_id": "44"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "15 Transfer",
+    "statement_id": "45"
+  },
+  {
+    "failure_type": "no_date_detected",
     "candidate": "ATM withdrawal Interac purchase -1361 - Nasr Fo...",
+    "statement_id": "45"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "19 ATM",
+    "statement_id": "45"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "22 ATM",
     "statement_id": "45"
   },
   {
     "failure_type": "no_date_detected",
     "candidate": "Interac purchase - 1361 - Highland Farms 6.94 3...",
     "statement_id": "45"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "16,600.00 16,594.55 413.63",
-    "statement_id": "46"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "Page 1 of 2",
-    "statement_id": "46"
   },
   {
     "failure_type": "no_date_detected",
@@ -1240,13 +1780,78 @@
     "statement_id": "47"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2026-01-15",
+    "failure_type": "date_parse_failed",
+    "candidate": "01 PRCR",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 PRCR",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 prcR",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 prcR",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02 EFT",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02 pRCR",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02 prcr",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03 CWDR",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07 EFT",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07 CWDR",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "10-Jan-2019 g/4301201810853001 CWDR/MOKKA-MODIN...",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "16,600.00 16,594.55 413.63",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Page 1 of 2",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-15 2019",
     "statement_id": "49"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2019-01-25",
+    "failure_type": "date_parse_failed",
+    "candidate": "01-25 2019",
     "statement_id": "49"
   },
   {
@@ -1300,13 +1905,118 @@
     "statement_id": "49"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "01 0 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 CASH",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 CASH",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-06 20",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06 0 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06 0 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-06 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08 0 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-09 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "09 0 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "09 0 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10 0 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-10 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-10 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-13 10",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "13 0 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-13 20",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "13 0 2017",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06-30 2017",
     "statement_id": "50"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "06-15 2017",
+    "statement_id": "50"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "25 21.55",
+    "statement_id": "50"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "55- 40.50",
+    "statement_id": "50"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06-22 2017",
     "statement_id": "50"
   },
   {
@@ -1315,53 +2025,13 @@
     "statement_id": "50"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 5",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
-    "statement_id": "5"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2019-01-10",
+    "failure_type": "date_parse_failed",
+    "candidate": "01-10 2026",
     "statement_id": "52"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2026-01-25",
+    "failure_type": "date_parse_failed",
+    "candidate": "01-25 2019",
     "statement_id": "52"
   },
   {
@@ -1440,8 +2110,8 @@
     "statement_id": "53"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2019-01-25",
+    "failure_type": "date_parse_failed",
+    "candidate": "01-25 15",
     "statement_id": "55"
   },
   {
@@ -1480,8 +2150,83 @@
     "statement_id": "55"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2040-05-15",
+    "failure_type": "date_parse_failed",
+    "candidate": "11 Balance",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-18 13",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-14 13",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-28 13",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-05 13",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "21 Account 504",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-29 13",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08 Payment",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "15 Received",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "29 Payment",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-02 13",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "20 Received",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "13 Drawn",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-09 13",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-07 14",
+    "statement_id": "54"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "15 Statement",
     "statement_id": "54"
   },
   {
@@ -1530,13 +2275,28 @@
     "statement_id": "57"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-28 35",
+    "statement_id": "58"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "Monthly Ave - Bal No",
     "statement_id": "58"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "02-25 147",
+    "statement_id": "58"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "25 DEBIT",
+    "statement_id": "58"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-25 147",
     "statement_id": "58"
   },
   {
@@ -1586,6 +2346,66 @@
   },
   {
     "failure_type": "date_parse_failed",
+    "candidate": "00 JuI",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02 Transfer",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02 Direct",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02 Loan",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03 PETSTOCK",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 EASTLA",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03 Value",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03 POST",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03 FIVE",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Value Date:28/06/2018",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03 POST",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Value Date: 28/06/2018",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
     "candidate": "00 Phone",
     "statement_id": "61"
   },
@@ -1600,13 +2420,13 @@
     "statement_id": "61"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2016-08-11",
+    "failure_type": "date_parse_failed",
+    "candidate": "11 Post",
     "statement_id": "61"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2016-08-11",
+    "failure_type": "date_parse_failed",
+    "candidate": "08-11 2016",
     "statement_id": "61"
   },
   {
@@ -1620,21 +2440,6 @@
     "statement_id": "61"
   },
   {
-    "failure_type": "date_parse_failed",
-    "candidate": "00 JuI",
-    "statement_id": "60"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2018-06-28",
-    "statement_id": "60"
-  },
-  {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2018-06-28",
-    "statement_id": "60"
-  },
-  {
     "failure_type": "no_date_detected",
     "candidate": "OSBI anywhere",
     "statement_id": "62"
@@ -1645,8 +2450,8 @@
     "statement_id": "62"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2011-05-03",
+    "failure_type": "no_date_detected",
+    "candidate": "Ver 5.3.11",
     "statement_id": "62"
   },
   {
@@ -1655,13 +2460,28 @@
     "statement_id": "62"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2018-01-01",
+    "failure_type": "no_date_detected",
+    "candidate": "01-JAN-2018 5,000.00 (Cr)",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "IMPS800117398347/9494821060/XX6549/five thous M...",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12-31 47",
     "statement_id": "62"
   },
   {
     "failure_type": "no_date_detected",
     "candidate": "Monthly Ave - Bal No",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "25 2.00",
     "statement_id": "62"
   },
   {
@@ -1670,8 +2490,28 @@
     "statement_id": "62"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "11-30 47",
+    "statement_id": "62"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "Monthly Ave - Bal No",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-31 47",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Monthly Ave - Bal No",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "09-30 88",
     "statement_id": "62"
   },
   {
@@ -1681,7 +2521,7 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "Monthly Ave - Bal No",
+    "candidate": "25-SEP-2017 F 5.00 (Cr)",
     "statement_id": "62"
   },
   {
@@ -1690,8 +2530,28 @@
     "statement_id": "62"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2017-08-30",
+    "failure_type": "date_parse_failed",
+    "candidate": "08-31 88",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "30 Monthly",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08-29 23",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "TO TRANSFERINSUF BAL ATM DECLINE CHARGE-220817",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "27-AUG-2017 F 23.60 (Dr)",
     "statement_id": "62"
   },
   {
@@ -1700,8 +2560,58 @@
     "statement_id": "62"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "date_parse_failed",
+    "candidate": "05 1.00",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 404",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 263",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "05 1.00",
+    "statement_id": "63"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-05 318",
     "statement_id": "63"
   },
   {
@@ -1768,6 +2678,31 @@
     "failure_type": "date_parse_failed",
     "candidate": "00 RAT",
     "statement_id": "64"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-01 2026",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "1Jul2019 1JuI2019TO TRANSFER- UPI/DR/9182190890...",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-01 2026",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-02 2026",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 PONNUR",
+    "statement_id": "65"
   },
   {
     "failure_type": "no_date_detected",
@@ -1850,13 +2785,58 @@
     "statement_id": "69"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 3",
+    "failure_type": "date_parse_failed",
+    "candidate": "01-11 2026",
     "statement_id": "7"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2040-05-15",
+    "failure_type": "date_parse_failed",
+    "candidate": "02-14 13",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-28 13",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-05 13",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "29 Transfer",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "13 Payment",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "15 Received",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "07-02 2013",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08-13 2026",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-09 13",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "15 Statement",
     "statement_id": "7"
   },
   {
@@ -1991,6 +2971,11 @@
   },
   {
     "failure_type": "date_parse_failed",
+    "candidate": "01-02 - 2021",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
     "candidate": "00 - 0.00",
     "statement_id": "70"
   },
@@ -2001,12 +2986,82 @@
   },
   {
     "failure_type": "date_parse_failed",
+    "candidate": "03-03 2021",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "26 Usa",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03-26 2021",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "29 Deposit",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "29 Debit",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "29 Debit",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "30 Deposit",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "30 Sydney",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "30 Debit",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "30 Debit",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
     "candidate": "14 AFSL",
     "statement_id": "72"
   },
   {
     "failure_type": "semantic_mismatch",
     "candidate": "amounts: 4",
+    "statement_id": "73"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "03 Online",
+    "statement_id": "73"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "04 Interac",
+    "statement_id": "73"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 SUBWAY",
+    "statement_id": "73"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08 Interac",
     "statement_id": "73"
   },
   {
@@ -2025,6 +3080,91 @@
     "statement_id": "73"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-22 2014",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-22 2014",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-24 2014",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-24 2014",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "25 Faster",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-25 2014",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "26 BACS",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-27 2014",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 BACS",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 BACS",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 Faster",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 CHQ",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 Int",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "01Dec2014 DD OVO Energy 2470.00",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "21 BACS",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "21 BACS",
+    "statement_id": "74"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "21 Dec2014 DD DVLA 280.00",
+    "statement_id": "74"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "Balance Received Forward",
     "statement_id": "74"
@@ -2035,13 +3175,58 @@
     "statement_id": "74"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "date_parse_failed",
+    "candidate": "05 1.00",
     "statement_id": "75"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 404",
+    "statement_id": "75"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "75"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "75"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "75"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "75"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "75"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 222",
+    "statement_id": "75"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "02-05 263",
+    "statement_id": "75"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "05 1.00",
+    "statement_id": "75"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01-05 318",
     "statement_id": "75"
   },
   {
@@ -2090,8 +3275,88 @@
     "statement_id": "77"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "no_date_detected",
+    "candidate": "22Oct2014AUTOMATEDPAYIN 650274051211-CHB 190.40...",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "22Oct2014DIGITAL BANKING A/C 22222222 CALLREF.N...",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-24 2014",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-24 2014",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "25Oct 2014Faster Payment Morrisons Petrol 80.00",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-25 2014",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-26 2014",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11 Faster",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 BACS",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 BACS",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 Faster",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 CHQ",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12-01 2014",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "01Dec2014 DD OVO Energy 2470.00",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "21 BACS",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "21 BACS",
+    "statement_id": "76"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "21Dec2014 DD DVLA 280.00",
     "statement_id": "76"
   },
   {
@@ -2105,13 +3370,13 @@
     "statement_id": "76"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2019-01-15",
+    "failure_type": "date_parse_failed",
+    "candidate": "01-15 2019",
     "statement_id": "78"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2019-01-25",
+    "failure_type": "date_parse_failed",
+    "candidate": "01-25 2019",
     "statement_id": "78"
   },
   {
@@ -2165,6 +3430,26 @@
     "statement_id": "78"
   },
   {
+    "failure_type": "no_date_detected",
+    "candidate": "5Apr20155Apr2015ATMWDL-ATM9079S8I 20,000.00 86,...",
+    "statement_id": "79"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 MTN 24",
+    "statement_id": "79"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "7Apr 20157 Apr 2015FEE EXCESS DRS 8 Apr 20158 A...",
+    "statement_id": "79"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "04-09 2026",
+    "statement_id": "79"
+  },
+  {
     "failure_type": "date_parse_failed",
     "candidate": "00 CHANDIG",
     "statement_id": "79"
@@ -2195,13 +3480,43 @@
     "statement_id": "79"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "22 AUTOMATED",
     "statement_id": "8"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "no_date_detected",
+    "candidate": "22 Oct 2O14 DIGITAL BANKING 22222222 140.00",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "24 Faster",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "24 BACS",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "25 Faster",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "25 BACS",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "10-26 2014",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00-11.00",
     "statement_id": "8"
   },
   {
@@ -2211,7 +3526,42 @@
   },
   {
     "failure_type": "date_parse_failed",
+    "candidate": "01 BACS",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11-01 2014",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
     "candidate": "00 CHQ",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01 Int",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "01 Dec 2014 DD OVO Energy 2470.00",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "21 BACS",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "21 BACS",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "21 Dec 2014 DD DVLA 280.00",
     "statement_id": "8"
   },
   {
@@ -2232,6 +3582,11 @@
   {
     "failure_type": "no_date_detected",
     "candidate": "Non-Sterling transaction fee Transfer from07043...",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "60 Visit",
     "statement_id": "80"
   },
   {
@@ -2290,6 +3645,11 @@
     "statement_id": "81"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "04-20 2026",
+    "statement_id": "81"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "Closing Balance $9.710.87",
     "statement_id": "81"
@@ -2301,7 +3661,7 @@
   },
   {
     "failure_type": "insufficient_numeric_values",
-    "candidate": "2020-01-11",
+    "candidate": "01-11-2020",
     "statement_id": "83"
   },
   {
@@ -2341,17 +3701,32 @@
   },
   {
     "failure_type": "no_date_detected",
+    "candidate": "10/11/2020 AMLCLEENTFPyn 0.00",
+    "statement_id": "83"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "18 SumUp",
+    "statement_id": "83"
+  },
+  {
+    "failure_type": "no_date_detected",
     "candidate": "16112020 AINSURY8 SACAT4SHEFFEDQR -1.30",
     "statement_id": "83"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "no_date_detected",
+    "candidate": "14/11/2020 DRNKSSTOPSHEFFELDGER -0.76",
     "statement_id": "83"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "11-14 13",
+    "statement_id": "83"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "13/11/2020 DLGHFFLDSHEFFDGR 30",
     "statement_id": "83"
   },
   {
@@ -2411,7 +3786,7 @@
   },
   {
     "failure_type": "insufficient_numeric_values",
-    "candidate": "2020-01-11",
+    "candidate": "01-11-2020",
     "statement_id": "85"
   },
   {
@@ -2451,17 +3826,32 @@
   },
   {
     "failure_type": "no_date_detected",
+    "candidate": "10/11/2020 AMLCLEENTFPyn 0.00",
+    "statement_id": "85"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "18 SumUp",
+    "statement_id": "85"
+  },
+  {
+    "failure_type": "no_date_detected",
     "candidate": "16112020 AINSURY8 SACAT4SHEFFEDQR -1.30",
     "statement_id": "85"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "no_date_detected",
+    "candidate": "14/11/2020 DRNKSSTOPSHEFFELDGER -0.76",
     "statement_id": "85"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 2",
+    "failure_type": "date_parse_failed",
+    "candidate": "11-14 13",
+    "statement_id": "85"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "13/11/2020 DLGHFFLDSHEFFDGR 30",
     "statement_id": "85"
   },
   {
@@ -2570,8 +3960,8 @@
     "statement_id": "90"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "date_parse_failed",
+    "candidate": "00 for 24",
     "statement_id": "90"
   },
   {
@@ -2590,13 +3980,13 @@
     "statement_id": "89"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2026-01-15",
+    "failure_type": "date_parse_failed",
+    "candidate": "01-15 2019",
     "statement_id": "91"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2019-01-25",
+    "failure_type": "date_parse_failed",
+    "candidate": "01-25 2026",
     "statement_id": "91"
   },
   {
@@ -2650,18 +4040,38 @@
     "statement_id": "91"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2026-11-27",
+    "failure_type": "date_parse_failed",
+    "candidate": "11-27 2009",
     "statement_id": "92"
   },
   {
-    "failure_type": "insufficient_numeric_values",
-    "candidate": "2026-11-27",
+    "failure_type": "no_date_detected",
+    "candidate": "10934176616",
     "statement_id": "92"
   },
   {
-    "failure_type": "semantic_mismatch",
-    "candidate": "amounts: 4",
+    "failure_type": "date_parse_failed",
+    "candidate": "11-27 2009",
+    "statement_id": "92"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "10934176616",
+    "statement_id": "92"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11-27 2009",
+    "statement_id": "92"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 ATMWDL",
+    "statement_id": "92"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11-27 2009",
     "statement_id": "92"
   },
   {
@@ -2675,8 +4085,53 @@
     "statement_id": "92"
   },
   {
+    "failure_type": "date_parse_failed",
+    "candidate": "04-01 2021",
+    "statement_id": "93"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "04-03 2021",
+    "statement_id": "93"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "04-06 2021",
+    "statement_id": "93"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06 GRABBA",
+    "statement_id": "93"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "08 TRANSFER",
+    "statement_id": "93"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "08 Apr 2021 ELECTRONIC DBT Priorities LLC",
+    "statement_id": "93"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "15 CCD",
+    "statement_id": "93"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "12 Apr 2021 T-MOBILE.COM PCS SVC DEBIT CARDPOS",
+    "statement_id": "93"
+  },
+  {
     "failure_type": "no_date_detected",
     "candidate": "Plantation,FL Luckys Food Market POS3435#4235",
+    "statement_id": "93"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "15 Apr 2021 6034XFIN 132324367452 ELECTRONIC DB...",
     "statement_id": "93"
   },
   {

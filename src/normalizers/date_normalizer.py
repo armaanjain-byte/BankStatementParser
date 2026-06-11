@@ -57,12 +57,9 @@ _OCR_DATE_SUBSTITUTIONS = [
     ("1U", "10"), ("lU", "10"), ("IU", "10"),
     ("1O", "10"), ("lO", "10"),
     ("0l", "01"), ("0I", "01"),
-    ("ZU2L", "2021"),   # NOTE-RULE8: benchmark-specific
-    ("ZU2l", "2021"),   # NOTE-RULE8: benchmark-specific
     ("2U2l", "2021"),
     ("202L", "2021"),
     ("2O2L", "2021"),
-    ("4k24", "2024"),   # NOTE-RULE8: benchmark-specific
     ("0x4L", "2024"),
     ("0AL204", "2024"),
     ("l9", "19"),
