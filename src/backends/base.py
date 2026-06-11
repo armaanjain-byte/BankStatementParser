@@ -1,84 +1,107 @@
 """
-backends/base.py — Abstract base class for OCR backends.
+backends/base.py — Abstract base class that every OCR backend must implement.
 
-All OCR engines must subclass OCRBackend and implement extract_tokens().
-The contract guarantees that downstream pipeline code receives identical
-List[OCRToken] output regardless of which engine performed the recognition.
+Rule 1: All OCR engines must return the same OCRToken contract.
+Rule 2: Downstream pipeline code must not know which engine produced the tokens.
 
-Adding a third engine requires only:
-  1. Creating a new file backends/<engine>_backend.py
-  2. Subclassing OCRBackend
-  3. Implementing extract_tokens()
-
-No changes to main.py, layout_detector, or any other pipeline stage.
+Any new backend (Tesseract, Google Vision, etc.) must subclass BaseOCRBackend
+and implement extract_tokens() to remain pipeline-compatible.
 """
 
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import List, Union
+from typing import List, Optional, Union
 
 import numpy as np
 
-from src.schema import OCRToken
-
-MIN_CONFIDENCE: float = 0.10
-LOW_QUALITY_VARIANCE_THRESHOLD: float = 1800.0
+from src.models.ocr_models import OCRToken
 
 
-class OCRBackend(ABC):
-    """Abstract OCR backend.  Subclasses must implement extract_tokens()."""
+class BaseOCRBackend(ABC):
+    """Abstract OCR backend.
 
-    def __init__(self, gpu: bool = True) -> None:
-        self.gpu = gpu
+    Subclasses must implement :meth:`extract_tokens`.  All other methods
+    have default implementations that may be overridden where needed.
+    """
+
+    # ──────────────────────────────────────────────
+    #  Abstract interface
+    # ──────────────────────────────────────────────
 
     @abstractmethod
     def extract_tokens(
         self,
-        image_input: Union[str, Path, np.ndarray],
-        min_confidence: float = MIN_CONFIDENCE,
+        image_path: Union[str, Path, np.ndarray],
+        languages: Optional[List[str]] = None,
+        gpu: bool = True,
         preprocess: bool = False,
+        min_confidence: float = 0.10,
     ) -> List[OCRToken]:
-        """Run OCR on *image_input* and return a list of OCRToken objects.
+        """Run OCR on *image_path* and return a list of :class:`OCRToken`.
 
         Args:
-            image_input:    Path to an image file, or a numpy array (uint8
-                            grayscale or BGR) representing the image data.
-            min_confidence: Drop tokens whose confidence falls below this
-                            threshold.  Must be in [0.0, 1.0].
-            preprocess:     If True, apply OpenCV preprocessing before
-                            running OCR.  Backends may also auto-enable
-                            preprocessing when low image quality is detected.
+            image_path:     Path to an image file, or a NumPy array already
+                            loaded into memory (HxWxC, uint8, BGR).
+            languages:      Language code list understood by the underlying
+                            engine.  Defaults to ``["en"]`` when *None*.
+            gpu:            Whether to request GPU acceleration.
+            preprocess:     Whether to run OpenCV preprocessing before OCR.
+            min_confidence: Drop tokens whose confidence is below this value.
 
         Returns:
-            A list of :class:`~src.schema.OCRToken` objects, one per
-            detected text region, roughly in reading order.
+            Ordered list of :class:`OCRToken` objects (roughly top-to-bottom,
+            left-to-right, matching the reading order of the page).
 
         Raises:
-            FileNotFoundError: If *image_input* is a path that does not exist.
+            FileNotFoundError: If *image_path* is a path that does not exist.
         """
 
-    # ── Shared helpers available to all backends ──────────────────────
+    # ──────────────────────────────────────────────
+    #  Shared helper: low-quality image detection
+    # ──────────────────────────────────────────────
 
     @staticmethod
-    def is_low_quality(image_path: Union[str, Path]) -> bool:
-        """Return True if the image likely needs preprocessing.
+    def _is_low_quality(image_path: Union[str, Path]) -> bool:
+        """Return *True* if the image likely needs preprocessing.
 
-        Heuristic: clean digital-PDF renders have high pixel variance
-        (black text on white background, score typically 3000–8000).
-        Low-quality phone photos or faded scans have compressed histograms
-        and score below the threshold.
+        Heuristic: digital bank statement scans have high pixel variance
+        (sharp black text on white background).  Phone photos and faded
+        scans have compressed, noisy histograms with lower variance.
 
         Args:
-            image_path: Path to the image file to evaluate.
+            image_path: Path to the image file.
 
         Returns:
-            True if the image variance is below the low-quality threshold.
+            *True* when the image variance is below the tuned threshold.
         """
-        import cv2  # imported lazily to avoid hard dep at module load
+        import cv2
 
         img = cv2.imread(str(image_path), cv2.IMREAD_GRAYSCALE)
         if img is None:
             return False
-        return float(np.var(img)) < LOW_QUALITY_VARIANCE_THRESHOLD
+        variance = float(np.var(img))
+        # Digital statements typically score 3 000 – 8 000; phone photos < 1 800.
+        return variance < 1800
+
+    # ──────────────────────────────────────────────
+    #  Shared helper: polygon → axis-aligned bbox
+    # ──────────────────────────────────────────────
+
+    @staticmethod
+    def _polygon_to_bbox(
+        polygon: List[List[Union[int, float]]],
+    ) -> tuple[int, int, int, int]:
+        """Convert a four-corner polygon to an axis-aligned bounding box.
+
+        Args:
+            polygon: List of four ``[x, y]`` coordinate pairs (any winding
+                     order).
+
+        Returns:
+            ``(x_min, y_min, x_max, y_max)`` as integers.
+        """
+        xs = [pt[0] for pt in polygon]
+        ys = [pt[1] for pt in polygon]
+        return (int(min(xs)), int(min(ys)), int(max(xs)), int(max(ys)))

@@ -1,91 +1,111 @@
 """
-normalizers/ocr_cleanup.py — Generic OCR character-level cleanup utilities.
+normalizers/ocr_cleanup.py — Generic OCR token-text cleanup utilities.
 
-This module contains character substitution tables and helper functions
-that are shared between the date and amount normalizers.  It does NOT
-contain domain-specific normalization logic (date parsing, amount
-validation, etc.) — those live in date_normalizer.py and amount_normalizer.py
-respectively.
+Contains transformations that apply to arbitrary OCR text regardless of
+whether it represents a date, amount, or description.
 
-Exposed for direct use by other modules that need low-level OCR correction
-without pulling in the full normalizer stack.
+Currently exposes:
+  • clean_token_text()   — normalise whitespace and strip invisible chars
+  • strip_noise_chars()  — remove leading/trailing punctuation noise
+  • collapse_whitespace() — collapse multi-space runs to single spaces
+
+These helpers are intentionally narrow: they do not know about dates or
+amounts.  Domain-specific fixes belong in date_normalizer.py or
+amount_normalizer.py respectively.
 """
 
 from __future__ import annotations
 
 import re
-
-# ---------------------------------------------------------------------------
-# Common digit/letter confusion characters seen in scanned bank statements.
-# These are safe to substitute in any numeric context.
-# ---------------------------------------------------------------------------
-
-#: Characters OCR frequently confuses for digits.
-#: Maps mis-read character → correct digit.
-DIGIT_SUBSTITUTIONS: dict[str, str] = {
-    "O": "0",
-    "o": "0",
-    "C": "0",
-    "c": "0",
-    "I": "1",
-    "l": "1",
-}
-
-#: Currency / noise characters that should be stripped from the start
-#: of an amount string.
-LEADING_NOISE_CHARS: frozenset[str] = frozenset("~$₹€£")
+import unicodedata
 
 
-def strip_leading_noise(text: str) -> str:
-    """Remove leading currency symbols and noise characters from *text*.
+# Characters that are commonly introduced by OCR and carry no semantic value.
+_NOISE_CHARS_RE = re.compile(r"^[\s\-–—_|/\\.,;:!?@#$%^&*()[\]{}<>\"'`~]+|"
+                              r"[\s\-–—_|/\\.,;:!?@#$%^&*()[\]{}<>\"'`~]+$")
+
+# Any run of whitespace (spaces, tabs, non-breaking spaces, etc.)
+_WHITESPACE_RE = re.compile(r"\s+")
+
+
+def collapse_whitespace(text: str) -> str:
+    """Collapse any run of whitespace characters to a single ASCII space.
 
     Args:
-        text: Raw string that may begin with currency/noise characters.
+        text: Input string, possibly containing multiple spaces, tabs, or
+              non-breaking spaces introduced by OCR column alignment.
 
     Returns:
-        The string with leading noise removed and surrounding whitespace
-        stripped.
+        String with all internal whitespace runs collapsed to a single space,
+        and leading/trailing whitespace removed.
     """
-    s = text.strip()
-    while s and s[0] in LEADING_NOISE_CHARS:
-        s = s[1:]
-    return s.strip()
+    return _WHITESPACE_RE.sub(" ", text).strip()
 
 
-def apply_digit_substitutions(text: str, substitutions: dict[str, str] | None = None) -> str:
-    """Replace mis-read characters with their correct digit equivalents.
+def strip_noise_chars(text: str) -> str:
+    """Remove leading and trailing punctuation/noise characters.
 
-    Substitutions are only applied when the candidate character is
-    flanked by digits or decimal/thousands separators, reducing false
-    positives on alphabetic text.
+    OCR engines sometimes attach stray punctuation to tokens (e.g. a
+    leading pipe ``|`` from a table border, or a trailing full-stop that
+    belongs to the sentence rather than the token).  This function strips
+    those edge characters while preserving internal punctuation that is
+    semantically significant (e.g. the decimal point in "1,234.56").
 
     Args:
-        text:          Input string containing potential digit mis-reads.
-        substitutions: Mapping of bad_char → correct_char.  Defaults to
-                       :data:`DIGIT_SUBSTITUTIONS`.
+        text: Input OCR token text.
 
     Returns:
-        The corrected string.
+        Text with noise characters removed from both ends.
     """
-    sub_map = substitutions if substitutions is not None else DIGIT_SUBSTITUTIONS
-    result = []
-    for i, ch in enumerate(text):
-        if ch in sub_map:
-            prev_ok = i > 0 and (text[i - 1].isdigit() or text[i - 1] in ".,")
-            next_ok = i < len(text) - 1 and (text[i + 1].isdigit() or text[i + 1] in ".,")
-            result.append(sub_map[ch] if (prev_ok or next_ok) else ch)
-        else:
-            result.append(ch)
-    return "".join(result)
+    return _NOISE_CHARS_RE.sub("", text)
 
 
-def normalize_whitespace(text: str) -> str:
-    """Collapse runs of whitespace to a single space and strip ends.
+def normalize_unicode(text: str) -> str:
+    """Normalize Unicode characters to their closest ASCII equivalents.
+
+    Replaces common OCR-introduced Unicode lookalikes (e.g. curly quotes,
+    em-dashes, non-breaking spaces) with standard ASCII characters.
 
     Args:
-        text: Input string.
+        text: Input string potentially containing Unicode lookalikes.
 
     Returns:
-        String with normalised internal whitespace.
+        NFC-normalized string with common lookalikes replaced.
     """
-    return re.sub(r"\s+", " ", text).strip()
+    # NFC normalization first
+    text = unicodedata.normalize("NFC", text)
+
+    # Replace typographic quotes with straight quotes
+    text = text.replace("\u2018", "'").replace("\u2019", "'")
+    text = text.replace("\u201c", '"').replace("\u201d", '"')
+
+    # Replace en-dash / em-dash with hyphen
+    text = text.replace("\u2013", "-").replace("\u2014", "-")
+
+    # Replace non-breaking space with regular space
+    text = text.replace("\u00a0", " ")
+
+    return text
+
+
+def clean_token_text(text: str) -> str:
+    """Apply the full generic cleanup pipeline to a single OCR token.
+
+    Pipeline:
+      1. :func:`normalize_unicode`
+      2. :func:`collapse_whitespace`
+
+    Note: :func:`strip_noise_chars` is deliberately *not* included here
+    because it can destroy valid characters in date separators and amount
+    tokens.  Callers that need aggressive edge-stripping should call it
+    explicitly.
+
+    Args:
+        text: Raw OCR token text.
+
+    Returns:
+        Cleaned token text.
+    """
+    text = normalize_unicode(text)
+    text = collapse_whitespace(text)
+    return text
