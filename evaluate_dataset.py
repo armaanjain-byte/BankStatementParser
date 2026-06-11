@@ -58,7 +58,12 @@ def _evaluate_one_image(
                 tokens.extend(page_tokens)
                 rows.extend(reconstruct_rows(page_tokens))
         else:
-            tokens = extract_tokens(image_path, gpu=not no_gpu)
+            cached_path = Path(f"outputs/{statement_id}_ocr.json")
+            if cached_path.exists():
+                from src.layout_detector import load_ocr_tokens
+                tokens = load_ocr_tokens(cached_path)
+            else:
+                tokens = extract_tokens(image_path, gpu=not no_gpu)
             rows = reconstruct_rows(tokens)
 
         rows, normalized_date_count = normalize_date_strings(rows)
@@ -124,7 +129,7 @@ def evaluate_dataset(
     statement_outputs_dir = output_folder / "statement_outputs"
     statement_outputs_dir.mkdir(parents=True, exist_ok=True)
     
-    failure_reporter = FailureReporter(output_folder / "out/failure_reports.json")
+    failure_reporter = FailureReporter(output_folder / "failure_reports.json")
     
     images = sorted(
         p for p in input_folder.iterdir()
@@ -225,7 +230,7 @@ def aggregate_report(metrics_list: List[PipelineMetrics], output_folder: Path, e
         "statement_metrics": [m.to_dict() for m in metrics_list]
     }
     
-    evaluation_report_path = output_folder / "out/evaluation_report.json"
+    evaluation_report_path = output_folder / "evaluation_report.json"
     with open(evaluation_report_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
         
@@ -257,7 +262,7 @@ def aggregate_report(metrics_list: List[PipelineMetrics], output_folder: Path, e
             "assignment_conversion_rate": m.assignment_conversion_rate
         })
         
-    loss_report_path = output_folder / "out/pipeline_loss_report.json"
+    loss_report_path = output_folder / "pipeline_loss_report.json"
     with open(loss_report_path, "w", encoding="utf-8") as f:
         json.dump(loss_report, f, indent=2, ensure_ascii=False)
 

@@ -138,7 +138,7 @@ def reconstruct_rows(
     if threshold is None:
         heights = [token.bbox[3] - token.bbox[1] for token in tokens]
         avg_height = sum(heights) / len(heights) if heights else 0.0
-        threshold = avg_height * 0.7 if avg_height > 0 else 12.0
+        threshold = avg_height * 1.5 if avg_height > 0 else 12.0
         threshold_source = "adaptive"
 
     logger.debug(

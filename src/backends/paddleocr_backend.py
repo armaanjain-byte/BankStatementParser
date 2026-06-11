@@ -158,7 +158,7 @@ class PaddleOCRBackend(BaseOCRBackend):
                 import cv2
                 import tempfile
 
-                from archive.preprocessor import preprocess_for_ocr
+                from src.preprocessing import preprocess_for_ocr
 
                 arr = preprocess_for_ocr(path)
                 with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:

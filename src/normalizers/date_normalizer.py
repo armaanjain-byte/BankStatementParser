@@ -220,4 +220,30 @@ def normalize_date_strings(rows) -> Tuple[list, int]:
             )
 
     normalized_date_count += interpolated_count
+
+    # ── Pass 3: Canonicalize recognized dates ────────────────────────────
+    # Convert all valid dates (including interpolated ones) into standard YYYY-MM-DD
+    # This prevents downstream date_parse_failed errors during strict parsing.
+    def canonicalize_match(match: re.Match) -> str:
+        date_str = match.group(0)
+        try:
+            # Force spacing between digits and letters for dateutil to parse '01Aug' correctly
+            s = re.sub(r"(\d{1,2})([A-Za-z]{3,9})", r"\1 \2 ", date_str)
+            s = re.sub(r"([A-Za-z]{3,9})(\d{2,4})", r"\1 \2", s)
+            s = re.sub(r"\s+", " ", s).strip()
+            parsed = date_parser.parse(s, fuzzy=True)
+            return parsed.strftime("%Y-%m-%d")
+        except Exception:
+            return date_str
+
+    canonicalized_count = 0
+    for row in rows:
+        old_text = row.text
+        new_text = DATE_RE.sub(canonicalize_match, old_text)
+        if new_text != old_text:
+            row.text = new_text
+            canonicalized_count += 1
+
+    logger.info("Canonicalized %d dates to standard format", canonicalized_count)
+
     return rows, normalized_date_count

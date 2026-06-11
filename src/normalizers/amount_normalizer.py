@@ -139,6 +139,11 @@ def _repair_amount_separators(amount_str: str) -> str:
         if integer_part and integer_part[0] in "-+":
             sign = integer_part[0]
             integer_part = integer_part[1:]
+        if " " in integer_part:
+            pass # Temporarily disabled
+            #if "." in integer_part or any(len(p) > 3 for p in integer_part.replace(",", " ").split()):
+            #    return original
+
         integer_part = "".join(c for c in integer_part if c.isdigit())
 
         decimal_part = "".join(c for c in decimal_part if c.isdigit())
@@ -172,7 +177,7 @@ def normalize_amount_strings(rows) -> Tuple[list, int]:
     Returns:
         A tuple of ``(modified_rows, normalized_amount_count)``.
     """
-    from src.constants import MONEY_RE
+    from src.constants import DATE_RE, MONEY_RE
 
     normalized_amount_count = 0
 
@@ -180,7 +185,19 @@ def normalize_amount_strings(rows) -> Tuple[list, int]:
         old_text = row.text
         existing_amounts = set(MONEY_RE.findall(old_text))
 
+        # Identify date spans so the amount normalizer does not corrupt them.
+        # Without this guard, bare integers inside dates (e.g. "13", "10",
+        # "2021" in "13-10-2021") get converted to "13.00", "10.00",
+        # "2,021.00", destroying the date and creating phantom amounts.
+        date_spans = [(m.start(), m.end()) for m in DATE_RE.finditer(old_text)]
+
+        def _overlaps_date(start: int, end: int) -> bool:
+            return any(ds < end and start < de for ds, de in date_spans)
+
         def _replace_amount_candidate(match: re.Match) -> str:
+            if _overlaps_date(match.start(), match.end()):
+                return match.group(0)
+
             original_span = match.group(0)
             normalized = _normalize_amount_token(original_span)
             normalized = _repair_amount_separators(normalized)
@@ -199,6 +216,6 @@ def normalize_amount_strings(rows) -> Tuple[list, int]:
         if new_text != old_text:
             row.text = new_text
             normalized_amount_count += 1
-            logger.debug("Amount-normalized row: %r → %r", old_text, new_text)
+            logger.debug("Amount-normalized row: %r \u2192 %r", old_text, new_text)
 
     return rows, normalized_amount_count

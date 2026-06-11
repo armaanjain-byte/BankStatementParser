@@ -153,11 +153,18 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
     They are categorised as 'insufficient_numeric_values' by the evaluation
     framework, which is accurate — the row split during reconstruction.
     """
+    from src.transaction_detector import TransactionCandidateDetector
     parsed_rows = []
+    detector = TransactionCandidateDetector()
     
     for idx, row in enumerate(rows):
         text = row.text
         
+        # Pre-filter: is this row even likely to be a transaction?
+        detection = detector.detect(text)
+        if not detection.is_transaction_candidate:
+            continue
+            
         primary_date_match = DATE_RE.search(text)
         amounts = MONEY_RE.findall(text)
         

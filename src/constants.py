@@ -39,15 +39,29 @@ _MONTH_FULL = (
 _MONTH_SHORT = r"Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
 
 DATE_RE = re.compile(
+    # Pattern 1: DD/MM/YYYY or DD-MM-YYYY
     r"\b\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4}\b"
     r"|"
-    r"\b\d{1,2}[-\s][A-Za-z]{3}[-\s]\d{4}\b"
+    # Pattern 2: DD-Mon-YYYY or DD Mon YYYY
+    r"\b\d{1,2}[-\s][A-Za-z]{3,9}[-\s]\d{2,4}\b"
     r"|"
-    rf"\b\d{{1,2}}\s+(?:{_MONTH_FULL})\b"
+    # Pattern 3: DD Mon or DD-Mon (missing year)
+    rf"\b\d{{1,2}}[-\s]*(?:{_MONTH_FULL})\b"
     r"|"
-    rf"\b\d{{0,2}}(?:{_MONTH_SHORT})\d{{4}}\b"
+    # Pattern 4: DDMonYYYY or MonYYYY (no spaces)
+    rf"\b\d{{0,2}}(?:{_MONTH_SHORT})\d{{2,4}}\b"
     r"|"
-    r"\b\d{1,2}\.\d{1,2}[-/]\d{2,4}\b",
+    # Pattern 5: mixed separator DD.MM-YYYY
+    r"\b\d{1,2}\.\d{1,2}[-/]\d{2,4}\b"
+    r"|"
+    # Pattern 6: YYYY-MM-DD
+    r"\b\d{4}[/\-]\d{1,2}[/\-]\d{1,2}\b"
+    r"|"
+    # Pattern 7: Mon DD YYYY
+    rf"\b(?:{_MONTH_FULL})\s+\d{{1,2}}\s+(?:\d{{2,4}})?\b"
+    r"|"
+    # Pattern 8: DDMon (alphanumeric, no spaces, no year) e.g., 01Aug
+    rf"\b\d{{1,2}}(?:{_MONTH_SHORT})\b",
     re.IGNORECASE,
 )
 
