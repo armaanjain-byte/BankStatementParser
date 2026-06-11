@@ -55,6 +55,7 @@ def validate_statement(
         )
         
     # 3. Numeric amount validity & Date validity
+    # Count only rows that SHOULD have been assigned but weren't
     unassigned_count = 0
     missing_balance_count = 0
     has_balance_column = layout.balance_column is not None
@@ -62,7 +63,7 @@ def validate_statement(
     for row_result in assignment_report.rows:
         txn = row_result.transaction
         
-        # Date validity: since ParsedRow enforces date presence, we check if it was lost
+        # Date validity: ParsedRow guarantees a date exists, so this is a rare case
         if not txn.date:
             issues.append(
                 ValidationIssue(
@@ -72,14 +73,30 @@ def validate_statement(
                 )
             )
             
-        # Numeric amount validity: checking if we failed to assign semantics
-        # when we expected to (due to column mismatch or unparseable amounts).
-        if not any([txn.amount is not None, txn.debit is not None, txn.credit is not None, txn.balance is not None]):
-            if row_result.raw_amounts:
-                unassigned_count += 1
+        # Numeric amount validity: only count as unassigned if we expected to assign
+        # and failed. If layout has money columns but this row has no amounts in the
+        # parsed amounts list, it's not an "unassigned" problem — it's a parse failure
+        # (handled elsewhere). Only count it if we have parsed amounts but failed to
+        # assign them to any semantic field.
+        money_columns = [
+            col for role in ["amount", "debit", "credit", "balance"]
+            if getattr(layout, f"{role}_column", None) is not None
+            for col in [getattr(layout, f"{role}_column")]
+        ]
+        
+        has_any_amount_assigned = any([
+            txn.amount is not None,
+            txn.debit is not None,
+            txn.credit is not None,
+            txn.balance is not None
+        ])
+        
+        if not has_any_amount_assigned and row_result.raw_amounts and money_columns:
+            # Row had parsed amounts AND layout has money columns, but assignment failed
+            unassigned_count += 1
                 
         # Balance validity when balance exists in layout
-        if has_balance_column and txn.balance is None:
+        if has_balance_column and txn.balance is None and row_result.raw_amounts:
             missing_balance_count += 1
 
     if unassigned_count > 0:

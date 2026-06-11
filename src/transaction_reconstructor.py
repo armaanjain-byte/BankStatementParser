@@ -47,8 +47,11 @@ class Row:
         y_center: Mean vertical center of all tokens in this row (pixels).
         tokens:   The constituent :class:`OCRToken` objects, sorted
                   left-to-right by x-coordinate.
-        text:     Concatenated token texts, space-separated.
-        original_text: The original concatenated token texts before any normalization.
+        text:     Concatenated token texts, space-separated. Mutable; modified
+                  by downstream normalizers.
+        original_text: The original concatenated token texts immediately after
+                  reconstruction, before any normalization. IMMUTABLE baseline
+                  for recovery detection in evaluation.
     """
 
     y_center: float

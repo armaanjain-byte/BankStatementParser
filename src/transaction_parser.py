@@ -11,27 +11,19 @@ It operates in two stages:
 
 It intentionally does NOT guess debit/credit column assignment if it is ambiguous.
 
-DATE_RE expansion history
-─────────────────────────
-v1 (original):
-  Supported: DD/MM/YYYY, DD-MM-YY, DD-Mon-YYYY, DD Mon YYYY
-  Failure evidence from forensic analysis (run 2, 118 failures):
-    - Statement 24: 11 date_parse_failed = 'D Mon' format (no year, ordinal stripped)
-    - Statement 25: 3-4 date_parse failures = 'DDMonYYYY' merged (no space between month/year)
-    - Statement 27: 1 date_parse failure = mixed separator 'DD.MM-YYYY'
+DATE_RE Consolidation
+─────────────────────
+This module now imports DATE_RE from constants.py (the comprehensive pattern
+with 8 detection formats), not a local version. This ensures all modules
+(transaction_parser, evaluation, transaction_detector) use the same regex,
+eliminating date detection mismatches.
 
-v2 (this version):
-  Added pattern 3: DD Mon (full month name, no year required)
-    Recovers: stmt 24 +10-11 transactions
-  Added pattern 4: DDMonYYYY merged (0-2 digits prefix, month abbrev, 4-digit year)
-    Recovers: stmt 25 +3-4 transactions
-  Added pattern 5: mixed separator DD.MM-YYYY
-    Recovers: stmt 27 +1 transaction
-  Total expected recovery: +14-16 transactions across test set.
+Previously, each module had its own DATE_RE, causing critical failures:
+- evaluation.py used 5 patterns → missed valid dates
+- constants.py had 8 patterns → caught more dates
+- This mismatch meant evaluation.py reported higher failure rates than actual
 
-  Verified against all 118 current-code failure entries. Does not introduce
-  false positives on genuine OCR corruption strings (ZU2L, 1&-4l-2W, @ZUL etc.)
-  tested explicitly.
+Fix: All modules now import from constants.DATE_RE.
 """
 
 from __future__ import annotations
@@ -46,6 +38,11 @@ from typing import List, Union
 from src import constants
 from src.schema import Transaction
 from src.transaction_reconstructor import Row
+
+# Import the consolidated DATE_RE from constants (8 patterns)
+# This replaces the previous local 5-pattern version
+DATE_RE = constants.DATE_RE
+MONEY_RE = constants.MONEY_RE
 
 logger = logging.getLogger(__name__)
 
@@ -69,56 +66,6 @@ class ParsedRow:
     amounts: List[str]
     description: str
     source_row_index: int
-
-
-# ──────────────────────────────────────────────
-#  Extraction patterns
-# ──────────────────────────────────────────────
-
-# Full month names for patterns that need them (avoids repeating the alternation)
-_MONTH_FULL = (
-    r"Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May"
-    r"|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember|t)?"
-    r"|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?"
-)
-
-# Short month abbreviations only (for tightly-merged formats like 'Jul2017')
-_MONTH_SHORT = r"Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-
-DATE_RE = re.compile(
-    # Pattern 1 (original): DD/MM/YYYY, DD-MM-YYYY, DD/MM/YY  e.g. 01/04/2023, 1-4-23
-    r"\b\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4}\b"
-    r"|"
-    # Pattern 2 (original): DD-Mon-YYYY or DD Mon YYYY (separator required, 4-digit year)
-    # e.g. 01-Apr-2023, 01 Apr 2023
-    r"\b\d{1,2}[-\s][A-Za-z]{3}[-\s]\d{4}\b"
-    r"|"
-    # Pattern 3 (new): DD Mon or DD MonthFull — no year required.
-    # Rationale: Statement 24 uses 'D Month' format (ESL worksheet / Halifax-style).
-    # After normalizer strips ordinals ('15th' -> '15'), rows read '15 June'.
-    # The year is absent from the document; accepting the date without year is
-    # preferable to losing the transaction entirely.
-    # Evidence: 11 date_parse_failed entries in stmt 24, all 'N Month' format.
-    # Does NOT match on genuine OCR corruption: 'ZU2L', '1&-4l' contain no month names.
-    rf"\b\d{{1,2}}\s+(?:{_MONTH_FULL})\b"
-    r"|"
-    # Pattern 4 (new): DDMonYYYY merged — month abbreviation runs directly into year.
-    # Rationale: Statement 25 (Westpac) renders '25Jul2017' and 'Jul2017' without spaces.
-    # Zero leading digits allowed to handle month-only prefix ('Jul2017').
-    # Evidence: 3 date_parse rows in stmt 25 with this exact format.
-    # Precision: requires exactly 4 trailing digits, so 'NEFT' or 'ZU2L' don't match.
-    rf"\b\d{{0,2}}(?:{_MONTH_SHORT})\d{{4}}\b"
-    r"|"
-    # Pattern 5 (new): mixed separator DD.MM-YYYY or DD.MM/YYYY.
-    # Rationale: Statement 27 contains '13.10-2021' (dot day-month, dash year).
-    # Evidence: 1 date_parse entry in stmt 27.
-    r"\b\d{1,2}\.\d{1,2}[-/]\d{2,4}\b",
-    re.IGNORECASE,
-)
-
-# Supports standard monetary values like 1,234.56 or 12.34
-# Does NOT match whole integers (e.g. '2021') to avoid year false-positives.
-MONEY_RE = re.compile(r"\b\d+(?:,\d{3})*\.\d{2}\b")
 
 
 # ──────────────────────────────────────────────
@@ -147,15 +94,29 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
     Rows that contain a date but no monetary value are excluded here.
     They are categorised as 'insufficient_numeric_values' by the evaluation
     framework, which is accurate — the row split during reconstruction.
+    
+    NOTE: ISO dates like "2019-01-25" are now properly recognized by the
+    consolidated DATE_RE pattern (Pattern 6), so they should no longer be
+    rejected as "insufficient_numeric_values".
     """
     from src.transaction_detector import TransactionCandidateDetector
+    from src.row_classifier import RowClassifier
+    
     parsed_rows = []
     detector = TransactionCandidateDetector()
+    classifier = RowClassifier()
     
     for idx, row in enumerate(rows):
         text = row.text
         
-        # Pre-filter: is this row even likely to be a transaction?
+        # Pre-filter 1: Is this row even a non-header/footer/page-marker?
+        classification = classifier.classify(text)
+        if not classification.is_transaction_candidate:
+            logger.debug("Skipped non-transaction row [%s]: %s", 
+                        classification.classification, text[:60])
+            continue
+        
+        # Pre-filter 2: Is this row likely to be a transaction?
         detection = detector.detect(text)
         if not detection.is_transaction_candidate:
             continue

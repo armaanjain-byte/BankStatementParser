@@ -108,17 +108,20 @@ def _correct_ocr_typos(date_str: str) -> str:
 def normalize_date_strings(rows) -> Tuple[list, int]:
     """Apply date normalization to a list of Row objects.
 
-    Performs two passes:
+    Performs three passes:
       1. OCR typo correction on date-like spans in each row's text.
       2. Sequential date interpolation for rows sandwiched between rows
          with parseable dates that are one or two days apart.
+      3. Canonicalization of all recognized dates to standard YYYY-MM-DD format,
+         which prevents downstream date_parse_failed errors during strict parsing.
 
     Args:
         rows: List of :class:`~src.transaction_reconstructor.Row` objects.
 
     Returns:
-        A tuple of ``(modified_rows, normalized_date_count)`` where
-        *normalized_date_count* includes both corrected and interpolated rows.
+        A tuple of ``(modified_rows, total_normalized_date_count)`` where
+        *total_normalized_date_count* includes OCR corrections, interpolations,
+        and canonicalizations combined.
     """
     from src.constants import DATE_RE
 
@@ -241,6 +244,12 @@ def normalize_date_strings(rows) -> Tuple[list, int]:
             row.text = new_text
             canonicalized_count += 1
 
-    logger.info("Canonicalized %d dates to standard format", canonicalized_count)
+    logger.info(
+        "Canonicalized %d dates to standard format (total normalized: %d -> %d)",
+        canonicalized_count,
+        normalized_date_count,
+        normalized_date_count + canonicalized_count,
+    )
 
-    return rows, normalized_date_count
+    # Return combined count of all normalizations
+    return rows, normalized_date_count + canonicalized_count
