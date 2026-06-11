@@ -22,7 +22,7 @@ import time
 import argparse
 from pathlib import Path
 
-from archive.header_extractor import extract_metadata
+from src.header_extractor import extract_metadata
 from src.layout_detector import detect_layout
 from src.models.transaction_models import BankStatement
 from src.normalizers import normalize_date_strings, normalize_amount_strings
