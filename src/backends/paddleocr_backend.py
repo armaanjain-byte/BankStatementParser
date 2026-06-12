@@ -143,15 +143,7 @@ class PaddleOCRBackend(BaseOCRBackend):
             if not path.exists():
                 raise FileNotFoundError(f"Image not found: {path}")
 
-            if not preprocess and self._is_low_quality(path):
-                import cv2
 
-                variance = float(np.var(cv2.imread(str(path), cv2.IMREAD_GRAYSCALE)))
-                logger.warning(
-                    "Low-quality image detected (variance=%s), but automatic preprocessing is DISABLED.",
-                    f"{variance:.0f}",
-                )
-                # preprocess = True
 
             img_input = str(path)
             if preprocess:
