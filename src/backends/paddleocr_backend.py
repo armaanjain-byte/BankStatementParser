@@ -148,10 +148,10 @@ class PaddleOCRBackend(BaseOCRBackend):
 
                 variance = float(np.var(cv2.imread(str(path), cv2.IMREAD_GRAYSCALE)))
                 logger.warning(
-                    "Low-quality image detected (variance=%s), enabling preprocessing automatically.",
+                    "Low-quality image detected (variance=%s), but automatic preprocessing is DISABLED.",
                     f"{variance:.0f}",
                 )
-                preprocess = True
+                # preprocess = True
 
             img_input = str(path)
             if preprocess:
@@ -165,5 +165,5 @@ class PaddleOCRBackend(BaseOCRBackend):
                     cv2.imwrite(f.name, arr)
                     img_input = f.name
 
-        result = ocr.ocr(img_input)
+        result = ocr.ocr(img_input, cls=True)
         return _paddle_result_to_tokens(result, min_confidence=min_confidence)

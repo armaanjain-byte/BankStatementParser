@@ -1,0 +1,160 @@
+{
+  "as_is": {
+    "70.jpg": {
+      "token_count": 133,
+      "row_count": 50,
+      "parsed_count": 0,
+      "assigned_count": 0
+    },
+    "20.jpg": {
+      "token_count": 232,
+      "row_count": 67,
+      "parsed_count": 36,
+      "assigned_count": 36
+    },
+    "11.jpg": {
+      "token_count": 205,
+      "row_count": 55,
+      "parsed_count": 35,
+      "assigned_count": 35
+    },
+    "32.jpg": {
+      "token_count": 245,
+      "row_count": 56,
+      "parsed_count": 28,
+      "assigned_count": 28
+    },
+    "27.jpg": {
+      "token_count": 172,
+      "row_count": 63,
+      "parsed_count": 24,
+      "assigned_count": 24
+    },
+    "82.jpg": {
+      "token_count": 141,
+      "row_count": 47,
+      "parsed_count": 24,
+      "assigned_count": 24
+    }
+  },
+  "disabled": {
+    "70.jpg": {
+      "token_count": 196,
+      "row_count": 57,
+      "parsed_count": 30,
+      "assigned_count": 30
+    },
+    "20.jpg": {
+      "token_count": 232,
+      "row_count": 67,
+      "parsed_count": 36,
+      "assigned_count": 36
+    },
+    "11.jpg": {
+      "token_count": 205,
+      "row_count": 55,
+      "parsed_count": 35,
+      "assigned_count": 35
+    },
+    "32.jpg": {
+      "token_count": 245,
+      "row_count": 56,
+      "parsed_count": 28,
+      "assigned_count": 28
+    },
+    "27.jpg": {
+      "token_count": 172,
+      "row_count": 63,
+      "parsed_count": 24,
+      "assigned_count": 24
+    },
+    "82.jpg": {
+      "token_count": 141,
+      "row_count": 47,
+      "parsed_count": 24,
+      "assigned_count": 24
+    }
+  },
+  "70_samples": {
+    "as_is": {
+      "tokens": [
+        "Starling",
+        "0730450",
+        "Bank",
+        ".",
+        "Hn",
+        "$4$*040*0*0123-$74",
+        "30",
+        ".00001",
+        "Bark",
+        "Fa",
+        "St",
+        "4",
+        "1",
+        "Febnuary 2021 $tatement",
+        "Ct + dt.",
+        "2/2021 - 2/202",
+        "DDAY",
+        "DAT",
+        "Tm",
+        "no"
+      ],
+      "rows": [
+        "Starling 0730450",
+        ".",
+        "Bank",
+        "Hn",
+        "$4$*040*0*0123-$74",
+        "30.00",
+        "Fa St 4",
+        "Bark 1",
+        "Febnuary 2021 $tatement",
+        "Ct + dt."
+      ],
+      "parsed_rows": []
+    },
+    "disabled": {
+      "tokens": [
+        "Starling",
+        "Contact tel +44(0)207 930 4450",
+        "Bank",
+        "www.starlingbank.com",
+        "Mr John Doe",
+        "Account Name:",
+        "Mr John Doe",
+        "20 Sherwood St,",
+        "IBAN:",
+        "GB64SRLG60000012345678",
+        "London",
+        "Starling",
+        "BIC:",
+        "SRLGGG01",
+        "W1F 7ED",
+        "Bank",
+        "Sort code:",
+        "1234-56-78",
+        "Account Number:",
+        "87654321"
+      ],
+      "rows": [
+        "Starling Contact tel +44(0)207,930.44",
+        "www.starlingbank.com",
+        "Bank",
+        "Mr John Doe Account Name: Mr John Doe",
+        "20 Sherwood St, IBAN: GB64SRLG60000012345678",
+        "London BIC: SRLGGG01",
+        "W1F 7ED Starling Sort code: 1234-56-78",
+        "Bank Account Number: 87654321",
+        "February2021Statement Your deposit is eligible for protection by the Financial Services",
+        "Compensation Scheme."
+      ],
+      "parsed_rows": [
+        "2021-01-02 ['7.32'] SAMSUNG PAY Central",
+        "2021-01-02 ['2.27', '585.00'] FASTER PAYMENT Muhammad Tayyab (From M Tayyab)",
+        "2021-02-02 ['140.00'] ONLINE PAYMENT Acemoneytransfer",
+        "2021-02-02 ['6.00'] SAMSUNG PAY Sumup *ace Ringway",
+        "2021-02-02 ['7.00', '432.00'] FASTER PAYMENT Muhammad Talha (From M Tayyab)"
+      ]
+    }
+  }
+}

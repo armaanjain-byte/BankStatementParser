@@ -1,0 +1,602 @@
+[
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "mM/DD/YYYY Pe*t - Credt Card 5,400.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "MMTDYTYY Pugtant - in.annos 8,000.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "MMDDYYYY Act Tra 500,000.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "mM/DO/YYYY #od+ +b*y 10,000.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "MM/DD/YYYY 1,500.00 675,900.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "mM/DD/YYYY Prgoont - Car Lomn 9,600.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "2 14.00",
+    "statement_id": "13"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 0.00",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2018-09-01",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2018-09-02",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 11.1000",
+    "statement_id": "23"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "41 70.000",
+    "statement_id": "23"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-07-27",
+    "statement_id": "25"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2011-07-12",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2011-07-12",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2011-07-18",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2011-07-18",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2011-07-19",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2011-07-19",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "TRANSACTION TOTAL 42162.00 42112.00",
+    "statement_id": "26"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-10-08",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-10-10",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-10-10",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-10-13",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-10-14",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-10-15",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-10-18",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-11-04",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-11-04",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-11-04",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-11-04",
+    "statement_id": "27"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "73 44.174",
+    "statement_id": "29"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Web site: Service Center: Deaf and Hard of Hear...",
+    "statement_id": "29"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "0.00 000",
+    "statement_id": "34"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "T1 *01 000$ 00'0$",
+    "statement_id": "34"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Pre-Tax Amount Auth # $11.10",
+    "statement_id": "34"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-07-17",
+    "statement_id": "34"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Total Overdraft Fees $0.00 $0.00",
+    "statement_id": "35"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Total Returned Tem Fees. $0.00 $0.00",
+    "statement_id": "35"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-06-28",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "1.888.888.RWDS (1.888.888.7937)",
+    "statement_id": "41"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "00053642 DRS 025 32500228 NNNNNNNNNNN 1 0000000...",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Demo BusinessSelect Checking 000002415483497 $7...",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Demo Business Select High Yield Savings. 000002...",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Total $70,951.58 $11,750.64",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "TOTAL AssETS $70,951.58 $11,750.64",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "ATM & Debit Card Withdrawals 112 -66,205.00",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "1 -8.40",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Interac purchase -1361 - Nasr Foods Inc. 47.82 ...",
+    "statement_id": "45"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Interac purchase - 1361 - Highland Farms 6.94 3...",
+    "statement_id": "45"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 0.00",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Balance 8,313.30 8,181.00",
+    "statement_id": "47"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 9.33",
+    "statement_id": "47"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-03-06",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-03-09",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-03-13",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-03-13",
+    "statement_id": "5"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "67 0.00",
+    "statement_id": "51"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "09 11.00",
+    "statement_id": "51"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 08 478",
+    "statement_id": "56"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Fob 01 2020- F#b 29 2020 7455100876-710- Accoun...",
+    "statement_id": "56"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "27 11.540",
+    "statement_id": "56"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Pep 1 df 1 O0DOIST 00000'01s",
+    "statement_id": "57"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Opeog Moo Totl Deott Amoont: oug p",
+    "statement_id": "57"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-18-51",
+    "statement_id": "58"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "87.34 34",
+    "statement_id": "59"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "41 0.00",
+    "statement_id": "61"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "1 0.00",
+    "statement_id": "61"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2016-08-11",
+    "statement_id": "61"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-08-28",
+    "statement_id": "62"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "$$+*$ng o$y? $1 00420400m 0 #00 000",
+    "statement_id": "64"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 4.00",
+    "statement_id": "64"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00- -1 00",
+    "statement_id": "64"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPI/CR/918219892534/ADIVI",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPI/DR/918219089024/ADIVI",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPI/DR/918221768895/VEERU",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPI/CR/918340367249/VEERU",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "09 1-800",
+    "statement_id": "66"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "$$ ' 4.349.2$",
+    "statement_id": "67"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "For Jt  en 3, 221 1234507 q",
+    "statement_id": "67"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 0.43",
+    "statement_id": "67"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "pq 03301687272 00000100176",
+    "statement_id": "67"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "CIBC Account $tatement ou hd ns at ny hee ocuod...",
+    "statement_id": "67"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": " Yr. 12,284.84",
+    "statement_id": "69"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "502 2// 3",
+    "statement_id": "7"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-03-04",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-04-03",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-04-04",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-05-04",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12.27 .00",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "5.00 457",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "FATOA MATHAT {10.80 #20.10",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11.19 41",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "5.17 41",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "80 1.00",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "4.00 1052",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 - 0.00",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "73.45 223",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-29",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-29",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-30",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-30",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-30",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "79.10 524",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "VISA TD BANK 500.00 5,580.80",
+    "statement_id": "73"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Interest Rate (% p.a.) :4.0",
+    "statement_id": "79"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Transfer from 07166060408617 100.00 think",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Transfer from07043645929999 600.00 697.16",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Apr8 Insurance 272.45",
+    "statement_id": "81"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 9.31",
+    "statement_id": "83"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 9.31",
+    "statement_id": "85"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-06-28",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-06-28",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-06-28",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-11-20",
+    "statement_id": "90"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Interest Rate%p.a. 3.5",
+    "statement_id": "92"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "www.wutionbank.com 9905.50 6000.00",
+    "statement_id": "94"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 50.00",
+    "statement_id": "94"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Rounte. 041215683 Paid out",
+    "statement_id": "94"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "BALANCE EROUGHT FORAAD WINDIXIE FOOD MARKET",
+    "statement_id": "94"
+  }
+]
