@@ -106,8 +106,29 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
     detector = TransactionCandidateDetector()
     classifier = RowClassifier()
     
-    for idx, row in enumerate(rows):
+    last_seen_date = None
+    
+    i = 0
+    while i < len(rows):
+        row = rows[i]
         text = row.text
+        idx = i  # Capture the original starting index
+        
+        # Row merging for horizontal splits
+        has_date = bool(DATE_RE.search(text))
+        has_amount = bool(MONEY_RE.search(text))
+        
+        if has_date and not has_amount and i + 1 < len(rows):
+            next_text = rows[i+1].text
+            next_has_date = bool(DATE_RE.search(next_text))
+            next_has_amount = bool(MONEY_RE.search(next_text))
+            
+            if next_has_amount and not next_has_date:
+                # Merge the split transaction
+                text = text + " " + next_text
+                i += 1  # Consume the next row
+                
+        i += 1  # Increment early so 'continue' works
         
         # Pre-filter 1: Is this row even a non-header/footer/page-marker?
         classification = classifier.classify(text)
@@ -142,6 +163,7 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
 
             # We found a transaction row
             date_str = primary_date_match.group(0)
+            last_seen_date = date_str
             
             # Remove only the transaction date. Later date-like text can be
             # meaningful narration, such as interest-period ranges.
@@ -149,6 +171,29 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
                 text[:primary_date_match.start()]
                 + text[primary_date_match.end():]
             )
+            for a in amounts:
+                description = description.replace(a, "", 1)
+                
+            # Normalize whitespace
+            description = re.sub(r"\s+", " ", description).strip()
+            
+            parsed_rows.append(ParsedRow(
+                raw_text=text,
+                date=date_str,
+                amounts=amounts,
+                description=description,
+                source_row_index=idx
+            ))
+            
+        elif not primary_date_match and amounts and last_seen_date:
+            if _is_header_or_footer(text):
+                logger.debug("Skipped header/footer row: %s", text[:60])
+                continue
+
+            # Stateful date inheritance
+            date_str = last_seen_date
+            
+            description = text
             for a in amounts:
                 description = description.replace(a, "", 1)
                 

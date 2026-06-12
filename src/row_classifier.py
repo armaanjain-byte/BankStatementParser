@@ -74,7 +74,7 @@ class RowClassifier:
         self.metadata_patterns = re.compile(
             r"\b(hdfc|icici|axis|sbi|pnb|bob|canara|union|kotak|induslnd|federal|"
             r"hsbc|citi|dbs|scb|bank|savings\s+account|current\s+account|"
-            r"credit\s+card|debit\s+card|visa|mastercard|amex)\b",
+            r"visa|mastercard|amex)\b",
             re.IGNORECASE
         )
         

@@ -43,7 +43,7 @@ def _get_ocr(use_gpu: bool = True):
 
         device = "gpu" if use_gpu else "cpu"
         logger.info("Initializing PaddleOCR (gpu=%s)", use_gpu)
-        _ocr = PaddleOCR(lang="en", device=device, enable_mkldnn=False)
+        _ocr = PaddleOCR(lang="en", device=device, enable_mkldnn=False, use_angle_cls=True)
     return _ocr
 
 

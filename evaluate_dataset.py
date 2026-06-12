@@ -115,6 +115,7 @@ def evaluate_dataset(
     output_folder: Path,
     no_gpu: bool = False,
     workers: int = 2,
+    clear_cache: bool = False,
 ) -> None:
     """Run the pipeline on all images, collecting telemetry and outputs.
 
@@ -128,6 +129,14 @@ def evaluate_dataset(
     output_folder.mkdir(parents=True, exist_ok=True)
     statement_outputs_dir = output_folder / "statement_outputs"
     statement_outputs_dir.mkdir(parents=True, exist_ok=True)
+    
+    if clear_cache:
+        logger.info("Clearing cached OCR results...")
+        for p in Path("outputs").glob("*_ocr.json"):
+            try:
+                p.unlink()
+            except OSError:
+                pass
     
     failure_reporter = FailureReporter(output_folder / "failure_reports.json")
     
@@ -273,6 +282,7 @@ if __name__ == "__main__":
     parser.add_argument("--output_folder", type=Path, default=Path("out"), help="Where to output reports.")
     parser.add_argument("--no-gpu", action="store_true", help="Disable GPU for OCR.")
     parser.add_argument("--workers", type=int, default=2, help="Parallel worker processes. Use 1 to disable parallelism.")
+    parser.add_argument("--clear-cache", action="store_true", help="Clear cached OCR results in the outputs directory.")
     
     args = parser.parse_args()
-    evaluate_dataset(args.input_folder, args.output_folder, args.no_gpu, args.workers)
+    evaluate_dataset(args.input_folder, args.output_folder, args.no_gpu, args.workers, args.clear_cache)
