@@ -268,7 +268,7 @@ class TestStatementOutputSmoke:
     statement outputs have not yet been generated.
     """
 
-    OUTPUTS_DIR = Path(__file__).parent.parent.parent / "statement_outputs"
+    OUTPUTS_DIR = Path(__file__).parent.parent.parent / "out/statement_outputs"
 
     def _available_ids(self):
         if not self.OUTPUTS_DIR.exists():
