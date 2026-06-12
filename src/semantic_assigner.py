@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import List, Optional, Union
@@ -102,7 +103,7 @@ def assign_semantics(parsed_row: ParsedRow, row: Row, layout: LayoutDefinition) 
             reason = "assigned by detected layout column order"
             confidence = _assignment_confidence(money_columns)
         elif len(amount_values) != len(money_columns) and all(value is not None for value in amount_values):
-            amount_centers = [_find_amount_x_center(amt_str, row) for amt_str in parsed_row.amounts]
+            amount_centers = _find_amount_x_centers(parsed_row.amounts, row)
             if all(c is not None for c in amount_centers):
                 distances = []
                 for i, (amt_val, center) in enumerate(zip(amount_values, amount_centers)):
@@ -220,31 +221,60 @@ def run_from_ocr_file(input_path: Union[str, Path], output_path: Union[str, Path
     )
 
 
-def _find_amount_x_center(amount_str: str, row: Row) -> Optional[float]:
-    """Find the geometric x-center of an amount string within a row."""
-    start_idx = row.text.find(amount_str)
-    if start_idx == -1:
-        return None
-    end_idx = start_idx + len(amount_str)
-    
-    current_idx = 0
-    matched_tokens = []
-    for token in row.tokens:
-        token_start = current_idx
-        token_end = current_idx + len(token.text)
-        
-        # Check if the token overlaps with the amount string
-        if token_end > start_idx and token_start < end_idx:
-            matched_tokens.append(token)
-            
-        current_idx += len(token.text) + 1  # +1 for the space separator
-        
-    if matched_tokens:
-        x_min = min(t.bbox[0] for t in matched_tokens)
-        x_max = max(t.bbox[2] for t in matched_tokens)
-        return (x_min + x_max) / 2.0
-        
-    return None
+def _find_amount_x_centers(amount_strs: List[str], row: Row) -> List[Optional[float]]:
+    """Find the geometric x-centers of amount strings within a row.
+
+    Matches against token *content*, consuming tokens left-to-right, instead
+    of mapping character offsets in row.text back to tokens. Offset mapping
+    assumed row.text was the unmodified space-join of token texts, which is
+    false after normalization mutates row.text, and caused
+    "could not locate all amount tokens for geometric fallback" rejections.
+
+    Tokens are consumed in order: the i-th amount binds to the first matching
+    token at or after the token matched by the (i-1)-th amount, so duplicate
+    amount values resolve to distinct (or correctly shared) tokens.
+    """
+    def _digits(s: str) -> str:
+        return re.sub(r"\D", "", s)
+
+    centers: List[Optional[float]] = []
+    last_idx = 0  # amounts appear in text order; tokens are sorted by x
+
+    for amount_str in amount_strs:
+        target_digits = _digits(amount_str)
+        match_idx: Optional[int] = None
+
+        if target_digits:
+            # Pass 1: literal substring (handles "$1,234.56", "13.00/7.00")
+            for idx in range(last_idx, len(row.tokens)):
+                if amount_str in row.tokens[idx].text:
+                    match_idx = idx
+                    break
+            # Pass 2: digit-sequence containment (separator corruption)
+            if match_idx is None:
+                for idx in range(last_idx, len(row.tokens)):
+                    token_digits = _digits(row.tokens[idx].text)
+                    if token_digits and target_digits in token_digits:
+                        match_idx = idx
+                        break
+            # Pass 3: digit suffix (leading digits absorbed by a currency
+            # prefix or a token split, e.g. "S1," + "432.05")
+            if match_idx is None and len(target_digits) >= 4:
+                for idx in range(last_idx, len(row.tokens)):
+                    token_digits = _digits(row.tokens[idx].text)
+                    if token_digits and target_digits.endswith(token_digits):
+                        match_idx = idx
+                        break
+
+        if match_idx is None:
+            centers.append(None)
+            continue
+
+        token = row.tokens[match_idx]
+        centers.append((token.bbox[0] + token.bbox[2]) / 2.0)
+        last_idx = match_idx  # the same token may host the next amount too
+
+    return centers
 
 
 def _layout_money_columns(layout: LayoutDefinition) -> List[tuple[str, DetectedColumn]]:
