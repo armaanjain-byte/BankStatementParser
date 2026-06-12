@@ -40,7 +40,7 @@ _MONTH_SHORT = r"Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
 
 DATE_RE = re.compile(
     # Pattern 1: DD/MM/YYYY or DD-MM-YYYY
-    r"\b\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4}(?:\b|(?=[A-Za-z0-9/_\-]))"
+    r"(?<!\d[/\-])\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4}(?:\b|(?=[A-Za-z0-9/_\-]))"
     r"|"
     # Pattern 2: DD-Mon-YYYY or DD Mon YYYY
     r"\b\d{1,2}[-\s][A-Za-z]{3,9}[-\s]\d{2,4}(?:\b|(?=[A-Za-z0-9/_\-]))"
@@ -57,11 +57,20 @@ DATE_RE = re.compile(
     # Pattern 6: YYYY-MM-DD
     r"\b\d{4}[/\-]\d{1,2}[/\-]\d{1,2}(?:\b|(?=[A-Za-z0-9/_\-]))"
     r"|"
-    # Pattern 7: Mon DD YYYY
-    rf"\b(?:{_MONTH_FULL})\s+\d{{1,2}}\s+(?:\d{{2,4}})?(?:\b|(?=[A-Za-z0-9/_\-]))"
+    # Pattern 7: Mon DD YYYY or Mon DD, YYYY
+    rf"\b(?:{_MONTH_FULL})\s+\d{{1,2}}(?:(?:,\s*|\s+)\d{{2,4}})?(?:\b|(?=[A-Za-z0-9/_\-]))"
     r"|"
     # Pattern 8: DDMon (alphanumeric, no spaces, no year) e.g., 01Aug
-    rf"\b\d{{1,2}}(?:{_MONTH_SHORT})(?:\b|(?=[A-Za-z0-9/_\-]))",
+    rf"\b\d{{1,2}}(?:{_MONTH_SHORT})(?:\b|(?=[A-Za-z0-9/_\-]))"
+    r"|"
+    # Pattern 9: bare MM/DD or DD/MM without a year (US/international bank statements).
+    # Guards:
+    #   - (?<!\d[/\-])  : prevent matching mid-sequence slash in DD/MM/YYYY already caught by Pattern 1
+    #   - (?<!\.)       : prevent matching a digit-group that follows a decimal point (e.g. '7.87/64' -> '87/64')
+    #   - (?<!\d\.)     : belt-and-suspenders for 'N.NN/DD' style amounts
+    #   - (?![/\-]\d{2,4}) : prevent firing when followed by /YYYY or -YYYY
+    #   - (?!\.\d)      : prevent matching '1/13.00' where '13' is a decimal integer
+    r"(?<!\d[/\-])(?<!\.)(?<!\d\.)\b\d{1,2}[/\-]\d{1,2}(?![/\-]\d{2,4})(?!\.\d)\b",
     re.IGNORECASE,
 )
 

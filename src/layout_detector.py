@@ -16,7 +16,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Iterable, List, Optional, Union
 
-from src.constants import ALIAS_TO_COLUMN, MONEY_RE
+from src.constants import ALIAS_TO_COLUMN, MONEY_RE, DATE_RE
 from src.schema import OCRToken
 from src.transaction_reconstructor import Row, reconstruct_rows
 
@@ -39,14 +39,6 @@ ALIAS_MAP: dict[str, tuple[str, float]] = {
 }
 
 
-HEADER_VALUE_DATE_RE = re.compile(
-    r"^\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4}$"
-    r"|"
-    r"^\d{1,2}\s+[A-Za-z]{3}\s*\d{0,4}$"
-    r"|"
-    r"^\d{1,2}[-\s][A-Za-z]{3}[-\s]?\d{2,4}$",
-    re.IGNORECASE,
-)
 
 AMOUNT_LIKE_RE = re.compile(
     r"\b[$S]?\s*-?\d[\d,]*[.]\d{2}\b"
@@ -363,7 +355,7 @@ def _match_column_name(text: str) -> tuple[Optional[str], float, str]:
     if not normalized:
         return None, 0.0, "none"
 
-    if HEADER_VALUE_DATE_RE.fullmatch(text.strip()):
+    if DATE_RE.fullmatch(text.strip()):
         return None, 0.0, "date_value"
 
     exact = ALIAS_MAP.get(normalized)
@@ -423,7 +415,7 @@ def _merge_duplicate_header_columns(columns: List[DetectedColumn]) -> List[Detec
 
 def _first_date_value_token(row: Row) -> Optional[OCRToken]:
     for token in row.tokens[:3]:
-        if HEADER_VALUE_DATE_RE.search(token.text.strip()):
+        if DATE_RE.search(token.text.strip()):
             return token
     return None
 

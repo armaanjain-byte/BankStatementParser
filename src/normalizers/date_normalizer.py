@@ -234,6 +234,29 @@ def normalize_date_strings(rows) -> Tuple[list, int]:
             parsed = date_parser.parse(s, fuzzy=True)
             return parsed.strftime("%Y-%m-%d")
         except Exception:
+            # dateutil fails for bare DD/MM dates when DD > 12 (e.g. "17/12", "20/12")
+            # because it tries to interpret first part as month. Try swapped order.
+            two_part = re.match(r"^(\d{1,2})[/\-](\d{1,2})$", date_str.strip())
+            if two_part:
+                p1, p2 = int(two_part.group(1)), int(two_part.group(2))
+                # Try as MM/DD (if p1 <= 12)
+                if p1 <= 12 and 1 <= p2 <= 31:
+                    try:
+                        import datetime as _dt
+                        today = _dt.date.today()
+                        d = _dt.date(today.year, p1, p2)
+                        return d.strftime("%Y-%m-%d")
+                    except Exception:
+                        pass
+                # Try as DD/MM (if p2 <= 12)
+                if p2 <= 12 and 1 <= p1 <= 31:
+                    try:
+                        import datetime as _dt
+                        today = _dt.date.today()
+                        d = _dt.date(today.year, p2, p1)
+                        return d.strftime("%Y-%m-%d")
+                    except Exception:
+                        pass
             return date_str
 
     canonicalized_count = 0
