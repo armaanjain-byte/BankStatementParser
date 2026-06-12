@@ -17,9 +17,15 @@ from src.transaction_reconstructor import Row, reconstruct_rows
 def make_token(
     text: str,
     confidence: float = 0.9,
-    bbox: Tuple[int, int, int, int] = (0, 0, 10, 10),
+    bbox: Tuple[int, int, int, int] | None = None,
+    x: int = 0,
+    y: int = 0,
+    w: int = 10,
+    h: int = 10,
 ) -> OCRToken:
-    """Build a single OCRToken with sensible defaults."""
+    """Build a single OCRToken with sensible defaults or explicit coordinates."""
+    if bbox is None:
+        bbox = (x, y, x + w, y + h)
     return OCRToken(text=text, confidence=confidence, bbox=bbox)
 
 

@@ -20,7 +20,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from conftest import make_token
+from tests.fixtures.ocr_tokens import make_token
 from src.layout_detector import detect_layout
 from src.normalizers.amount_normalizer import normalize_amount_strings
 from src.normalizers.date_normalizer import normalize_date_strings

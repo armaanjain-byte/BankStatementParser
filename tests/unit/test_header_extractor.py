@@ -19,7 +19,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from conftest import make_token
+from tests.fixtures.ocr_tokens import make_token
 from src.header_extractor import (
     ExtractionResult,
     _extract_bank_name,

@@ -14,7 +14,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from conftest import make_row
+from tests.fixtures.ocr_tokens import make_row_from_text as make_row
 from src.normalizers.date_normalizer import normalize_date_strings
 from src.normalizers.amount_normalizer import normalize_amount_strings
 from src.transaction_parser import parse_rows, ParsedRow

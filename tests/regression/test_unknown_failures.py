@@ -27,7 +27,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from conftest import make_row
+from tests.fixtures.ocr_tokens import make_row_from_text as make_row
 from src.date_validator import validate_date_candidate, looks_like_amount
 from src.normalizers.date_normalizer import normalize_date_strings
 from src.normalizers.amount_normalizer import normalize_amount_strings

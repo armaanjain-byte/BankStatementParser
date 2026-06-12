@@ -14,7 +14,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from conftest import make_token, make_row
+from tests.fixtures.ocr_tokens import make_token, make_row_from_text as make_row
 from src.layout_detector import detect_layout
 from src.schema import Transaction
 from src.semantic_assigner import (
