@@ -121,12 +121,17 @@ def parse_rows(rows: List[Row]) -> List[ParsedRow]:
         if not detection.is_transaction_candidate:
             continue
             
-        primary_date_match = DATE_RE.search(text)
-        if primary_date_match:
-            from src.date_validator import validate_date_candidate
-            is_valid, _ = validate_date_candidate(primary_date_match.group(0))
-            if not is_valid:
-                primary_date_match = None
+        # Find the FIRST VALID date candidate rather than only testing the
+        # first match. An OCR-mangled amount that happens to match DATE_RE
+        # and fails validation must not discard a row that also contains a
+        # genuinely valid date later in the text.
+        from src.date_validator import validate_date_candidate
+        primary_date_match = None
+        for candidate in DATE_RE.finditer(text):
+            is_valid, _ = validate_date_candidate(candidate.group(0))
+            if is_valid:
+                primary_date_match = candidate
+                break
                 
         amounts = MONEY_RE.findall(text)
         
