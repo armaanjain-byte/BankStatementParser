@@ -93,7 +93,10 @@ def _repair_amount_separators(amount_str: str) -> str:
     """Apply adaptive amount separator repair rules.
 
     Rules applied in order:
-      1. Missing decimal: if the string is a bare integer, append ".00".
+      1. (Removed) Missing-decimal repair: bare integers are no longer given
+         a fabricated ".00" - they are returned unchanged by the separator
+         guard below, because cheque/reference/account numbers were being
+         promoted to amounts.
       2. Letter-zero confusion in decimals: replace terminal "C0"/"OO"/"Co"
          with "00".
       3. Non-digit noise prefix: strip leading chars that are not digits,
@@ -113,9 +116,10 @@ def _repair_amount_separators(amount_str: str) -> str:
 
     original = amount_str
 
-    # Rule 1: Missing decimal
-    if re.match(r"^\-?\d{1,7}$", amount_str):
-        amount_str = amount_str + ".00"
+    # Rule 1 (REMOVED): appending ".00" to bare 1-7 digit integers
+    # fabricated amounts from cheque/reference/account numbers
+    # ("201053" -> "201,053.00"). Bare integers are returned unchanged
+    # by the separator guard below.
 
     # Rule 2: Letter-zero confusion in decimals
     if amount_str.endswith("C0") or amount_str.endswith("OO") or amount_str.endswith("Co"):
@@ -130,10 +134,19 @@ def _repair_amount_separators(amount_str: str) -> str:
 
     # Separator fix
     seps = [i for i, c in enumerate(amount_str) if c in "., "]
+    if not seps:
+        # Bare integer: never fabricate a decimal part.
+        return original
     if seps:
         last_sep_idx = seps[-1]
         integer_part = amount_str[:last_sep_idx]
         decimal_part = amount_str[last_sep_idx + 1:]
+
+        # Thousands guard: a trailing 3-digit group after "," or " " is a
+        # thousands group, not a decimal part. Truncating it to 2 digits
+        # turned "30, 800" into "30.80" and "1,234" into "1.23".
+        if amount_str[last_sep_idx] in ", " and re.fullmatch(r"\d{3}", decimal_part):
+            return original
 
         sign = ""
         if integer_part and integer_part[0] in "-+":
@@ -199,14 +212,23 @@ def normalize_amount_strings(rows) -> Tuple[list, int]:
                 return match.group(0)
 
             original_span = match.group(0)
+
+            # Merge guard: if the span already contains one or more valid
+            # amounts, leave it untouched. AMOUNT_CANDIDATE_RE can span
+            # whitespace and swallow adjacent amounts ("32.00 801.00") or
+            # ref-number + amount runs; "repairing" such spans concatenates
+            # all digits into one fabricated value (e.g. "1,231,093.00").
+            # MONEY_RE extraction later runs on the full row text, so
+            # leaving the span raw loses nothing.
+            if MONEY_RE.search(original_span):
+                return original_span
+
             normalized = _normalize_amount_token(original_span)
             normalized = _repair_amount_separators(normalized)
 
-            new_amounts = MONEY_RE.findall(normalized)
-            if new_amounts and not all(a in existing_amounts for a in new_amounts):
-                return normalized
-
-            if MONEY_RE.fullmatch(normalized):
+            if MONEY_RE.fullmatch(normalized) or (
+                normalized[:1] in "-+" and MONEY_RE.fullmatch(normalized[1:])
+            ):
                 return normalized
 
             return original_span
