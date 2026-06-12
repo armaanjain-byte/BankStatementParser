@@ -65,7 +65,12 @@ DATE_RE = re.compile(
     re.IGNORECASE,
 )
 
-MONEY_RE = re.compile(r"\b\d+(?:,\d{3})*\.\d{2}\b")
+# A leading word boundary fails after an OCR'd currency glyph: in
+# "S1,432.05" the old pattern could only match "432.05", truncating the
+# value. "S" (a common OCR reading of "$") is permitted only when it is
+# itself a standalone token start (\bS), so letter-digit reference codes
+# such as "TRANS123.45" are not captured.
+MONEY_RE = re.compile(r"(?:\b|(?<=[$\u20b9\u20ac\u00a3])|(?<=\bS))\d+(?:,\d{3})*\.\d{2}\b")
 
 
 # ──────────────────────────────────────────────
