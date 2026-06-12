@@ -1,82 +1,287 @@
 [
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "1"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "mM/DD/YYYY Pe*t - Credt Card 5,400.00",
     "statement_id": "10"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "11"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "12"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "13"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "14"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "15"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "16"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "17"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "18"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "19"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "2"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "20"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "21"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "22"
+    "failure_type": "no_date_detected",
+    "candidate": "MMTDYTYY Pugtant - in.annos 8,000.00",
+    "statement_id": "10"
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "Sept. Bill paymnemt Irotn) '201053 JU [68233On-...",
+    "candidate": "MMDDYYYY Act Tra 500,000.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "mM/DO/YYYY Cheque Depoet 10,000.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "MM/DD/YYYY Pnt-Bodridy 1,500.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "MM/DO/YYYY Payhent - Waoer Utity 600.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "mM/DD/YYYY Prgoont - Car Lomn 9,600.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "MMDDYYTY Account Tranafer Out 00,000.00",
+    "statement_id": "10"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "2 14.00",
+    "statement_id": "13"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "01/12 61",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "01/12 054368486BKLGJ1J3 ACCELERATED SERVICES LL...",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "7.87 64",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "02/12 051404884LYR0Y8N1 RAMEY'S #8 BRANDON MS",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "73.83 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "53.37 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "4.28 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "55.00 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "05/12 5543286885SRSSXJ4 PUBLIC STORAGE 08052",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "40.00 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "23.42 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/12 55417348A4E5RBXMW C SPIRE MADISON MADISON MS",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "2.66 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "54.98 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "45.55 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "39.99 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "14.97 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "75.00 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "88.25 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "19.80 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "30.21 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "65.85 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "15/12 05436848D8PKSBRHK ACCELERATED SERVICES LL...",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "90.10 65",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "17.12 65",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "17/12 55263528DRBGEHD1E POS RECURRING DEBIT ATM...",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "24.99 64",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "08/12 85586688H36HHRVS5 CITI ONLINE PAYMENT WEST",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "70.00 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "68.46 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "20/12 85486148LWGPJDJX0 POS RECURRING DEBIT AT&T",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "69.55 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "50.01 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "29.16 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "29.99 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "17.99 63",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "53 8.54",
+    "statement_id": "11"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Apr. 1 YOUR ELECTRONIC DEPOSIT TOSCO NW 2 990401",
+    "statement_id": "14"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Apr. 2 YOUR ELECTRONIC DEPOSIT TOSCO NW 2 990402",
+    "statement_id": "14"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 0.00",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "16, 600.00 16,594.55 413.63",
+    "statement_id": "15"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Amount Paid on Death or Terminal llness 50,000....",
+    "statement_id": "16"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Amount Paid upon Total and Permenant 50,000.00 ...",
+    "statement_id": "16"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 11.00",
+    "statement_id": "19"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2018-09-01",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2018-09-02",
+    "statement_id": "20"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-09-19",
+    "statement_id": "23"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-09-21",
     "statement_id": "23"
   },
   {
@@ -85,18 +290,13 @@
     "statement_id": "23"
   },
   {
-    "failure_type": "no_date_detected",
-    "candidate": "Oct . Cill parment from Garelars Four Oaks 32.0...",
-    "statement_id": "23"
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-07-26",
+    "statement_id": "25"
   },
   {
-    "failure_type": "no_date_detected",
-    "candidate": "End balance 302!41.139",
-    "statement_id": "23"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "1/13.00",
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2026-07-19",
     "statement_id": "25"
   },
   {
@@ -106,392 +306,947 @@
   },
   {
     "failure_type": "no_date_detected",
-    "candidate": "AEN33 Do7 457 141 &AFSL NJshaHrt ccdi: |cajo 23...",
-    "statement_id": "25"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "00-6.00",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "CLO-ZQ Z0E 17(M",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "0R-UZ-20 NEFL-AXISI4A9004593-BASIREDDY Suuu.UU",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "00-7.00",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "date_parse_failed",
-    "candidate": "00-7.00",
-    "statement_id": "26"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "(0s-10-2021 BampvnicnI LOQU.UO",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "no_date_detected",
-    "candidate": "04-2W2 MANPOKARUR VS 1676,0",
-    "statement_id": "27"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "candidate": "3AAANCE 3338003 8166'18",
     "statement_id": "29"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "10/5.10",
+    "statement_id": "29"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S9703109702/04/2017 349802030032344:Int.Pd:01 INR",
     "statement_id": "3"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "S267282504/04/2017 PEN.MAR-17LESS TDS=0 INR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S357478605/04/2017 IMPSAR/709509007499/SBI INR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S2826028417/04/2017 NEFT:PREMLAL PANDEY Sender",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 72.653",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S6871621706/05/2017 PEN.APR-17 LESS TDS=0 INR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S7419466009/05/2017 IMPSAR/712909264690/SBI INR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S7815361511/05/2017 IMPSAR/713109281063/SBI INR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S8592990715/05/2017 4213683498103264/713516 INR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S8963558317/05/2017 NEFT:PREMLAL PANDEY Sender",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S2352267502/06/2017 PEN.MAY-17 LESS TDS=0 INR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 75.632",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S2440852403/06/2017 4213683498103264/7361/34 INR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "S5309641117/06/2017 IMPSAB/716809103875/UBI INR",
+    "statement_id": "3"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Cheque-761 5,504.38 271,567.36",
     "statement_id": "30"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "6.00 271",
+    "statement_id": "30"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "75.99 27",
     "statement_id": "31"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "32"
+    "failure_type": "no_date_detected",
+    "candidate": "03/05 Electric Bill 253.68",
+    "statement_id": "31"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "33"
+    "failure_type": "no_date_detected",
+    "candidate": "03/06 Check No. 4598 456.84",
+    "statement_id": "31"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "03/10 Deposit from Credit Card Processor 5,891.26",
+    "statement_id": "31"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "03/12 Payroll Run 3,894.75",
+    "statement_id": "31"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "03/16 Debit Transaction 243.46",
+    "statement_id": "31"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "03/21 Rent Bill 750.00",
+    "statement_id": "31"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "03/21 Check No. 234 268.84",
+    "statement_id": "31"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "03/26 Payroll Run 3,743.23",
+    "statement_id": "31"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "03/28 Deposit 3,656.45",
+    "statement_id": "31"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "03/29 Debit Transaction 1,548.96",
+    "statement_id": "31"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "pnowry xe-od # ypmy 0111$",
     "statement_id": "34"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "Total Overdraft Fees $0.00 $0.00",
     "statement_id": "35"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "Total Returned Tem Fees. $0.00 $0.00",
+    "statement_id": "35"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/01 Rent Bill 670.00",
     "statement_id": "37"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "06/03 740",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/08 Electric Bill 347.85",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "75.45 34",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/15 Deposit 7,245.00",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/18 339",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/24 Deposit 3,255.00",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "88.88 44",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/28 935",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/29 Payroll Run 6,493.65",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/30 1,234.98 37,496.46",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "18.75 37",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "3.75 37",
+    "statement_id": "37"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "16.65 00",
     "statement_id": "39"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "1.888.888.RWDS (1.888.888.7937)",
     "statement_id": "41"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "for January 17,2020 to February 13,2020",
+    "statement_id": "41"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "December 01, 2016 throught December 30, 2016",
     "statement_id": "42"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "43"
+    "failure_type": "no_date_detected",
+    "candidate": "00053642 DRS 025 32500228 NNNNNNNNNNN 1 0000000...",
+    "statement_id": "42"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "Demo BusinessSelect Checking 000002415483497 $7...",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Demo Business Select High Yield Savings. 000002...",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Total $70,951.58 $11,750.64",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "TOTAL AssETS $70,951.58 $11,750.64",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "ATM & Debit Card Withdrawals 112 -66,205.00",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "1 -8.40",
+    "statement_id": "42"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "22-Aog WITHDRAWAL/CHEQUE 300905 266.98 3,550.47",
     "statement_id": "44"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "ATM withdrawal 100.00",
     "statement_id": "45"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "Interac purchase -1361 - Nasr Foods Inc. 47.82 ...",
+    "statement_id": "45"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Interac purchase-1361-The Bay 125.13",
+    "statement_id": "45"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Interac purchase - 1361 - Highland Farms 6.94 3...",
+    "statement_id": "45"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 0.00",
     "statement_id": "46"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "16,600.00 16,594.55 413.63",
+    "statement_id": "46"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "OE'ele's 8100 8'S99'L",
     "statement_id": "47"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "49"
+    "failure_type": "no_date_detected",
+    "candidate": "<amen ymneeg> onO PJed 13380",
+    "statement_id": "47"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-03-06",
     "statement_id": "5"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "50"
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-03-08",
+    "statement_id": "5"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "51"
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-03-09",
+    "statement_id": "5"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "52"
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-03-13",
+    "statement_id": "5"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "53"
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-03-13",
+    "statement_id": "5"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "54"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "55"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "1000000 08 20000",
     "statement_id": "56"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "57"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-18-51",
     "statement_id": "58"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "59"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "6"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "to June 30. 2018 is S0.11",
     "statement_id": "60"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "43.80 51",
+    "statement_id": "60"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "41 0.00",
     "statement_id": "61"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "1 0.00",
+    "statement_id": "61"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Cleartd Bafnce 0.00 Chq.NO.",
+    "statement_id": "61"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "LImt t V1 Dt Details",
+    "statement_id": "61"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2017-08-28",
     "statement_id": "62"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "63"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "0000 00 8 :",
     "statement_id": "64"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "OOO 1 0",
+    "statement_id": "64"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPI/CR/918219892534/ADIVI",
     "statement_id": "65"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "UPI/DR/918219089024/ADIVI",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPI/DR/918221768895/VEERU",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "UPI/CR/918340367249/VEERU",
+    "statement_id": "65"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Mary Jane Smith For perlod of Mar 15, 2010 to A...",
     "statement_id": "66"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "67"
+    "failure_type": "date_parse_failed",
+    "candidate": "09 1-800",
+    "statement_id": "66"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "68"
+    "failure_type": "no_date_detected",
+    "candidate": "Cloalng Balance on Apr 18, 2010 $5,710.87",
+    "statement_id": "66"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "69"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "502 2// 3",
     "statement_id": "7"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "70"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "4/3 Money Transfer authorized on 02/03 From Ama...",
     "statement_id": "71"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "4/3 Purchase authorized on 02/01 Burger King #7...",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "4/3 Purchase authorized on 02/01 Taco Bell#0290...",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "4/4 Purchase authorized on 0201Cash App'Tyreonn...",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "4/5 Purchase authorized on 02/01 Chick-Fl-A #04...",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "4/5 Purchase authorized on02/01CashAppLaloya877...",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "4/5 Purchase authorized on 02/01 Cash AppDevont...",
+    "statement_id": "71"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12.27 .00",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "7.80 4432",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "5.00 457",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "H02/2021 FATOA MATHAT {10.80",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "11.19 41",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "5.17 41",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "80 1.00",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "4.00 1052",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "00 - 0.00",
+    "statement_id": "70"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-26",
     "statement_id": "72"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "0.39 13",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-26",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "73.45 223",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-29",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-29",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-30",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-30",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-30",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "insufficient_numeric_values",
+    "candidate": "2021-03-30",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "79.10 524",
+    "statement_id": "72"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "VISA TD BANK 500.00 5,580.80",
     "statement_id": "73"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "74"
+    "failure_type": "no_date_detected",
+    "candidate": "SUBWAY#31897 23.26 5,505.00",
+    "statement_id": "73"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "75"
+    "failure_type": "no_date_detected",
+    "candidate": "Online Banking payment-2850 500.00",
+    "statement_id": "73"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "76"
+    "failure_type": "no_date_detected",
+    "candidate": "Online Banking payment-3022 500.00",
+    "statement_id": "73"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "77"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "78"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "Interest Rate (% p.a.) :4.0",
     "statement_id": "79"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "110 10,000.00 50,989.41",
+    "statement_id": "79"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "136 RANSERTO 5,000.00",
+    "statement_id": "79"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "130 3,000.00 42,989.41",
+    "statement_id": "79"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "146 14AATMWOL-ATM 8849 23,779.26",
+    "statement_id": "79"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "14.0 10",
+    "statement_id": "79"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "O1 Nov BACS Acorn Advertising Studies",
     "statement_id": "8"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "O1 Nov BACS Marriott Hotel",
+    "statement_id": "8"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "6.81 415",
     "statement_id": "80"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "27.00 378",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Transfer from 07166060408617 100.00 think",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Transfer to 07043645929999 170.00",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Transfer to 070436 45929999 30.00 can to alert ...",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "18.00 48",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Transfer from07043645929999 600.00 697.16",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "0.44 682",
+    "statement_id": "80"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Apr8 Insurance 272.45",
     "statement_id": "81"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "82"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "1.30 25",
     "statement_id": "83"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "84"
+    "failure_type": "date_parse_failed",
+    "candidate": "00 9.31",
+    "statement_id": "83"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "1.30 25",
     "statement_id": "85"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "86"
+    "failure_type": "date_parse_failed",
+    "candidate": "00 9.31",
+    "statement_id": "85"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "06/01 Rent Bill 670.00",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/03 740",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/08 Electric Bill 347.85",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "75.45 34",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/15 Deposit 7,245.00",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/18 339",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/24 Deposit 3,255.00",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "88.88 44",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/28 935",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/29 Payroll Run 6,493.65",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/30 1,234.98 37,496.46",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "18.75 37",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "3.75 37",
+    "statement_id": "84"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/01 Rent Bill 670.00",
     "statement_id": "88"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "89"
+    "failure_type": "date_parse_failed",
+    "candidate": "06/03 740",
+    "statement_id": "88"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "06/08 Electric Bill 347.85",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "75.45 34",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/15 Deposit 7,245.00",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/18 339",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/24 Deposit 3,255.00",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "88.88 44",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/28 935",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/29 Payroll Run 6,493.65",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/30 1,234.98 37,496.46",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "18.75 37",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "3.75 37",
+    "statement_id": "88"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/01 Rent Bill 670.00",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/03 740",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/08 Electric Bill 347.85",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "75.45 34",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/15 Deposit 7,245.00",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/18 339",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/24 Deposit 3,255.00",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "88.88 44",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "06/28 935",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/29 Payroll Run 6,493.65",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "06/30 1,234.98 37,496.46",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "18.75 37",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "3.75 37",
+    "statement_id": "86"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "0.58 45",
     "statement_id": "90"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "91"
+    "failure_type": "date_parse_failed",
+    "candidate": "0.46 44",
+    "statement_id": "90"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "no_date_detected",
+    "candidate": "11/18 FNBO DIRECT TRIALCREDT 173.74",
+    "statement_id": "90"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "12.00 40",
+    "statement_id": "90"
+  },
+  {
+    "failure_type": "date_parse_failed",
+    "candidate": "4.06 40",
+    "statement_id": "90"
+  },
+  {
+    "failure_type": "no_date_detected",
+    "candidate": "Interest Rate%p.a. 3.5",
     "statement_id": "92"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "93"
+    "failure_type": "no_date_detected",
+    "candidate": "27No 27No ATMWDL-",
+    "statement_id": "92"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "94"
+    "failure_type": "no_date_detected",
+    "candidate": "28No 28No ATMWDL",
+    "statement_id": "92"
   },
   {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "95"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "96"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
+    "failure_type": "date_parse_failed",
+    "candidate": "1 1.00",
     "statement_id": "97"
-  },
-  {
-    "failure_type": "unhandled_exception",
-    "candidate": "No module named 'paddleocr'",
-    "statement_id": "98"
   }
 ]
