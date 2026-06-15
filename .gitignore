@@ -22,9 +22,10 @@ Thumbs.db
 .DS_Store
 
 
-test_set/
-dataset/
-out/
-evaluation_report.json
-failure_report.json
-pipeline_loss_report.json
+# Ignore contents of dataset and out folders
+dataset/*
+out/*
+
+# But NOT .gitkeep (it's a convention to preserve directory structure)
+!dataset/.gitkeep
+!out/.gitkeep
